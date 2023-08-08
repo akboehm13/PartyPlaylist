@@ -2,25 +2,22 @@ package com.techelevator.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.math.BigDecimal;
-
 public class Song {
     @JsonProperty("song_id")
     private int id;
     private String title;
     private String artist;
     private String genre;
-    private String durationStr;
-    private BigDecimal duration = new BigDecimal(durationStr);
+    private String duration;
 
     public Song() { }
 
-    public Song(int id, String title, String artist, String genre, String durationStr){
+    public Song(int id, String title, String artist, String genre, String duration){
         this.id = id;
         this.title = title;
         this.artist = artist;
         this.genre = genre;
-        this.durationStr = durationStr;
+        this.duration = duration;
     }
 
     public int getId() {
@@ -55,19 +52,11 @@ public class Song {
         this.genre = genre;
     }
 
-    public String getDurationStr() {
-        return durationStr;
-    }
-
-    public void setDurationStr(String durationStr) {
-        this.durationStr = durationStr;
-    }
-
-    public BigDecimal getDuration() {
+    public String getDuration() {
         return duration;
     }
 
-    public void setDuration(BigDecimal duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 

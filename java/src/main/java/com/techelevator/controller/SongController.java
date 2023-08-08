@@ -10,7 +10,8 @@ import javax.websocket.server.ServerEndpoint;
 import java.util.List;
 
 @RestController
-@RequestMapping("/song")
+@RequestMapping("/songs")
+@CrossOrigin
 public class SongController {
 
     private SongDao songDao;
@@ -36,11 +37,5 @@ public class SongController {
             return songDao.getSongById(id);
         }
     }
-    @GetMapping(path = "")
-    public Song get(@RequestParam(defaultValue = "") String title){
-        if (!title.equals("")){
-            return songDao.getSongByTitle(title);
-        }
-        else throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Song Not Found");
-    }
+
 }

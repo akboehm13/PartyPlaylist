@@ -2,8 +2,6 @@ package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Song;
-import com.techelevator.model.User;
-import org.springframework.boot.autoconfigure.quartz.QuartzProperties;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -91,8 +89,8 @@ public class JdbcSongDao implements SongDao {
         song.setId(rowSet.getInt("song_id"));
         song.setTitle(rowSet.getString("title"));
         song.setArtist(rowSet.getString("artist"));
-        song.setTitle(rowSet.getString("genre"));
-        song.setTitle(rowSet.getString("duration"));
+        song.setGenre(rowSet.getString("genre"));
+        song.setDuration(rowSet.getString("duration"));
 
         return song;
     }
