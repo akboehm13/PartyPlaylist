@@ -2,12 +2,14 @@ package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Song;
+import com.techelevator.model.User;
 import org.springframework.boot.autoconfigure.quartz.QuartzProperties;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -20,8 +22,35 @@ public class JdbcSongDao implements SongDao {
     }
 
     @Override
-    public List<Song> getSongs() {
-        return null;
+    public List<Song> getAllSongs() {
+        List<Song> songs = new ArrayList<>();
+        String sql = "SELECT * FROM \"song\"";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+            while (results.next()) {
+                Song song = mapRowToSong(results);
+                songs.add(song);
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return songs;
+    }
+
+    @Override
+    public List<Song> getAllSongsByGenre(String genre) {
+        List<Song> songs = new ArrayList<>();
+        String sql = "SELECT * FROM \"song\" " + "WHERE genre = ?";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, genre);
+            while (results.next()) {
+                Song song = mapRowToSong(results);
+                songs.add(song);
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return songs;
     }
 
     @Override
