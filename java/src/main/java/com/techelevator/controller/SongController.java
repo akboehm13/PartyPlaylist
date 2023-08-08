@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import javax.websocket.server.ServerEndpoint;
 import java.util.List;
 
@@ -36,6 +37,23 @@ public class SongController {
         } else {
             return songDao.getSongById(id);
         }
+    }
+
+    @PostMapping(path = "")
+    public Song addSong(@Valid @RequestBody Song song){
+        try {
+            return new Song(song.getId(), song.getTitle(), song.getArtist(), song.getGenre(), song.getDuration());
+        }
+        catch (Exception e){
+            throw e;
+        }
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public void delete(@PathVariable int id){
+
+        if(songDao.deleteSongById(id) == 0)
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Song to delete was not found.");
     }
 
 }

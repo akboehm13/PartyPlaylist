@@ -83,6 +83,19 @@ public class JdbcSongDao implements SongDao {
         return song;
     }
 
+    @Override
+    public Song createSong(Song song) {
+
+
+
+        return null;
+    }
+
+    @Override
+    public int deleteSongById(int songID) {
+        return 0;
+    }
+
     private Song mapRowToSong(SqlRowSet rowSet) {
         Song song = new Song();
 
