@@ -365,6 +365,7 @@ table {
 
 th {
     padding: 10px;
+    text-align: left;
     
 }
 
