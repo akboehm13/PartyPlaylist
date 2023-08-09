@@ -15,15 +15,25 @@ public class User {
    @JsonIgnore
    private boolean activated;
    private Set<Authority> authorities = new HashSet<>();
+   private String email;
 
    public User() { }
 
-   public User(int id, String username, String password, String authorities) {
+   public User(int id, String username, String password, String authorities, String email) {
       this.id = id;
       this.username = username;
       this.password = password;
       if (authorities != null) this.setAuthorities(authorities);
       this.activated = true;
+      this.email = email;
+   }
+
+   public String getEmail() {
+      return this.email;
+   }
+
+   public void setEmail(String email) {
+      this.email = email;
    }
 
    public int getId() {
