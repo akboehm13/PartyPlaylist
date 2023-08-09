@@ -1,6 +1,6 @@
 <template>
   <div>
-    my events page
+    <h2>My Events Place Holder</h2>
   </div>
 </template>
 
