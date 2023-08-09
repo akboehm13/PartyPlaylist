@@ -19,7 +19,7 @@ CREATE TABLE "song" (
     title VARCHAR(75) NOT NULL,
     artist VARCHAR(75) NOT NULL,
     genre VARCHAR(25) NOT NULL,
-    duration INTERVAL NOT NULL
+    duration VARCHAR(5) NOT NULL
 );
 
 CREATE TABLE "event" (

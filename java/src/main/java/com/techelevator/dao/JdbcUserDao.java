@@ -27,7 +27,7 @@ public class JdbcUserDao implements UserDao {
     @Override
     public User getUserById(int userId) {
         User user = null;
-        String sql = "SELECT user_id, username, password_hash, role FROM \"user\" WHERE user_id = ?";
+        String sql = "SELECT user_id, username, password_hash, role, email FROM \"user\" WHERE user_id = ?";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
             if (results.next()) {
@@ -42,7 +42,7 @@ public class JdbcUserDao implements UserDao {
     @Override
     public List<User> getUsers() {
         List<User> users = new ArrayList<>();
-        String sql = "SELECT user_id, username, password_hash, role FROM \"user\";";
+        String sql = "SELECT user_id, username, password_hash, role, email FROM \"user\";";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
             while (results.next()) {
@@ -59,7 +59,7 @@ public class JdbcUserDao implements UserDao {
     public User getUserByUsername(String username) {
         if (username == null) throw new IllegalArgumentException("Username cannot be null");
         User user = null;
-        String sql = "SELECT user_id, username, password_hash, role FROM \"user\" WHERE username = ?;";
+        String sql = "SELECT user_id, username, password_hash, role, email FROM \"user\" WHERE username = ?;";
         try {
             SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, username);
             if (rowSet.next()) {
