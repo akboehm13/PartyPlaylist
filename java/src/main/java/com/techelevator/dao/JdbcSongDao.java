@@ -2,10 +2,13 @@ package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Song;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,13 +85,19 @@ public class JdbcSongDao implements SongDao {
         }
         return song;
     }
-
     @Override
-    public Song createSong(Song song) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createSong(Song song) {
 
+        String sql = "INSERT INTO \"song\" (title, artist, genre, duration) VALUES(?,?,?,?);";
 
-
-        return null;
+        try {
+            jdbcTemplate.update(sql,song.getTitle(),song.getArtist(),song.getGenre(),song.getDuration());
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to database", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
     }
 
     @Override

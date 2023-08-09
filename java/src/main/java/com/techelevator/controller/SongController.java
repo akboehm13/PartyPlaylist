@@ -39,14 +39,10 @@ public class SongController {
         }
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(path = "")
-    public Song addSong(@Valid @RequestBody Song song){
-        try {
-            return new Song(song.getId(), song.getTitle(), song.getArtist(), song.getGenre(), song.getDuration());
-        }
-        catch (Exception e){
-            throw e;
-        }
+    public void addSong(@Valid @RequestBody Song song) {
+        songDao.createSong(song);
     }
 
     @DeleteMapping(path = "/{id}")

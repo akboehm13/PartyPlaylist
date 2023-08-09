@@ -1,6 +1,8 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Song;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
 
@@ -14,7 +16,7 @@ public interface SongDao {
 
     Song getSongByTitle(String title);
 
-    Song createSong(Song song);
+    void createSong(Song song);
 
     int deleteSongById(int songID);
 }
