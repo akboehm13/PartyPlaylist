@@ -45,12 +45,12 @@ public class SongController {
         }
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(path = "")
-    public Song addSong(@Valid @RequestBody Song song){
+    public void addSong(@Valid @RequestBody Song song) {
         try {
-            return songDao.createSong(song);
-        }
-        catch (Exception e){
+            songDao.createSong(song);
+        } catch (Exception e) {
             throw e;
         }
     }
