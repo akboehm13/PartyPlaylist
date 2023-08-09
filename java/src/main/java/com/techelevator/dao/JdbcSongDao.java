@@ -71,19 +71,21 @@ public class JdbcSongDao implements SongDao {
     }
 
     @Override
-    public Song getSongByTitle(String title) {
+    public List<Song> getAllSongsByTitle(String title) {
         Song song = null;
+        List<Song> songs = new ArrayList<>();
         String sql = "SELECT * FROM \"song\" " + "WHERE title = ?";
 
         try {
             SqlRowSet result = jdbcTemplate.queryForRowSet(sql, title);
             if (result.next()) {
                 song = mapRowToSong(result);
+                songs.add(song);
             }
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         }
-        return song;
+        return songs;
     }
     @Override
     @ResponseStatus(HttpStatus.CREATED)
@@ -101,6 +103,12 @@ public class JdbcSongDao implements SongDao {
     }
 
     @Override
+    public Song updateSong(Song song) {
+
+
+        return null;
+    }
+
     public int deleteSongById(int songID) {
 
         int numberOfRows = 0;
@@ -115,6 +123,7 @@ public class JdbcSongDao implements SongDao {
             throw new DaoException("Data integrity violation", e);
         }
         return numberOfRows;
+
     }
 
     private Song mapRowToSong(SqlRowSet rowSet) {

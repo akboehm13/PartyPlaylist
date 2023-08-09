@@ -14,9 +14,11 @@ public interface SongDao {
 
     Song getSongById(int id);
 
-    Song getSongByTitle(String title);
+    List<Song> getAllSongsByTitle(String title);
 
     void createSong(Song song);
+
+    Song updateSong(Song song);
 
     int deleteSongById(int songID);
 }
