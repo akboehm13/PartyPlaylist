@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import Events from '../views/EventsView.vue'
 import MyEvents from '../views/MyEventsView.vue'
+import GlobalList from '@/GlobalList.vue';
 
 Vue.use(Router)
 
@@ -67,6 +68,14 @@ const router = new Router({
       path: "/myevents",
       name: "myevents",
       component: MyEvents,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/global_list",
+      name: "global_list",
+      component: GlobalList,
       meta: {
         requiresAuth: false
       }
