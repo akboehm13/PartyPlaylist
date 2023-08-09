@@ -49,7 +49,7 @@ public class SongController {
     public void delete(@PathVariable int id){
 
         if(songDao.deleteSongById(id) == 0)
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Song to delete was not found.");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Song was not found.");
     }
 
 }
