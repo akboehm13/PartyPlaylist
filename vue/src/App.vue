@@ -12,16 +12,17 @@
         &nbsp;|&nbsp;
         <li class="nav-item">
           <router-link
-            v-bind:to="{ name: 'logout' }"
-            v-if="$store.state.token != ''"
-            >Logout</router-link
-          >
-        </li>
-        <li class="nav-item">
-          <router-link
             v-bind:to="{ name: 'global_list' }"
             v-if="$store.state.token != ''"
             >Global List</router-link
+          >
+        </li>
+        &nbsp;|&nbsp;
+        <li class="nav-item">
+          <router-link
+            v-bind:to="{ name: 'logout' }"
+            v-if="$store.state.token != ''"
+            >Logout</router-link
           >
         </li>
       </ul>
@@ -66,5 +67,6 @@ h2 {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   max-width: 800px;
   margin-bottom: 20px;
+  margin: 0 auto;
 }
 </style>
