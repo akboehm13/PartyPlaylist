@@ -10,18 +10,40 @@ public class Song {
     private String genre;
     private String duration;
 
+    private String audioURL;
+
+    private String imageURL;
+
     public Song() { }
 
-    public Song(int id, String title, String artist, String genre, String duration){
+    public Song(int id, String title, String artist, String genre, String duration, String audioURL, String imageURL) {
         this.id = id;
         this.title = title;
         this.artist = artist;
         this.genre = genre;
         this.duration = duration;
+        this.audioURL = audioURL;
+        this.imageURL = imageURL;
     }
 
     public int getId() {
         return id;
+    }
+
+    public String getAudioURL() {
+        return audioURL;
+    }
+
+    public void setAudioURL(String audioURL) {
+        this.audioURL = audioURL;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
     public void setId(int id) {
