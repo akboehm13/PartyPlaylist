@@ -124,7 +124,6 @@ public class JdbcSongDao implements SongDao {
             throw new DaoException("Data integrity violation", e);
         }
         return numberOfRows;
-
     }
 
     private Song mapRowToSong(SqlRowSet rowSet) {
