@@ -106,8 +106,21 @@ public class JdbcSongDao implements SongDao {
     @Override
     public Song updateSong(Song song) {
 
+        Song newSong = null;
 
-        return null;
+        String sql = "UPDATE \"song\" SET title=?, artist=?, genre=?, duration=?, song_url=?, song_art=?"+
+                " WHERE song_id=?;";
+
+        try {
+            jdbcTemplate.update(sql,song.getTitle(),song.getArtist(),song.getGenre(),song.getDuration(),song.getAudioURL(),
+                    song.getImageURL(), song.getId());
+            newSong = getSongById(song.getId());
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Cannot connect to database", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        return newSong;
     }
 
     public int deleteSongById(int songID) {
