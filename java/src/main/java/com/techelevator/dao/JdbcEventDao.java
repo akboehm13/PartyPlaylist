@@ -1,9 +1,11 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Event;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class JdbcEventDao implements EventDao {
     @Override
     public List<Event> getAllEvents() {
@@ -11,7 +13,7 @@ public class JdbcEventDao implements EventDao {
     }
 
     @Override
-    public List<Event> getEventByName(Event event) {
+    public List<Event> getEventByName(String name) {
         return null;
     }
 
@@ -32,12 +34,11 @@ public class JdbcEventDao implements EventDao {
 
     @Override
     public void createEvent(Event event) {
-
     }
 
     @Override
-    public Event updateEvent(Event event) {
-        return null;
+    public int updateEventById(int id) {
+        return 0;
     }
 
     @Override
