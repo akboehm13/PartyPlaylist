@@ -9,13 +9,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
-import javax.websocket.server.ServerEndpoint;
 import java.util.List;
 
 @RestController
 @RequestMapping("/songs")
 @CrossOrigin
-@PreAuthorize("hasAnyRole('CREATOR','ADMIN')")
+@PreAuthorize("hasRole('ADMIN')")
 public class SongController {
 
     private SongDao songDao;
