@@ -19,7 +19,9 @@ CREATE TABLE "song" (
     title VARCHAR(75) NOT NULL,
     artist VARCHAR(75) NOT NULL,
     genre VARCHAR(25) NOT NULL,
-    duration VARCHAR(5) NOT NULL
+    duration VARCHAR(5) NOT NULL,
+    song_url VARCHAR(50) NOT NULL,
+    song_art VARCHAR(50)
 );
 
 CREATE TABLE "event" (
@@ -27,10 +29,11 @@ CREATE TABLE "event" (
     name VARCHAR(50) NOT NULL,
     dj_id INT NOT NULL,
     host_id INT NOT NULL,
-    date DATE NOT NULL,
+    date VARCHAR(12) NOT NULL,
     description TEXT,
     start_time TIME NOT NULL,
-    end_time TIME NOT NULL
+    end_time TIME NOT NULL,
+    location VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE "playlist" (
