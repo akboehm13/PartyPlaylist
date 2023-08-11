@@ -6,7 +6,7 @@
         {{ registrationErrorMsg }}
       </div>
       <div class="form-input-group">
-        <label for="username">Username</label>
+        <label for="username">Username:</label>
         <input
           type="text"
           id="username"
@@ -16,17 +16,21 @@
         />
       </div>
       <div class="form-input-group">
-        <label for="password">Password</label>
+        <label for="password">Password:</label>
         <input type="password" id="password" v-model="user.password" required />
       </div>
       <div class="form-input-group">
-        <label for="confirmPassword">Confirm Password</label>
+        <label for="confirmPassword">Confirm Password:</label>
         <input
           type="password"
           id="confirmPassword"
           v-model="user.confirmPassword"
           required
         />
+      </div>
+      <div class="form-input-group">
+        <label for="email">Email:</label>
+        <input type="text" id="email" v-model="user.email" required autofocus />
       </div>
       <button type="submit">Create Account</button>
       <p>
@@ -49,6 +53,7 @@ export default {
         username: "",
         password: "",
         confirmPassword: "",
+        email: "",
         role: "user",
       },
       registrationErrors: false,
