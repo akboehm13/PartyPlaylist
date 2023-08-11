@@ -7,7 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import Events from '../views/EventsView.vue'
 import MyEvents from '../views/MyEventsView.vue'
-import GlobalList from '@/GlobalList.vue';
+import GlobalList from '../views/GlobalList.vue';
 
 Vue.use(Router)
 

@@ -89,13 +89,15 @@ public class JdbcSongDao implements SongDao {
     }
     @Override
     @ResponseStatus(HttpStatus.CREATED)
-    public void createSong(Song song) {
-
-        String sql = "INSERT INTO \"song\" (title, artist, genre, duration, song_url, song_art) VALUES(?,?,?,?,?,?);";
+    public Song createSong(Song song) {
+        Song newSong = null;
+        String sql = "INSERT INTO \"song\" (title, artist, genre, duration, song_url, song_art) VALUES(?,?,?,?,?,?) RETURNING song_id;";
 
         try {
-            jdbcTemplate.update(sql,song.getTitle(),song.getArtist(),song.getGenre(),song.getDuration(),
+           int newSongID = jdbcTemplate.queryForObject(sql,Integer.class, song.getTitle(),song.getArtist(),song.getGenre(),song.getDuration(),
                     song.getAudioURL(), song.getImageURL());
+           newSong = getSongById(newSongID);
+           return newSong;
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to database", e);
         } catch (DataIntegrityViolationException e) {

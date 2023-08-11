@@ -16,7 +16,7 @@ public interface SongDao {
 
     List<Song> getAllSongsByTitle(String title);
 
-    void createSong(Song song);
+    Song createSong(Song song);
 
     Song updateSong(Song song);
 

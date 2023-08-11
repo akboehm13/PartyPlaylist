@@ -7,7 +7,7 @@
     </div>
 
     <div class="add-song-form" v-if="showAddForm">
-      <form @submit.prevent="addNewSong">
+      <form @submit.prevent="saveSong">
         <input type="text" v-model="editingSong.title" placeholder="Name" />
         <input type="text" v-model="editingSong.artist" placeholder="Artist" />
         <input type="text" v-model="editingSong.genre" placeholder="Genre" />
@@ -18,7 +18,12 @@
         />
         <input
           type="text"
-          v-model="editingSong.coverArt"
+          v-model="editingSong.song_url"
+          placeholder="Song URL"
+        />
+        <input
+          type="text"
+          v-model="editingSong.img_url"
           placeholder="Cover Art URL"
         />
         <button type="submit">
@@ -61,7 +66,7 @@
 </template>
 
 <script>
-import songAPI from "../src/services/SongService.js";
+import songAPI from "../services/SongService.js";
 
 export default {
   name: "global-list",
@@ -69,34 +74,16 @@ export default {
 
   data() {
     return {
-      song: {
-        title: "",
-        artist: "",
-        genre: "",
-        duration: "",
-        songURL: "",
-        coverArt: "",
-      },
       songs: [],
       searchQuery: "",
       showAddForm: false,
-      newSong: {
-        title: "",
-        artist: "",
-        genre: "",
-        duration: "",
-        songURL: "",
-        coverArt: "",
-      },
       editingSong: {},
       editingSongIndex: -1,
     };
   },
   created() {
     songAPI.list().then((response) => {
-      console.log(response.data);
       this.songs = response.data;
-      console.log(this.songs);
     });
   },
   computed: {
@@ -121,61 +108,65 @@ export default {
     hideForm() {
       this.showAddForm = false;
     },
-    addNewSong() {
+    saveSong() {
       if (this.editingSongIndex === -1) {
-        this.songs.push({
-          id: this.songs.length + 1,
-          title: this.editingSong.title,
-          artist: this.editingSong.artist,
-          genre: this.editingSong.genre,
-          duration: this.editingSong.duration,
-          coverArt: this.editingSong.coverArt,
-        });
+        console.log("adding...");
+        songAPI
+          .add(this.editingSong)
+          .then((response) => {
+            console.log(response.data);
+            this.songs.push(response.data);
+          })
+          .then(() => {
+            this.editingSong = {};
+            this.editingSongIndex = -1;
+            this.hideForm();
+          });
       } else {
-        this.songs[this.editingSongIndex] = { ...this.editingSong };
+        console.log("updating...");
+        songAPI
+          .update(this.editingSong.song_id, this.editingSong)
+          .then((response) => {
+            if (response.status === 200) {
+              this.editingSongIndex = this.songs.findIndex(
+                (s) => s.song_id === this.editingSong.song_id
+              );
+              this.songs[this.editingSongIndex] = { ...this.editingSong };
+            }
+          })
+          .then(() => {
+            this.editingSong = {};
+            this.editingSongIndex = -1;
+            this.hideForm();
+          });
       }
-
-      this.editingSong = {
-        title: "",
-        artist: "",
-        genre: "",
-        duration: "",
-        coverArt: "",
-      };
-      this.editingSongIndex = -1;
-      this.hideForm();
     },
 
     cancelEdit() {
-      this.editingSong = {
-        title: "",
-        artist: "",
-        genre: "",
-        duration: "",
-        coverArt: "",
-      };
+      this.editingSong = {};
       this.editingSongIndex = -1;
       this.hideForm();
     },
     editSong(song) {
       this.editingSong = { ...song };
-      this.editingSongIndex = this.songs.findIndex((s) => s.id === song.id);
+      this.editingSongIndex = this.songs.findIndex(
+        (s) => s.song_id === song.song_id
+      );
       this.showForm();
     },
 
     deleteSong(song) {
-      songAPI.delete(song.song_id).then((response)=> {
-        if (response.status === 200){
-      const index = this.songs.findIndex((s) => s.song_id === song.song_id);
-      if (index !== -1) {
-        this.songs.splice(index, 1);
-      }
-      }
-    });
-  }
-}
-}
-
+      songAPI.delete(song.song_id).then((response) => {
+        if (response.status === 200) {
+          const index = this.songs.findIndex((s) => s.song_id === song.song_id);
+          if (index !== -1) {
+            this.songs.splice(index, 1);
+          }
+        }
+      });
+    },
+  },
+};
 </script>
 
 <style>
