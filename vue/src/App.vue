@@ -36,8 +36,8 @@
   list-style: none;
   display: flex;
   justify-content: space-around;
-  color: #dc9d00;
-  background-color: rgb(100, 100, 100);
+  color: #007aff;
+  background-color: #f4f4f4;
   padding: 20px;
   border-radius: 10px;
   font-size: 1em;
@@ -45,7 +45,7 @@
 
 .nav-item a {
   text-decoration: none;
-  color: #dc9d00;
+  color: #007aff;
   transition: color 0.3s ease-in-out;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -54,19 +54,7 @@
   color: lightgray;
 }
 
-/* body {
-  background-color: rgb(50, 50, 50);
-} */
-/* h2 {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  text-align: center;
-  color: #dc9d00;
-  background-color: rgb(100, 100, 100);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
-  margin-bottom: 20px;
-  margin: 0 auto;
-} */
+body {
+  background-color: rgb(224, 224, 224);
+}
 </style>

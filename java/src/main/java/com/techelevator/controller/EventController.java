@@ -44,7 +44,7 @@ public class EventController {
     public Event update(@Valid @RequestBody Event event, @PathVariable int id){
         event.setEventId(id);
         try {
-            Event updatedEvent = eventDao.updateEvent(event);
+            Event updatedEvent = eventDao.updateEventById(event);
             return updatedEvent;
         }
         catch (DaoException e) {

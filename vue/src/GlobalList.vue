@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div class="input">
       <h2>Global Music List</h2>
       <input type="text" v-model="searchQuery" placeholder="Search songs..." />
@@ -41,7 +41,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="song in filteredSongs" :key="song.song_id">
+          <tr v-for="song in filteredSongs" :key="song.id">
             <td>
               <img :src="song.coverArt" alt="Cover Art" height="50" />
             </td>
@@ -51,7 +51,7 @@
             <td>{{ song.duration }}</td>
             <td>
               <button @click="editSong(song)">Edit</button>
-              <button @click="deleteSong(song)">Delete</button>
+              <button @click="deleteSong(song.id)">Delete</button>
             </td>
           </tr>
         </tbody>
@@ -163,80 +163,118 @@ export default {
       this.showForm();
     },
 
-    deleteSong(song) {
-      songAPI.delete(song.song_id).then((response)=> {
-        if (response.status === 200){
-      const index = this.songs.findIndex((s) => s.song_id === song.song_id);
+    deleteSong(songId) {
+      const index = this.songs.findIndex((s) => s.id === songId);
       if (index !== -1) {
         this.songs.splice(index, 1);
       }
-      }
-    });
-  }
-}
-}
-
+    },
+  },
+};
 </script>
 
-<style>
-body {
-  background-color: rgb(50, 50, 50);
-}
-
-h2 {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  text-align: center;
-  color: silver;
-  background-color: rgb(4, 92, 4);
+<style scoped>
+/* Container styles */
+.container {
+  background-color: #f4f4f4;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Input and button styles */
+.input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
 }
 
-.input {
+.input h2 {
+  color: #007aff;
+  opacity: 0.8;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  text-align: center;
-  max-width: 800px;
+}
+
+.input input[type="text"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 70%;
+}
+
+.input button {
+  padding: 10px 20px;
+  background-color: #007aff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Table styles */
+.table-container {
+  max-height: 690px;
+  overflow-y: auto;
+  margin-top: 20px;
   margin: 0 auto;
+  position: relative;
 }
 
 table {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  color: silver;
-  background-color: rgb(100, 100, 100);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
-  margin: 0 auto;
+  color: #333;
+  background-color: #fff;
+  width: 100%;
   border-collapse: collapse;
 }
 
-th {
-  padding: 10px;
-  text-align: left;
-}
-
+th,
 td {
-  padding: 10px;
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
-.table-container {
-  max-height: 350px;
-  overflow-y: auto;
-  margin-top: 20px;
-  position: relative;
-}
-
-table thead {
+th {
+  background-color: #007aff;
+  color: white;
+  font-weight: bold;
   position: sticky;
   top: 0;
-  background-color: rgb(4, 92, 4);
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgb(4, 92, 4);
-  z-index: 1;
+}
+
+/* Button styles */
+button {
+  padding: 5px 10px;
+  margin-right: 5px;
+  background-color: #007aff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button.delete {
+  background-color: #ff3b30;
+}
+
+/* Form styles */
+.add-song-form {
+  display: none;
+  margin-top: 20px;
+}
+
+.add-song-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-song-form input {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 </style>
 
