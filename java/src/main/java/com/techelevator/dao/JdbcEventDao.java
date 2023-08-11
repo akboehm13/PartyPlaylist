@@ -114,7 +114,7 @@ public class JdbcEventDao implements EventDao {
     }
 
     @Override
-    public Event updateEvent(Event event) {
+    public Event updateEventById(Event event) {
         Event newEvent = null;
 
         String sql = "UPDATE \"event\" SET name=?, dj_id=?, host_id=?, date=?, description=?, start_time=?, end_time=?, location=?"+

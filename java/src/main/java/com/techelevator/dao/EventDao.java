@@ -18,7 +18,7 @@ public interface EventDao {
 
     void createEvent(Event event);
 
-    Event updateEvent(Event event);
+    Event updateEventById(Event event);
 
     int deleteEventById(int id);
 }

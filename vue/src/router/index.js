@@ -7,7 +7,8 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import Events from '../views/EventsView.vue'
 import MyEvents from '../views/MyEventsView.vue'
-import GlobalList from '../views/GlobalList.vue';
+import GlobalList from '../views/GlobalList.vue'
+import Event from '@/Event.vue'
 
 Vue.use(Router)
 
@@ -79,8 +80,17 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: "/event",
+      name: "event",
+      component: Event,
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
+
 })
 
 router.beforeEach((to, from, next) => {

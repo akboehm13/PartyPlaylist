@@ -1,36 +1,15 @@
 <template>
   <div class="container">
-    <div class="input">
-      <h2>Global Music List</h2>
-      <input type="text" v-model="searchQuery" placeholder="Search songs..." />
-      <button @click="showForm()">+ Add Song</button>
+    <div class="header">
+        <h2>Upcoming Event</h2>
+            <div class="buttons">
+            <button @click="showForm()">Join</button>
+            <button @click="showForm()">Invite</button>
+            </div>
     </div>
 
-    <div class="add-song-form" v-if="showAddForm">
-      <form @submit.prevent="saveSong">
-        <input type="text" v-model="editingSong.title" placeholder="Name" />
-        <input type="text" v-model="editingSong.artist" placeholder="Artist" />
-        <input type="text" v-model="editingSong.genre" placeholder="Genre" />
-        <input
-          type="text"
-          v-model="editingSong.duration"
-          placeholder="Duration"
-        />
-        <input
-          type="text"
-          v-model="editingSong.song_url"
-          placeholder="Song URL"
-        />
-        <input
-          type="text"
-          v-model="editingSong.img_url"
-          placeholder="Cover Art URL"
-        />
-        <button type="submit">
-          {{ editingSongIndex === -1 ? "Add" : "Update" }}
-        </button>
-        <button type="button" @click="cancelEdit">Cancel</button>
-      </form>
+    <div class="description">
+        <h5>Join us for Caleb's 5th birthday this upcoming Saturday the 4th at 1234 Arroyo Ln. Pizza and drinks will be provided.</h5>
     </div>
 
     <div class="table-container">
@@ -42,7 +21,9 @@
             <th>Artist</th>
             <th>Genre</th>
             <th>Duration</th>
-            <th></th>
+            <th>
+                <button @click="playPlaylist()">Play</button>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -66,24 +47,42 @@
 </template>
 
 <script>
-import songAPI from "../services/SongService.js";
+import songAPI from "../src/services/SongService.js";
 
 export default {
-  name: "global-list",
+  name: "event",
   components: {},
 
   data() {
     return {
+      song: {
+        title: "",
+        artist: "",
+        genre: "",
+        duration: "",
+        songURL: "",
+        coverArt: "",
+      },
       songs: [],
       searchQuery: "",
       showAddForm: false,
+      newSong: {
+        title: "",
+        artist: "",
+        genre: "",
+        duration: "",
+        songURL: "",
+        coverArt: "",
+      },
       editingSong: {},
       editingSongIndex: -1,
     };
   },
   created() {
     songAPI.list().then((response) => {
+      console.log(response.data);
       this.songs = response.data;
+      console.log(this.songs);
     });
   },
   computed: {
@@ -108,62 +107,58 @@ export default {
     hideForm() {
       this.showAddForm = false;
     },
-    saveSong() {
+    addNewSong() {
       if (this.editingSongIndex === -1) {
-        console.log("adding...");
-        songAPI
-          .add(this.editingSong)
-          .then((response) => {
-            console.log(response.data);
-            this.songs.push(response.data);
-          })
-          .then(() => {
-            this.editingSong = {};
-            this.editingSongIndex = -1;
-            this.hideForm();
-          });
+        this.songs.push({
+          id: this.songs.length + 1,
+          title: this.editingSong.title,
+          artist: this.editingSong.artist,
+          genre: this.editingSong.genre,
+          duration: this.editingSong.duration,
+          coverArt: this.editingSong.coverArt,
+        });
       } else {
-        console.log("updating...");
-        songAPI
-          .update(this.editingSong.song_id, this.editingSong)
-          .then((response) => {
-            if (response.status === 200) {
-              this.editingSongIndex = this.songs.findIndex(
-                (s) => s.song_id === this.editingSong.song_id
-              );
-              this.songs[this.editingSongIndex] = { ...this.editingSong };
-            }
-          })
-          .then(() => {
-            this.editingSong = {};
-            this.editingSongIndex = -1;
-            this.hideForm();
-          });
+        this.songs[this.editingSongIndex] = { ...this.editingSong };
       }
+
+      this.editingSong = {
+        title: "",
+        artist: "",
+        genre: "",
+        duration: "",
+        coverArt: "",
+      };
+      this.editingSongIndex = -1;
+      this.hideForm();
     },
 
+     playPlaylist() {
+      // Logic to play the playlist
+    },
+
+
     cancelEdit() {
-      this.editingSong = {};
+      this.editingSong = {
+        title: "",
+        artist: "",
+        genre: "",
+        duration: "",
+        coverArt: "",
+      };
       this.editingSongIndex = -1;
       this.hideForm();
     },
     editSong(song) {
       this.editingSong = { ...song };
-      this.editingSongIndex = this.songs.findIndex(
-        (s) => s.song_id === song.song_id
-      );
+      this.editingSongIndex = this.songs.findIndex((s) => s.id === song.id);
       this.showForm();
     },
 
-    deleteSong(song) {
-      songAPI.delete(song.song_id).then((response) => {
-        if (response.status === 200) {
-          const index = this.songs.findIndex((s) => s.song_id === song.song_id);
-          if (index !== -1) {
-            this.songs.splice(index, 1);
-          }
-        }
-      });
+    deleteSong(songId) {
+      const index = this.songs.findIndex((s) => s.id === songId);
+      if (index !== -1) {
+        this.songs.splice(index, 1);
+      }
     },
   },
 };
@@ -179,33 +174,35 @@ export default {
 }
 
 /* Input and button styles */
-.input {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 }
 
-.input h2 {
+h2 {
   color: #007aff;
   opacity: 0.8;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
-
-.input input[type="text"] {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 70%;
+.buttons {
+  margin-left: 100px; /* Add this line */
 }
 
-.input button {
+.buttons button {
   padding: 10px 20px;
   background-color: #007aff;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.description {
+  color: #007aff;
+  opacity: 0.8;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 /* Table styles */
@@ -252,26 +249,5 @@ button {
   cursor: pointer;
 }
 
-button.delete {
-  background-color: #ff3b30;
-}
 
-/* Form styles */
-.add-song-form {
-  display: none;
-  margin-top: 20px;
-}
-
-.add-song-form form {
-  display: flex;
-  flex-direction: column;
-}
-
-.add-song-form input {
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
 </style>
-
