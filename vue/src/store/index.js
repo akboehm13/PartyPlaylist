@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+// import songAPI from "./src/services/SongService.js";
 
 Vue.use(Vuex)
 
@@ -19,7 +20,8 @@ if(currentToken != null) {
 export default new Vuex.Store({
   state: {
     token: currentToken || '',
-    user: currentUser || {}
+    user: currentUser || {},
+    globalPlaylist: []
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -37,6 +39,14 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
-    }
+    },
+    // DELETE_SONG(state, songId){
+    //   songAPI.delete(songId).then((response)=> {
+    //     if (response.status === 200) {
+    //       let index = state.globalPlaylist.indexOf(song => song.song_id === songId);
+    //       if (index >= 0 ) state.globalPlaylist.splice(index, 1);
+    //     }
+    //   })
+    // }
   }
 })

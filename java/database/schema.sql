@@ -44,12 +44,13 @@ CREATE TABLE "playlist_song" (
     playlist_id INT NOT NULL,
     song_id INT NOT NULL,
     CONSTRAINT playlist_song_fk_playlist FOREIGN KEY (playlist_id) REFERENCES "playlist"(playlist_id),
-    CONSTRAINT playlist_song_fk_song FOREIGN KEY (song_id) REFERENCES "song"(song_id),
+    CONSTRAINT playlist_song_fk_song FOREIGN KEY (song_id) REFERENCES "song"(song_id) ON DELETE CASCADE,
     CONSTRAINT playlist_song_pk PRIMARY KEY (playlist_id, song_id)
 );
 
 ALTER TABLE "event"
     ADD CONSTRAINT dj_fk FOREIGN KEY (dj_id) REFERENCES "user"(user_id),
     ADD CONSTRAINT host_fk FOREIGN KEY (host_id) REFERENCES "user"(user_id);
+
 
 COMMIT TRANSACTION;

@@ -113,7 +113,7 @@ public class JdbcSongDao implements SongDao {
 
         int numberOfRows = 0;
 
-        String sql = "DELETE FROM song WHERE song_id = ?;";
+        String sql = "DELETE FROM \"song\" WHERE song_id = ?;";
 
         try {
             numberOfRows = jdbcTemplate.update(sql, songID);

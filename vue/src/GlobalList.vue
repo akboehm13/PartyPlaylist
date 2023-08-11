@@ -41,7 +41,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="song in filteredSongs" :key="song.id">
+          <tr v-for="song in filteredSongs" :key="song.song_id">
             <td>
               <img :src="song.coverArt" alt="Cover Art" height="50" />
             </td>
@@ -51,7 +51,7 @@
             <td>{{ song.duration }}</td>
             <td>
               <button @click="editSong(song)">Edit</button>
-              <button @click="deleteSong(song.id)">Delete</button>
+              <button @click="deleteSong(song)">Delete</button>
             </td>
           </tr>
         </tbody>
@@ -163,14 +163,19 @@ export default {
       this.showForm();
     },
 
-    deleteSong(songId) {
-      const index = this.songs.findIndex((s) => s.id === songId);
+    deleteSong(song) {
+      songAPI.delete(song.song_id).then((response)=> {
+        if (response.status === 200){
+      const index = this.songs.findIndex((s) => s.song_id === song.song_id);
       if (index !== -1) {
         this.songs.splice(index, 1);
       }
-    },
-  },
-};
+      }
+    });
+  }
+}
+}
+
 </script>
 
 <style>

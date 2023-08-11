@@ -54,10 +54,10 @@
   color: lightgray;
 }
 
-body {
+/* body {
   background-color: rgb(50, 50, 50);
-}
-h2 {
+} */
+/* h2 {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   text-align: center;
   color: #dc9d00;
@@ -68,5 +68,5 @@ h2 {
   max-width: 800px;
   margin-bottom: 20px;
   margin: 0 auto;
-}
+} */
 </style>
