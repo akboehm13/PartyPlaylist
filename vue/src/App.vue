@@ -10,11 +10,12 @@
           <router-link v-bind:to="{ name: 'events' }">Events</router-link>
         </li>
         &nbsp;|&nbsp;
+      
         <li class="nav-item">
           <router-link
-            v-bind:to="{ name: 'global_list' }"
+            v-bind:to="{ name: 'event' }"
             v-if="$store.state.token != ''"
-            >Global List</router-link
+            >Event</router-link
           >
         </li>
         &nbsp;|&nbsp;
