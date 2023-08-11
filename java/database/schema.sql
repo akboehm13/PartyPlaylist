@@ -29,10 +29,11 @@ CREATE TABLE "event" (
     name VARCHAR(50) NOT NULL,
     dj_id INT NOT NULL,
     host_id INT NOT NULL,
-    date DATE NOT NULL,
+    date VARCHAR(12) NOT NULL,
     description TEXT,
     start_time TIME NOT NULL,
-    end_time TIME NOT NULL
+    end_time TIME NOT NULL,
+    location VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE "playlist" (

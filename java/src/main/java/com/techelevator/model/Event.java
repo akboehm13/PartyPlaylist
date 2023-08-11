@@ -10,14 +10,16 @@ public class Event {
     private String name;
     private int djId;
     private int hostId;
-    private LocalDate date;
+    private String date;
     private String description;
     private LocalTime startTime;
     private LocalTime endTime;
 
+    private String location;
+
     public Event() { }
 
-    public Event(int eventId, String name, int djId, int hostId, LocalDate date, String description, LocalTime startTime, LocalTime endTime) {
+    public Event(int eventId, String name, int djId, int hostId, String date, String description, LocalTime startTime, LocalTime endTime, String location) {
         this.eventId = eventId;
         this.name = name;
         this.djId = djId;
@@ -26,6 +28,15 @@ public class Event {
         this.description = description;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.location = location;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public int getEventId() {
@@ -44,7 +55,7 @@ public class Event {
         return hostId;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -76,7 +87,7 @@ public class Event {
         this.hostId = hostId;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

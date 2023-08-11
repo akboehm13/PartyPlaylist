@@ -2,12 +2,18 @@ package com.techelevator.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.validation.constraints.NotNull;
+
 public class Song {
     @JsonProperty("song_id")
     private int id;
+    @NotNull
     private String title;
+    @NotNull
     private String artist;
+    @NotNull
     private String genre;
+    @NotNull
     private String duration;
 
     private String audioURL;

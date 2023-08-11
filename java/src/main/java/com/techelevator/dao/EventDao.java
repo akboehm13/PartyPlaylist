@@ -8,7 +8,7 @@ public interface EventDao {
 
     List<Event> getAllEvents();
 
-    List<Event> getEventByName(String name);
+    Event getEventByName(String name);
 
     List<Event> getAllEventsByHostID(int id);
 
@@ -18,7 +18,7 @@ public interface EventDao {
 
     void createEvent(Event event);
 
-    int updateEventById(int id);
+    Event updateEvent(Event event);
 
     int deleteEventById(int id);
 }

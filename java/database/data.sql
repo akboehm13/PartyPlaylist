@@ -48,7 +48,8 @@ INSERT INTO "song" (title, artist, genre, duration, song_url, song_art) VALUES (
 INSERT INTO "song" (title, artist, genre, duration, song_url, song_art) VALUES ('Electro Euphoria', 'Digital Dreams', 'Dance', '4:15', 'www.youtube.com/watch?v=QdezFxHfatw', '');
 INSERT INTO "song" (title, artist, genre, duration, song_url, song_art) VALUES ('Raging Metal', 'Thunderstorm', 'Heavy Metal', '5:10', 'www.youtube.com/watch?v=QdezFxHfatw', '');
 
-INSERT INTO "event" (name, dj_id, host_id, date, description, start_time, end_time) VALUES ('TechElevator Graduation', 2, 1, '12/18/2023', 'This marks the end of the 4 month boot camp! Congrats!', '12:00:00','14:00:00');
+INSERT INTO "event" (name, dj_id, host_id, date, description, start_time, end_time, location) VALUES ('TechElevator Graduation', 2, 1, '12-18-2023', 'This marks the end of the 4 month boot camp! Congrats!', '12:00:00','14:00:00',
+'1776 Mentor Ave #361, Cincinnati, OH 45212');
 
 INSERT INTO "playlist" (event_id, name) VALUES (1, 'TEchnoElevator');
 
