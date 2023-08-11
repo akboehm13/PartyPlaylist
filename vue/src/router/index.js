@@ -77,7 +77,7 @@ const router = new Router({
       name: "global_list",
       component: GlobalList,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     }
   ]

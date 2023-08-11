@@ -25,7 +25,7 @@ public class JdbcSongDao implements SongDao {
     @Override
     public List<Song> getAllSongs() {
         List<Song> songs = new ArrayList<>();
-        String sql = "SELECT * FROM \"song\"";
+        String sql = "SELECT song_id, title, artist, genre, duration, song_url, song_art FROM \"song\"";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
             while (results.next()) {
@@ -41,7 +41,7 @@ public class JdbcSongDao implements SongDao {
     @Override
     public List<Song> getAllSongsByGenre(String genre) {
         List<Song> songs = new ArrayList<>();
-        String sql = "SELECT * FROM \"song\" " + "WHERE genre = ?";
+        String sql = "SELECT song_id, title, artist, genre, duration, song_url, song_art FROM \"song\" " + "WHERE genre = ?";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, genre);
             while (results.next()) {
@@ -57,7 +57,7 @@ public class JdbcSongDao implements SongDao {
     @Override
     public Song getSongById(int songId) {
         Song song = null;
-        String sql = "SELECT * FROM \"song\" " + "WHERE song_id = ?";
+        String sql = "SELECT song_id, title, artist, genre, duration, song_url, song_art FROM \"song\" " + "WHERE song_id = ?";
 
         try {
             SqlRowSet result = jdbcTemplate.queryForRowSet(sql, songId);
@@ -74,7 +74,7 @@ public class JdbcSongDao implements SongDao {
     public List<Song> getAllSongsByTitle(String title) {
         Song song = null;
         List<Song> songs = new ArrayList<>();
-        String sql = "SELECT * FROM \"song\" " + "WHERE title = ?";
+        String sql = "SELECT song_id, title, artist, genre, duration, song_url, song_art FROM \"song\" " + "WHERE title = ?";
 
         try {
             SqlRowSet result = jdbcTemplate.queryForRowSet(sql, title);
@@ -91,10 +91,11 @@ public class JdbcSongDao implements SongDao {
     @ResponseStatus(HttpStatus.CREATED)
     public void createSong(Song song) {
 
-        String sql = "INSERT INTO \"song\" (title, artist, genre, duration) VALUES(?,?,?,?);";
+        String sql = "INSERT INTO \"song\" (title, artist, genre, duration, song_url, song_art) VALUES(?,?,?,?,?,?);";
 
         try {
-            jdbcTemplate.update(sql,song.getTitle(),song.getArtist(),song.getGenre(),song.getDuration());
+            jdbcTemplate.update(sql,song.getTitle(),song.getArtist(),song.getGenre(),song.getDuration(),
+                    song.getAudioURL(), song.getImageURL());
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to database", e);
         } catch (DataIntegrityViolationException e) {
@@ -105,8 +106,21 @@ public class JdbcSongDao implements SongDao {
     @Override
     public Song updateSong(Song song) {
 
+        Song newSong = null;
 
-        return null;
+        String sql = "UPDATE \"song\" SET title=?, artist=?, genre=?, duration=?, song_url=?, song_art=?"+
+                " WHERE song_id=?;";
+
+        try {
+            jdbcTemplate.update(sql,song.getTitle(),song.getArtist(),song.getGenre(),song.getDuration(),song.getAudioURL(),
+                    song.getImageURL(), song.getId());
+            newSong = getSongById(song.getId());
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Cannot connect to database", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        return newSong;
     }
 
     public int deleteSongById(int songID) {
@@ -123,7 +137,6 @@ public class JdbcSongDao implements SongDao {
             throw new DaoException("Data integrity violation", e);
         }
         return numberOfRows;
-
     }
 
     private Song mapRowToSong(SqlRowSet rowSet) {
@@ -134,6 +147,8 @@ public class JdbcSongDao implements SongDao {
         song.setArtist(rowSet.getString("artist"));
         song.setGenre(rowSet.getString("genre"));
         song.setDuration(rowSet.getString("duration"));
+        song.setAudioURL(rowSet.getString("song_url"));
+        song.setImageURL(rowSet.getString("song_art"));
 
         return song;
     }

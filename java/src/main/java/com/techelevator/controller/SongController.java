@@ -4,16 +4,17 @@ import com.techelevator.dao.SongDao;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Song;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
-import javax.websocket.server.ServerEndpoint;
 import java.util.List;
 
 @RestController
 @RequestMapping("/songs")
 @CrossOrigin
+@PreAuthorize("hasRole('ADMIN')")
 public class SongController {
 
     private SongDao songDao;
@@ -72,7 +73,6 @@ public class SongController {
         catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Song not found.");
         }
-
     }
 
 }
