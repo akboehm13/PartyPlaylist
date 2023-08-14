@@ -103,7 +103,7 @@ export default {
 <style scoped>
 /* Container styles */
 .container {
-  background-color: #f4f4f4;
+  background-color: #ece2ee;
   padding: 20px;
   border-radius: 10px;
   margin: 0 auto;
@@ -118,7 +118,7 @@ export default {
 }
 
 h2 {
-  color: #007aff;
+  color: #a264bb;
   opacity: 0.8;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
@@ -129,7 +129,7 @@ h2 {
 
 .buttons button {
   padding: 10px 20px;
-  background-color: #007aff;
+  background-color: #a264bb;
   color: white;
   border: none;
   border-radius: 5px;
@@ -137,7 +137,7 @@ h2 {
 }
 
 .description {
-  color: #007aff;
+  color: #a264bb;
   opacity: 0.8;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
@@ -154,7 +154,7 @@ h2 {
 
 table {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  color: #007aff;
+  color: #a264bb;
   background-color: #fff;
   width: 100%;
   border-collapse: collapse;
@@ -168,7 +168,7 @@ td {
 }
 
 th {
-  background-color: #007aff;
+  background-color: #a264bb;
   color: white;
   font-weight: bold;
   position: sticky;
@@ -179,7 +179,7 @@ th {
 button {
   padding: 5px 10px;
   margin-right: 5px;
-  background-color: #007aff;
+  background-color: #a264bb;
   color: white;
   border: none;
   border-radius: 5px;
@@ -189,7 +189,7 @@ button {
 .add-event-button {
   margin-bottom: 10px;
   padding: 10px 20px;
-  background-color: #007aff;
+  background-color: #a264bb;
   color: white;
   border: none;
   border-radius: 5px;
@@ -208,13 +208,13 @@ button {
 }
 
 .add-event-form h3 {
-  color: #007aff;
+  color: #a264bb;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   margin-bottom: 10px;
 }
 
 .add-event-form label {
-  color: #007aff;
+  color: #a264bb;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   margin-bottom: 5px;
 }
@@ -235,7 +235,7 @@ button {
 
 .add-event-form button {
   padding: 10px 20px;
-  background-color: #007aff;
+  background-color: #a264bb;
   color: white;
   border: none;
   border-radius: 5px;

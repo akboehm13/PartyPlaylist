@@ -33,12 +33,14 @@
 </template>
 
 <style>
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,300italic");
 .nav-list {
+  
   list-style: none;
   display: flex;
   justify-content: space-around;
-  color: #007aff;
-  background-color: #f4f4f4;
+  color: #a264bb;
+  background-color: #ece2ee;
   padding: 20px;
   border-radius: 10px;
   font-size: 1em;
@@ -46,9 +48,9 @@
 
 .nav-item a {
   text-decoration: none;
-  color: #007aff;
+  color: #a264bb;
   transition: color 0.3s ease-in-out;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Source Sans Pro";
 }
 
 .nav-item a:hover {
@@ -56,6 +58,6 @@
 }
 
 body {
-  background-color: rgb(224, 224, 224);
+  background-color: rgb(226, 218, 226);
 }
 </style>
