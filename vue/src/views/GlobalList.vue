@@ -172,6 +172,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 /* Container styles */
 .container {
   background-color: #ece2ee;
@@ -186,6 +188,7 @@ export default {
 #form-buttons {
   display: flex;
   justify-content: flex-end;
+  font-family: "Source Sans Pro";
 }
 /* Input and button styles */
 .input {
@@ -196,9 +199,9 @@ export default {
 }
 
 .input h2 {
-  color: #a264bb;
+  color: #753d8b;
   opacity: 0.8;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: "Source Sans Pro";
 }
 
 .input input[type="text"] {
@@ -210,11 +213,12 @@ export default {
 
 .input button {
   padding: 10px 20px;
-  background-color: #a264bb;
+  background-color: #753d8b;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-family: "Source Sans Pro";
 }
 
 /* Table styles */
@@ -228,8 +232,8 @@ export default {
 }
 
 table {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  color: #a264bb;
+  font-family: "Source Sans Pro";
+  color: #753d8b;
   background-color: #f6ebfa;
   width: 100%;
   border-collapse: collapse;
@@ -243,7 +247,7 @@ td {
 }
 
 th {
-  background-color: #a264bb;
+  background-color: #753d8b;
   color: white;
   font-weight: bold;
   position: sticky;
@@ -254,11 +258,12 @@ th {
 button {
   padding: 5px 10px;
   margin-right: 5px;
-  background-color: #a264bb;
+  background-color: #753d8b;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-family: "Source Sans Pro";
 }
 
 button.delete {
@@ -273,6 +278,7 @@ button.delete {
 .add-song-form form {
   display: flex;
   flex-direction: column;
+  font-family: "Source Sans Pro";
 }
 
 .add-song-form input {
@@ -280,6 +286,7 @@ button.delete {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  font-family: "Source Sans Pro";
 }
 </style>
 

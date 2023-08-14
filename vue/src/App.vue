@@ -39,7 +39,7 @@
   list-style: none;
   display: flex;
   justify-content: space-around;
-  color: #a264bb;
+  color: #753d8b;
   background-color: #ece2ee;
   padding: 20px;
   border-radius: 10px;
@@ -48,7 +48,7 @@
 
 .nav-item a {
   text-decoration: none;
-  color: #a264bb;
+  color: #753d8b;
   transition: color 0.3s ease-in-out;
   font-family: "Source Sans Pro";
 }

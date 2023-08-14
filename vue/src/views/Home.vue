@@ -227,7 +227,7 @@ ul {
 }
 
 body {
-  background: #252122;
+  background: #ece2ee;
 }
 
 body,
@@ -236,7 +236,7 @@ textarea,
 select {
   font-family: "Source Sans Pro";
   font-weight: 300;
-  color: #5d5d5d;
+  color: #753d8b;
   font-size: 14pt;
   line-height: 1.75em;
 }
@@ -317,7 +317,7 @@ h3 {
 }
 
 .box {
-  background: rgb(241, 229, 209);
+  background: #ece2ee;
   border-radius: 10px;
   border-bottom: solid 1px #ccc;
   padding: 2.75em 1.75em 2.75em 1.75em;
@@ -483,7 +483,7 @@ ul.dates li:first-child {
 
 #nav > ul > li > a {
   border-radius: 5px;
-  color: #5d5d5d;
+  color: #753d8b;
   text-decoration: none;
   padding: 0.6em 1.2em 0.6em 1.2em;
   -moz-transition: background-color 0.25s ease-in-out;
@@ -518,7 +518,7 @@ ul.dates li:first-child {
 }
 
 #footer a {
-  color: #c5c4c4;
+  color: #753d8b;
 }
 
 #footer h2,
@@ -527,7 +527,7 @@ ul.dates li:first-child {
 #footer h5,
 #footer h6,
 #footer {
-  color: #fff;
+  color: #753d8b;
 }
 
 #footer ul.contact li,
@@ -548,4 +548,5 @@ ul.dates li:first-child {
 section p {
   margin-bottom: 30px;
 }
+
 </style>

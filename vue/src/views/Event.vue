@@ -168,20 +168,10 @@ export default {
 
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,300italic");
 /* Container styles */
 .container {
-  background-color: #f4f4f4;
-}
-
-body {
-  background-color: rgb(50, 50, 50);
-}
-
-h2 {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  text-align: center;
-  color: silver;
-  background-color: #0de4f3;
+  background-color: #ece2ee;
   padding: 20px;
   border-radius: 10px;
   margin: 0 auto;
@@ -196,27 +186,29 @@ h2 {
 }
 
 h2 {
-  color: #a264bb;
+  color: #753d8b;
   opacity: 0.8;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: "Source Sans Pro";
 }
 .buttons {
   margin-left: 100px; /* Add this line */
+  font-family: "Source Sans Pro";
 }
 
 .buttons button {
   padding: 10px 20px;
-  background-color: #a264bb;
+  background-color: #753d8b;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-family: "Source Sans Pro";
 }
 
 .description {
-  color: #a264bb;
+  color: #753d8b;
   opacity: 0.8;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: "Source Sans Pro";
 }
 
 /* Table styles */
@@ -230,12 +222,13 @@ h2 {
 }
 
 table {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  color: #a264bb;
+  font-family: "Source Sans Pro";
+  color: #753d8b;
   background-color: #f6ebfa;
   width: 100%;
   border-collapse: collapse;
 }
+
 
 th,
 td {
@@ -245,7 +238,7 @@ td {
 }
 
 th {
-  background-color: #a264bb;
+  background-color: #753d8b;
   color: white;
   font-weight: bold;
   position: sticky;
@@ -256,10 +249,13 @@ th {
 button {
   padding: 5px 10px;
   margin-right: 5px;
-  background-color: #a264bb;
+  background-color: #753d8b;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-family: "Source Sans Pro";
 }
+
+
 </style>
