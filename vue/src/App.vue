@@ -10,7 +10,7 @@
           <router-link v-bind:to="{ name: 'events' }">Events</router-link>
         </li>
         &nbsp;|&nbsp;
-      
+
         <li class="nav-item">
           <router-link
             v-bind:to="{ name: 'event' }"

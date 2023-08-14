@@ -1,15 +1,18 @@
 <template>
   <div class="container">
     <div class="header">
-        <h2>Upcoming Event</h2>
-            <div class="buttons">
-            <button @click="showForm()">Join</button>
-            <button @click="showForm()">Invite</button>
-            </div>
+      <h2>Upcoming Event</h2>
+      <div class="buttons">
+        <button @click="showForm()">Join</button>
+        <button @click="showForm()">Invite</button>
+      </div>
     </div>
 
     <div class="description">
-        <h5>Join us for Caleb's 5th birthday this upcoming Saturday the 4th at 1234 Arroyo Ln. Pizza and drinks will be provided.</h5>
+      <h5>
+        Join us for Caleb's 5th birthday this upcoming Saturday the 4th at 1234
+        Arroyo Ln. Pizza and drinks will be provided.
+      </h5>
     </div>
 
     <div class="table-container">
@@ -22,7 +25,7 @@
             <th>Genre</th>
             <th>Duration</th>
             <th>
-                <button @click="playPlaylist()">Play</button>
+              <button @click="playPlaylist()">Play</button>
             </th>
           </tr>
         </thead>
@@ -47,7 +50,7 @@
 </template>
 
 <script>
-import songAPI from "../src/services/SongService.js";
+import songAPI from "../services/SongService.js";
 
 export default {
   name: "event",
@@ -132,10 +135,9 @@ export default {
       this.hideForm();
     },
 
-     playPlaylist() {
+    playPlaylist() {
       // Logic to play the playlist
     },
-
 
     cancelEdit() {
       this.editingSong = {
@@ -164,10 +166,22 @@ export default {
 };
 </script>
 
+
 <style scoped>
 /* Container styles */
 .container {
-  background-color: #ece2ee;
+  background-color: #f4f4f4;
+}
+
+body {
+  background-color: rgb(50, 50, 50);
+}
+
+h2 {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  text-align: center;
+  color: silver;
+  background-color: #0de4f3;
   padding: 20px;
   border-radius: 10px;
   margin: 0 auto;
@@ -248,6 +262,4 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
-
-
 </style>

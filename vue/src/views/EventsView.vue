@@ -6,13 +6,12 @@
               <router-link to="/global_list" class="buttons">
                 <button>Global Playlist</button>
               </router-link>
+              <button @click="toggleEventForm()" class="add-event-button">Add Event</button>
             </div>
     </div>
 
-    <button @click="showAddForm = true" class="add-event-button">Add Event</button>
-
     <!-- Add the form for adding an event -->
-    <div v-if="showAddForm" class="add-event-form">
+    <div v-if="showEventForm" class="add-event-form">
   <h3>Add Event</h3>
   <form>
     <div class="form-group">
@@ -41,7 +40,7 @@
     </div>
 
     <button @click="addEvent()">Add</button>
-    <button @click="showAddForm = false">Cancel</button>
+    <button @click="toggleEventForm()">Cancel</button>
   </form>
 </div>
 
@@ -57,21 +56,6 @@
             <th>Location</th>
           </tr>
         </thead>
-        <tbody>
-          <tr v-for="song in filteredSongs" :key="song.id">
-            <td>
-              <img :src="song.coverArt" alt="Cover Art" height="50" />
-            </td>
-            <td>{{ song.title }}</td>
-            <td>{{ song.artist }}</td>
-            <td>{{ song.genre }}</td>
-            <td>{{ song.duration }}</td>
-            <td>
-              <button @click="editSong(song)">Edit</button>
-              <button @click="deleteSong(song.id)">Delete</button>
-            </td>
-          </tr>
-        </tbody>
       </table>
     </div>
   </div>
@@ -80,21 +64,43 @@
 <script>
 
 export default {
-  name: 'EventsView',
+  name: 'MyEventsView',
   data() {
     return {
-      showAddForm: false,
-    newEvent: {
-      name: '',
-      date: '',
-      description: '',
-      startTime: '',
-      endTime: '',
-      location: ''
-    }
+      showEventForm: false,
+      newEvent: {
+        name: '',
+        date: '',
+        description: '',
+        startTime: '',
+        endTime: '',
+        location: ''
+      },
+      events: []
     };
     
   },
+  methods: {
+    toggleEventForm() {
+      this.showEventForm = !this.showEventForm;
+      if (this.showEventForm === false) {
+        this.clearForm();
+      }
+    },
+    clearForm() {
+        this.newEvent.name = '';
+        this.newEvent.date = '';
+        this.newEvent.description = '';
+        this.newEvent.startTime = '';
+        this.newEvent.endTime = '';
+        this.newEvent.location = '';
+    },
+    addEvent() {
+      if (this.newEvent.name != '') {
+        this.events.push(this.newEvent);
+      }
+    }
+  }
   
   
 }

@@ -3,7 +3,7 @@
     <div class="input">
       <h2>Global Music List</h2>
       <input type="text" v-model="searchQuery" placeholder="Search songs..." />
-      <button @click="showForm()">+ Add Song</button>
+      <button @click="showForm">+ Add Song</button>
     </div>
 
     <div class="add-song-form" v-if="showAddForm">
@@ -26,10 +26,12 @@
           v-model="editingSong.img_url"
           placeholder="Cover Art URL"
         />
-        <button type="submit">
-          {{ editingSongIndex === -1 ? "Add" : "Update" }}
-        </button>
-        <button type="button" @click="cancelEdit">Cancel</button>
+        <div id="form-buttons">
+          <button type="submit">
+            {{ editingSongIndex === -1 ? "Add" : "Update" }}
+          </button>
+          <button type="button" @click="cancelEdit">Cancel</button>
+        </div>
       </form>
     </div>
 
@@ -56,7 +58,7 @@
             <td>{{ song.duration }}</td>
             <td>
               <button @click="editSong(song)">Edit</button>
-              <button @click="deleteSong(song.id)">Delete</button>
+              <button @click="deleteSong(song)">Delete</button>
             </td>
           </tr>
         </tbody>
@@ -176,8 +178,15 @@ export default {
   padding: 20px;
   border-radius: 10px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
+#form-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
 /* Input and button styles */
 .input {
   display: flex;
@@ -258,7 +267,6 @@ button.delete {
 
 /* Form styles */
 .add-song-form {
-  display: none;
   margin-top: 20px;
 }
 

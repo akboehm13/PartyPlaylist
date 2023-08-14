@@ -6,9 +6,7 @@ import com.techelevator.model.User;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.List;
 
@@ -90,6 +88,7 @@ public class JdbcUserDaoTests extends BaseDaoTests {
         RegisterUserDto registerUserDto = new RegisterUserDto();
         registerUserDto.setUsername(USER_3.getUsername());
         registerUserDto.setPassword(null);
+        registerUserDto.setEmail("fakeemail@gmail.com");
         registerUserDto.setRole("ROLE_USER");
         sut.createUser(registerUserDto);
     }
@@ -100,6 +99,7 @@ public class JdbcUserDaoTests extends BaseDaoTests {
         user.setUsername("new");
         user.setPassword("user");
         user.setRole("ROLE_USER");
+        user.setEmail("testingemail@gmail.com");
         User createdUser = sut.createUser(user);
 
         Assert.assertNotNull(createdUser);
