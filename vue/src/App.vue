@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <!-- <div id="app">
     <div id="navbar">
       <ul class="nav-list">
         <li class="nav-item">
@@ -27,13 +27,27 @@
           >
         </li>
       </ul>
-    </div>
+    </div> -->
+  <div id="app">
+    <app-header />
+    <!-- <home /> -->
     <router-view />
   </div>
+  <!-- </div> -->
 </template>
 
+<script>
+import AppHeader from "./components/AppHeader.vue";
+
+export default {
+  components: {
+    AppHeader,
+  },
+};
+</script>
+
 <style>
-.nav-list {
+/* .nav-list {
   list-style: none;
   display: flex;
   justify-content: space-around;
@@ -57,5 +71,5 @@
 
 body {
   background-color: rgb(224, 224, 224);
-}
+} */
 </style>

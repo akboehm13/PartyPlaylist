@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="assets/css/main.css" />
       </head>
       <body>
-        <section id="header">
+        <!-- <section id="header">
           <h1>
             <img
               src="https://static.vecteezy.com/system/resources/previews/017/784/773/non_2x/sync-icon-in-flat-design-style-server-signs-illustration-png.png"
@@ -21,7 +21,7 @@
               <li><router-link to="/events">Events</router-link></li>
             </ul>
           </nav>
-        </section>
+        </section> -->
 
         <section id="main">
           <div class="container">
@@ -438,70 +438,6 @@ ul.dates p {
 ul.dates li:first-child {
   border-top: 0;
   padding-top: 0;
-}
-
-#header {
-  position: relative;
-  background: #ece2ee;
-  border-bottom: solid 1px #ccc;
-  padding: 1em 0 2em 0;
-  text-align: center;
-  display: flex;
-  justify-content: space-between;
-}
-
-#header h1 {
-  color: #252122;
-  font-weight: 900;
-  font-size: 2em;
-  letter-spacing: -0.035em;
-  line-height: 1;
-  margin-bottom: 0.5em;
-}
-
-#header img {
-  max-width: 100%;
-  height: auto;
-  width: 100px;
-  position: absolute;
-  left: 1em;
-}
-
-#nav {
-  margin: 2.5em 0 0 0;
-}
-
-#nav > ul {
-  margin: 0;
-}
-
-#nav > ul > li {
-  display: inline-block;
-  font-style: italic;
-  margin: 0 0.35em 0 0.35em;
-}
-
-#nav > ul > li > a {
-  border-radius: 5px;
-  color: #5d5d5d;
-  text-decoration: none;
-  padding: 0.6em 1.2em 0.6em 1.2em;
-  -moz-transition: background-color 0.25s ease-in-out;
-  -webkit-transition: background-color 0.25s ease-in-out;
-  -ms-transition: background-color 0.25s ease-in-out;
-  transition: background-color 0.25s ease-in-out;
-  outline: 0;
-}
-
-#nav > ul > li:hover > a,
-#nav > ul > li.active > a {
-  background: #f3f3f3;
-}
-
-#nav > ul > li.current > a {
-  background: #0de4f3;
-  color: #fff !important;
-  font-weight: 700;
 }
 
 #main {
