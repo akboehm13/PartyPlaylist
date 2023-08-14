@@ -166,10 +166,22 @@ export default {
 };
 </script>
 
+
 <style scoped>
 /* Container styles */
 .container {
   background-color: #f4f4f4;
+}
+
+body {
+  background-color: rgb(50, 50, 50);
+}
+
+h2 {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  text-align: center;
+  color: silver;
+  background-color: #0de4f3;
   padding: 20px;
   border-radius: 10px;
   margin: 0 auto;
