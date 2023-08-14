@@ -69,7 +69,7 @@
 import songAPI from "../services/SongService.js";
 
 export default {
-  name: "global-list",
+  name: "global_list",
   components: {},
 
   data() {
