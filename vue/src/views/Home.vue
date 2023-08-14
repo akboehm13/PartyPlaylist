@@ -31,24 +31,28 @@
                 <p>Your Ultimate DJ Companion and Event Playlist Manager!</p>
               </header>
               <p>
-                <strong>Elevate your DJ experience to the next level with Sync, the
-                groundbreaking application designed exclusively for DJs and
-                event enthusiasts. Seamlessly manage global playlists, curate
-                electrifying music selections, and bring people together like
-                never before. Sync empowers DJs to create, collaborate, and
-                craft unforgettable moments with ease.</strong>
+                <strong
+                  >Elevate your DJ experience to the next level with Sync, the
+                  groundbreaking application designed exclusively for DJs and
+                  event enthusiasts. Seamlessly manage global playlists, curate
+                  electrifying music selections, and bring people together like
+                  never before. Sync empowers DJs to create, collaborate, and
+                  craft unforgettable moments with ease.</strong
+                >
               </p>
               <p>
-                <strong>But Sync doesn't stop there. Party hosts are invited to the
-                spotlight, enjoying a seamless interface to manage events and
-                invite their guests. Hosts can effortlessly extend their event's
-                reach, and guests can request songs, vote on playlist tracks,
-                and actively participate in curating the musical atmosphere.
-                Sync isn't just an app; it's a revolution in event management,
-                fostering collaboration, creativity, and connection. Say goodbye
-                to ordinary parties and welcome Sync into your world – where
-                music unites, memories are made, and events are elevated to
-                unprecedented heights.</strong>
+                <strong
+                  >But Sync doesn't stop there. Party hosts are invited to the
+                  spotlight, enjoying a seamless interface to manage events and
+                  invite their guests. Hosts can effortlessly extend their
+                  event's reach, and guests can request songs, vote on playlist
+                  tracks, and actively participate in curating the musical
+                  atmosphere. Sync isn't just an app; it's a revolution in event
+                  management, fostering collaboration, creativity, and
+                  connection. Say goodbye to ordinary parties and welcome Sync
+                  into your world – where music unites, memories are made, and
+                  events are elevated to unprecedented heights.</strong
+                >
               </p>
             </article>
           </div>
@@ -63,8 +67,8 @@
                     <h2>Upcoming events</h2>
                   </header>
                   <ul class="dates">
-                    <li v-for="event in events" :key="event.id">
-                      <span class="date">{{ formatDate(event.date) }}</span>
+                    <li v-for="event in events" :key="event.eventId">
+                      <span class="date">{{ event.date }}</span>
                       <h3>
                         <a href="#">{{ event.name }}</a>
                       </h3>
@@ -79,15 +83,15 @@
                     <h2>What's Sync all about?</h2>
                   </header>
                   <p>
-                    At <strong>Sync</strong>, we're on a mission to redefine the way DJs, party
-                    hosts, and music enthusiasts connect and collaborate. Our
-                    passion is fueled by the belief that music has the power to
-                    bring people together, transcend barriers, and create
-                    unforgettable memories. We've created a platform that goes
-                    beyond traditional event management, offering a seamless
-                    blend of technology and creativity that empowers DJs to
-                    curate unforgettable playlists while giving hosts and guests
-                    the tools to actively shape the musical experience.
+                    At <strong>Sync</strong>, we're on a mission to redefine the
+                    way DJs, party hosts, and music enthusiasts connect and
+                    collaborate. Our passion is fueled by the belief that music
+                    has the power to bring people together, transcend barriers,
+                    and create unforgettable memories. We've created a platform
+                    that goes beyond traditional event management, offering a
+                    seamless blend of technology and creativity that empowers
+                    DJs to curate unforgettable playlists while giving hosts and
+                    guests the tools to actively shape the musical experience.
                   </p>
                   <footer>
                     <img
@@ -166,23 +170,22 @@
 </template>
 
 <script>
-//import axios from 'axios';
+import eventAPI from "../services/EventService.js";
 
-//export default {
-// name: 'home',
-// data() {
-// return {
-//  events: [],
-// };
-// },
+export default {
+  name: "home",
 
-//  created() {
-//  axios.get('')
-//   .then(response => {
-//   this.events = response.data;
-//    })
-
-//},
+  data() {
+    return {
+      events: [],
+    };
+  },
+  created() {
+    eventAPI.list().then((response) => {
+      this.events = response.data;
+    });
+  },
+};
 </script>
 
 
@@ -252,7 +255,7 @@ h2 {
 }
 
 h3 {
-  font-size: 3.0em;
+  font-size: 3em;
 }
 
 .container {
@@ -326,11 +329,9 @@ h3 {
 }
 
 .box.post h2 {
-  font-size: 3.0em;
+  font-size: 3em;
   letter-spacing: -0.015em;
-
 }
-
 
 .box.post header > p {
   margin-top: 1.25em;
