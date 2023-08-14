@@ -26,10 +26,12 @@
           v-model="editingSong.img_url"
           placeholder="Cover Art URL"
         />
-        <button type="submit">
-          {{ editingSongIndex === -1 ? "Add" : "Update" }}
-        </button>
-        <button type="button" @click="cancelEdit">Cancel</button>
+        <div id="form-buttons">
+          <button type="submit">
+            {{ editingSongIndex === -1 ? "Add" : "Update" }}
+          </button>
+          <button type="button" @click="cancelEdit">Cancel</button>
+        </div>
       </form>
     </div>
 
@@ -181,6 +183,10 @@ export default {
   gap: 20px;
 }
 
+#form-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
 /* Input and button styles */
 .input {
   display: flex;
