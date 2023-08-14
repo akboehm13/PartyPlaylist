@@ -8,7 +8,7 @@ import store from '../store/index'
 import Events from '../views/EventsView.vue'
 import MyEvents from '../views/MyEventsView.vue'
 import GlobalList from '../views/GlobalList.vue'
-import Event from '@/Event.vue'
+import Event from '../views/Event.vue'
 
 Vue.use(Router)
 
