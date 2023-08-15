@@ -6,9 +6,9 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import Events from '../views/EventsView.vue'
-import MyEvents from '../views/MyEventsView.vue'
 import GlobalList from '../views/GlobalList.vue'
-import Event from '../views/Event.vue'
+import EventID from '../views/EventID.vue'
+import About from '../components/About.vue'
 
 Vue.use(Router)
 
@@ -66,14 +66,6 @@ const router = new Router({
       }
     },
     {
-      path: "/myevents",
-      name: "myevents",
-      component: MyEvents,
-      meta: {
-        requiresAuth: false
-      }
-    },
-    {
       path: "/global_list",
       name: "global_list",
       component: GlobalList,
@@ -82,11 +74,22 @@ const router = new Router({
       }
     },
     {
-      path: "/event",
-      name: "event",
-      component: Event,
+      //this.$router.push( { name: 'event', params: { id : 'event_id' } } )
+
+      path: "/events/:id",
+      // path: "/event", //For Testing
+      name: "eventView",
+      component: EventID,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/about",
+      name: "about",
+      component: About,
+      meta: {
+        requiresAuth: false
       }
     }
   ]

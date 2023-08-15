@@ -21,7 +21,8 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    globalPlaylist: []
+    globalPlaylist: [],
+    // event: {},
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -40,13 +41,6 @@ export default new Vuex.Store({
       state.user = {};
       axios.defaults.headers.common = {};
     },
-    // DELETE_SONG(state, songId){
-    //   songAPI.delete(songId).then((response)=> {
-    //     if (response.status === 200) {
-    //       let index = state.globalPlaylist.indexOf(song => song.song_id === songId);
-    //       if (index >= 0 ) state.globalPlaylist.splice(index, 1);
-    //     }
-    //   })
-    // }
+
   }
 })

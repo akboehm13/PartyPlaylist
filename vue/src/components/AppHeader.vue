@@ -10,12 +10,27 @@
     <nav id="nav">
       <ul>
         <li>
-          <router-link to="/login">Log In</router-link>
+          <router-link v-if="$store.state.token == ''" to="/login"
+            >Log In</router-link
+          >
         </li>
-        <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="/events"> My Events</router-link></li>
+        <li>
+          <router-link v-if="$store.state.token != ''" to="/logout"
+            >Logout</router-link
+          >
+        </li>
+        <!-- <li>
+          <router-link to="/about">About Us</router-link>
+        </li> -->
+        <li>
+          <router-link to="/">Home</router-link>
+        </li>
+        <li>
+          <router-link v-if="$store.state.token != ''" to="/events">
+            My Events</router-link
+          >
+        </li>
       </ul>
-      <!-- <router-view /> -->
     </nav>
   </section>
 </template>
@@ -26,14 +41,18 @@ export default {};
 
 <style scoped>
 #header {
-  /* position: relative; */
   background: #ece2ee;
   border-bottom: solid 1px #ccc;
-  /* padding: 1em 0 1em 0; */
   text-align: center;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+span {
+  color: hwb(271 24% 2%);
+  font-style: italic;
+  font-size: 400%;
 }
 
 #header h1 {
@@ -73,6 +92,7 @@ export default {};
   border-radius: 5px;
   color: #000000;
   text-decoration: none;
+  font-size: 115%;
   padding: 0.6em 1.2em 0.6em 1.2em;
   -moz-transition: background-color 0.25s ease-in-out;
   -webkit-transition: background-color 0.25s ease-in-out;
