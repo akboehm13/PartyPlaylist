@@ -43,7 +43,6 @@
     <button @click="toggleEventForm()">Cancel</button>
   </form>
 </div>
-
     <div class="table-container">
       <table>
         <thead>
@@ -56,13 +55,24 @@
             <th>Location</th>
           </tr>
         </thead>
+          <tr v-for="event in events" :key="event.id">
+          <td>{{ event.name }}</td>
+          <td>{{ event.date }}</td>
+          <td>{{ event.description }}</td>
+          <td>{{ event.startTime }}</td>
+          <td>{{ event.endTime }}</td>
+          <td>{{ event.location }}</td>
+          <td>
+            <button @click="editSong(song)">Edit</button>
+          </td>
+        </tr>
       </table>
     </div>
   </div>
 </template>
 
 <script>
-
+import eventAPI from '../services/EventService.js';
 export default {
   name: 'MyEventsView',
   data() {
@@ -78,7 +88,11 @@ export default {
       },
       events: []
     };
-    
+  },
+  created() {
+    eventAPI.list().then((response) => {
+      this.events = response.data;
+    });
   },
   methods: {
     toggleEventForm() {
