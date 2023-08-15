@@ -21,7 +21,6 @@ public class EventController {
         this.eventDao = eventDao;
     }
 
-
     @GetMapping(path = "")
     public List<Event> list(@RequestParam(defaultValue = "0") int host, @RequestParam(defaultValue = "0") int dj){
         if (host == 0 && dj == 0) {
