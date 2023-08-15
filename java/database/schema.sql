@@ -55,5 +55,4 @@ ALTER TABLE "event"
     ADD CONSTRAINT dj_fk FOREIGN KEY (dj_id) REFERENCES "user"(user_id),
     ADD CONSTRAINT host_fk FOREIGN KEY (host_id) REFERENCES "user"(user_id);
 
-
 COMMIT TRANSACTION;

@@ -11,7 +11,7 @@ export default {
         return axios.post('/events', event);
     },
     update(id, event) {
-        return axios.put(`/songs/${id}`, event);
+        return axios.put(`/events/${id}`, event);
     },
     delete(id) {
         return axios.delete(`/events/${id}`);

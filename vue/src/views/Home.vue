@@ -218,7 +218,7 @@ ul {
 }
 
 body {
-  background: #252122;
+  background: #ece2ee;
 }
 
 body,
@@ -227,7 +227,7 @@ textarea,
 select {
   font-family: "Source Sans Pro";
   font-weight: 300;
-  color: #5d5d5d;
+  color: #753d8b;
   font-size: 14pt;
   line-height: 1.75em;
 }
@@ -308,7 +308,7 @@ h3 {
 }
 
 .box {
-  background: rgb(241, 229, 209);
+  background: #ece2ee;
   border-radius: 10px;
   border-bottom: solid 1px #ccc;
   padding: 2.75em 1.75em 2.75em 1.75em;
@@ -392,7 +392,7 @@ ul.dates .date {
   position: absolute;
   left: 0;
   top: 1.3em;
-  background-color: #0de4f3;
+  background-color: #753d8b;
   height: 3.5em;
   text-align: center;
   color: #fff;
@@ -440,12 +440,11 @@ ul.dates li:first-child {
 
 #footer {
   position: relative;
-  color: #858484;
   padding: 4em 0;
 }
 
 #footer a {
-  color: #c5c4c4;
+  color: #753d8b;
 }
 
 #footer h2,
@@ -454,7 +453,7 @@ ul.dates li:first-child {
 #footer h5,
 #footer h6,
 #footer {
-  color: #fff;
+  color: #753d8b;
 }
 
 #footer ul.contact li,
@@ -475,4 +474,5 @@ ul.dates li:first-child {
 section p {
   margin-bottom: 30px;
 }
+
 </style>
