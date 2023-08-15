@@ -51,8 +51,8 @@ export default {
   list-style: none;
   display: flex;
   justify-content: space-around;
-  color: #007aff;
-  background-color: #f4f4f4;
+  color: #753d8b;
+  background-color: #ece2ee;
   padding: 20px;
   border-radius: 10px;
   font-size: 1em;
@@ -60,9 +60,9 @@ export default {
 
 .nav-item a {
   text-decoration: none;
-  color: #007aff;
+  color: #753d8b;
   transition: color 0.3s ease-in-out;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Source Sans Pro";
 }
 
 .nav-item a:hover {

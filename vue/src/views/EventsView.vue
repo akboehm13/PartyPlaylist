@@ -53,6 +53,7 @@
             <th>Start Time</th>
             <th>End Time</th>
             <th>Location</th>
+            <th></th>
           </tr>
         </thead>
           <tr v-for="event in events" :key="event.id">
@@ -113,17 +114,30 @@ export default {
       if (this.newEvent.name != '') {
         this.events.push(this.newEvent);
       }
-    }
+    },
+    cancelEdit() {
+      this.editingEvent = {};
+      this.editingEventIndex = -1;
+      this.hideForm();
+    },
+    editEvent(event) {
+      this.editingEvent = { ...event };
+      this.editingEventIndex = this.events.findIndex(
+        (e) => e.event_id === event.event_id
+      );
+      this.showForm();
+    },
   }
   
   
 }
 </script>
 
+
 <style scoped>
 /* Container styles */
 .container {
-  background-color: #f4f4f4;
+  background-color: #ece2ee;
   padding: 20px;
   border-radius: 10px;
   margin: 0 auto;
@@ -138,28 +152,30 @@ export default {
 }
 
 h2 {
-  color: #007aff;
+  color: #753d8b;
   opacity: 0.8;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: "Source Sans Pro";
 }
 
 .buttons {
   margin-left: 100px; /* Add this line */
+  font-family: "Source Sans Pro";
 }
 
 .buttons button {
   padding: 10px 20px;
-  background-color: #007aff;
+  background-color: #753d8b;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-family: "Source Sans Pro";
 }
 
 .description {
-  color: #007aff;
+  color: #753d8b;
   opacity: 0.8;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: "Source Sans Pro";
 }
 
 /* Table styles */
@@ -173,9 +189,9 @@ h2 {
 }
 
 table {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  color: #007aff;
-  background-color: #fff;
+  font-family: "Source Sans Pro";
+  color: #753d8b;
+  background-color: #f6ebfa;
   width: 100%;
   border-collapse: collapse;
 }
@@ -188,7 +204,7 @@ td {
 }
 
 th {
-  background-color: #007aff;
+  background-color: #753d8b;
   color: white;
   font-weight: bold;
   position: sticky;
@@ -199,7 +215,7 @@ th {
 button {
   padding: 5px 10px;
   margin-right: 5px;
-  background-color: #007aff;
+  background-color: #753d8b;
   color: white;
   border: none;
   border-radius: 5px;
@@ -209,18 +225,18 @@ button {
 .add-event-button {
   margin-bottom: 10px;
   padding: 10px 20px;
-  background-color: #007aff;
+  background-color: #753d8b;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-family: "Source Sans Pro";
 }
 
 .add-event-form {
-  background-color: #ffffff;
+  background-color: #ece2ee;
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   /* Additional styling for the form */
   display: flex;
@@ -228,14 +244,14 @@ button {
 }
 
 .add-event-form h3 {
-  color: #007aff;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: #753d8b;
+  font-family: "Source Sans Pro";
   margin-bottom: 10px;
 }
 
 .add-event-form label {
-  color: #007aff;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: #753d8b;
+  font-family: "Source Sans Pro";
   margin-bottom: 5px;
 }
 
@@ -255,7 +271,7 @@ button {
 
 .add-event-form button {
   padding: 10px 20px;
-  background-color: #007aff;
+  background-color: #753d8b;
   color: white;
   border: none;
   border-radius: 5px;
