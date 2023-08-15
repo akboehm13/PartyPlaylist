@@ -449,7 +449,6 @@ ul.dates li:first-child {
 
 #footer {
   position: relative;
-  color: #858484;
   padding: 4em 0;
 }
 

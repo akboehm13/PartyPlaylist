@@ -1,14 +1,15 @@
 <template>
-  <div class="container">
-    <div class="header">
-        <h2>My Events</h2>
-            <div class="buttons">
-              <router-link to="/global_list" class="buttons">
-                <button>Global Playlist</button>
-              </router-link>
-              <button @click="toggleEventForm()" class="add-event-button">Add Event</button>
-            </div>
-    </div>
+  <div id="background_image">
+    <div class="container">
+      <div class="header">
+          <h2>My Events</h2>
+              <div class="buttons">
+                <router-link to="/global_list" class="buttons">
+                  <button>Global Playlist</button>
+                </router-link>
+                <button @click="toggleEventForm()" class="add-event-button">Add Event</button>
+              </div>
+      </div>
 
     <!-- Add the form for adding an event -->
     <div v-if="showEventForm" class="add-event-form">
@@ -38,8 +39,23 @@
       <label for="eventLocation">Location:</label>
       <input type="text" id="eventLocation" v-model="newEvent.location" required />
     </div>
+    <h3>Add Playlist</h3>
+    <div class="form-group">
+      <label for="playlistName">Playlist Name:</label>
+      <input type="text" id="playlistName" v-model="playlist.name" required />
+    </div>
+    <div class="form-group genre-select" style="display: flex">
+      <label for="genreGroup">Genres:</label>
+      <div class="genre-select-button" v-for="genre in genreGroup" :key="genre">
+        <input type="checkbox" :id="genre" :value="genre" v-model="selectedGenres">
+        <label :for="genre">{{ genre }}</label>
+      </div>
+    </div>
 
+    <button id="generateButton" @click.prevent="generatePlaylist()">Generate Playlist</button>
+    
     <button @click="addEvent()">Add</button>
+    
     <button @click="toggleEventForm()">Cancel</button>
   </form>
 </div>
@@ -70,10 +86,12 @@
       </table>
     </div>
   </div>
+  </div>
 </template>
 
 <script>
 import eventAPI from '../services/EventService.js';
+import songAPI from '../services/SongService.js';
 export default {
   name: 'MyEventsView',
   data() {
@@ -87,6 +105,22 @@ export default {
         endTime: '',
         location: ''
       },
+      selectedGenres: [],
+      playlist: {
+        name: '',
+        songs: []
+      },
+      genreGroup: [
+        "Rock",
+        "Pop",
+        "Indie",
+        "Alternative",
+        "Heavy Metal",
+        "Hip-Hop",
+        "Jazz",
+        "Dance",
+        "Instrumental",
+      ],
       events: []
     };
   },
@@ -102,6 +136,14 @@ export default {
         this.clearForm();
       }
     },
+    generatePlaylist() {
+      if (this.selectedGenres.length < 1) {
+        console.log(songAPI.list());
+      } else {
+        console.log(songAPI.listByGenre(this.selectedGenres[0]));
+      }
+
+    },
     clearForm() {
         this.newEvent.name = '';
         this.newEvent.date = '';
@@ -111,8 +153,13 @@ export default {
         this.newEvent.location = '';
     },
     addEvent() {
-      if (this.newEvent.name != '') {
-        this.events.push(this.newEvent);
+      if (this.playlist.songs.length < 1) {
+        alert('Please generate a playlist!')
+      } else {
+        if (this.newEvent.name != '') {
+          this.events.push(this.newEvent);
+          console.log(this.events)
+        }
       }
     },
     cancelEdit() {
@@ -142,7 +189,13 @@ export default {
   border-radius: 10px;
   margin: 0 auto;
 }
-
+#background_image {
+  background-image: URL("https://pbs.twimg.com/media/FOMC59BaMAEuCh_.jpg:large");
+  background-position: fixed;
+  background-repeat: no-repeat;
+  height: 72.5vh;
+  padding: 50px;
+}
 /* Input and button styles */
 .header {
   display: flex;
@@ -177,7 +230,12 @@ h2 {
   opacity: 0.8;
   font-family: "Source Sans Pro";
 }
-
+.genre-select, .genre-select-button {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+}
 /* Table styles */
 .table-container {
   max-height: calc(100vh - 230px);
@@ -283,6 +341,10 @@ button {
   background-color: #ddd;
   color: #333;
   margin-left: 10px;
+}
+
+#generateButton {
+  display:block;
 }
 
 </style>

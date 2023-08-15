@@ -4,6 +4,9 @@ export default {
     list() {
         return axios.get('/songs');
     },
+    listByGenre(genre) {
+        return axios.get(`/songs?genre=${genre}`)
+    },
     get(id) {
         return axios.get(`/songs/${id}`);
     },
