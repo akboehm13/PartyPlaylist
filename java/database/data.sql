@@ -52,6 +52,11 @@ INSERT INTO "event" (name, dj_id, host_id, date, description, start_time, end_ti
 '1776 Mentor Ave #361, Cincinnati, OH 45212');
 INSERT INTO "event" (name, dj_id, host_id, date, description, start_time, end_time, location) VALUES ('Labor Day Party at Joe`s house', 2, 1, '9-4-2023', 'Joe actually does not know about this', '18:00:00','20:00:00',
 'Joe`s House');
+INSERT INTO "event" (name, dj_id, host_id, date, description, start_time, end_time, location) VALUES ('Halloween Spooktacular', 2, 1, '10-31-2023', 'Its spooky season ya', '18:00:00','20:00:00',
+
+'Abandoned Day Care');
+INSERT INTO "event" (name, dj_id, host_id, date, description, start_time, end_time, location) VALUES ('Covid-13', 2, 1, '11-25-23', 'Come celebrate the new pandemic before it kills us all', '18:00:00','20:00:00',
+'A Crowded Hospital');
 
 INSERT INTO "playlist" (event_id, name) VALUES (1, 'TEchnoElevator');
 INSERT INTO "playlist" (event_id, name) VALUES (2, 'Labor Day, it`s a Holiday!');
