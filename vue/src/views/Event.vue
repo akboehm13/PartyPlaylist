@@ -87,6 +87,7 @@ export default {
       this.songs = response.data;
       console.log(this.songs);
     });
+    
   },
   computed: {
     filteredSongs() {
