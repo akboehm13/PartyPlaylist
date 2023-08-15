@@ -78,11 +78,10 @@ label {
   margin-right: 0.5rem;
 }
 form {
-<<<<<<< HEAD
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   text-align: center;
-  color: #007aff;
-  background-color: #f4f4f4;
+  color: #753d8b;
+  background-color: #ece2ee;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -90,22 +89,6 @@ form {
   margin-bottom: 20px;
 }
 .login-link {
-  color: #007aff;
-=======
-   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    text-align: center;
-    color: #753d8b;
-    background-color: #ece2ee;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
-    margin-bottom: 20px;
-  
-}
-.login-link {
-   color: #753d8b;
-  
->>>>>>> origin/EB
+  color: #753d8b;
 }
 </style>
