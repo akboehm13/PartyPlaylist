@@ -6,13 +6,12 @@
               <router-link to="/global_list" class="buttons">
                 <button>Global Playlist</button>
               </router-link>
+              <button @click="toggleEventForm()" class="add-event-button">Add Event</button>
             </div>
     </div>
 
-    <button @click="showAddForm = true" class="add-event-button">Add Event</button>
-
     <!-- Add the form for adding an event -->
-    <div v-if="showAddForm" class="add-event-form">
+    <div v-if="showEventForm" class="add-event-form">
   <h3>Add Event</h3>
   <form>
     <div class="form-group">
@@ -41,10 +40,9 @@
     </div>
 
     <button @click="addEvent()">Add</button>
-    <button @click="showAddForm = false">Cancel</button>
+    <button @click="toggleEventForm()">Cancel</button>
   </form>
 </div>
-
     <div class="table-container">
       <table>
         <thead>
@@ -55,50 +53,86 @@
             <th>Start Time</th>
             <th>End Time</th>
             <th>Location</th>
+            <th></th>
           </tr>
         </thead>
-        <tbody>
-          <tr v-for="song in filteredSongs" :key="song.id">
+        <tr v-for="event in events" :key="event.id">
+            <td>{{ event.name }}</td>
+            <td>{{ event.date }}</td>
+            <td>{{ event.description }}</td>
+            <td>{{ event.startTime }}</td>
+            <td>{{ event.endTime }}</td>
+            <td>{{ event.location }}</td>
             <td>
-              <img :src="song.coverArt" alt="Cover Art" height="50" />
-            </td>
-            <td>{{ song.title }}</td>
-            <td>{{ song.artist }}</td>
-            <td>{{ song.genre }}</td>
-            <td>{{ song.duration }}</td>
-            <td>
-              <button @click="editSong(song)">Edit</button>
-              <button @click="deleteSong(song.id)">Delete</button>
+              <button @click="editEvent(event)">Edit</button>
             </td>
           </tr>
-        </tbody>
       </table>
     </div>
   </div>
 </template>
 
 <script>
-
+import eventAPI from '../services/EventService.js';
 export default {
-  name: 'EventsView',
+  name: 'MyEventsView',
   data() {
     return {
-      showAddForm: false,
-    newEvent: {
-      name: '',
-      date: '',
-      description: '',
-      startTime: '',
-      endTime: '',
-      location: ''
-    }
+      showEventForm: false,
+      newEvent: {
+        name: '',
+        date: '',
+        description: '',
+        startTime: '',
+        endTime: '',
+        location: ''
+      },
+      events: []
     };
-    
   },
+  created() {
+    eventAPI.list().then((response) => {
+      this.events = response.data;
+    });
+  },
+  methods: {
+    toggleEventForm() {
+      this.showEventForm = !this.showEventForm;
+      if (this.showEventForm === false) {
+        this.clearForm();
+      }
+    },
+    clearForm() {
+        this.newEvent.name = '';
+        this.newEvent.date = '';
+        this.newEvent.description = '';
+        this.newEvent.startTime = '';
+        this.newEvent.endTime = '';
+        this.newEvent.location = '';
+    },
+    addEvent() {
+      if (this.newEvent.name != '') {
+        this.events.push(this.newEvent);
+      }
+    },
+    cancelEdit() {
+      this.editingEvent = {};
+      this.editingEventIndex = -1;
+      this.hideForm();
+    },
+    editEvent(event) {
+      this.editingEvent = { ...event };
+      this.editingEventIndex = this.events.findIndex(
+        (e) => e.event_id === event.event_id
+      );
+      this.showForm();
+    },
+  }
   
   
 }
 </script>
+
 
 <style scoped>
 /* Container styles */
@@ -157,7 +191,7 @@ h2 {
 table {
   font-family: "Source Sans Pro";
   color: #753d8b;
-  background-color: #fff;
+  background-color: #f6ebfa;
   width: 100%;
   border-collapse: collapse;
 }

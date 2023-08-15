@@ -401,7 +401,7 @@ ul.dates .date {
   position: absolute;
   left: 0;
   top: 1.3em;
-  background-color: #0de4f3;
+  background-color: #753d8b;
   height: 3.5em;
   text-align: center;
   color: #fff;
@@ -499,7 +499,7 @@ ul.dates li:first-child {
 }
 
 #nav > ul > li.current > a {
-  background: #0de4f3;
+  background: #753d8b;
   color: #fff !important;
   font-weight: 700;
 }
