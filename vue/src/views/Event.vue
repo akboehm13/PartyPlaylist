@@ -1,15 +1,18 @@
 <template>
   <div class="container">
     <div class="header">
-        <h2>Upcoming Event</h2>
-            <div class="buttons">
-            <button @click="showForm()">Join</button>
-            <button @click="showForm()">Invite</button>
-            </div>
+      <h2>Upcoming Event</h2>
+      <div class="buttons">
+        <button @click="showForm()">Join</button>
+        <button @click="showForm()">Invite</button>
+      </div>
     </div>
 
     <div class="description">
-        <h5>Join us for Caleb's 5th birthday this upcoming Saturday the 4th at 1234 Arroyo Ln. Pizza and drinks will be provided.</h5>
+      <h5>
+        Join us for Caleb's 5th birthday this upcoming Saturday the 4th at 1234
+        Arroyo Ln. Pizza and drinks will be provided.
+      </h5>
     </div>
 
     <div class="table-container">
@@ -22,7 +25,7 @@
             <th>Genre</th>
             <th>Duration</th>
             <th>
-                <button @click="playPlaylist()">Play</button>
+              <button @click="playPlaylist()">Play</button>
             </th>
           </tr>
         </thead>
@@ -47,7 +50,7 @@
 </template>
 
 <script>
-import songAPI from "../src/services/SongService.js";
+import songAPI from "../services/SongService.js";
 
 export default {
   name: "event",
@@ -132,10 +135,9 @@ export default {
       this.hideForm();
     },
 
-     playPlaylist() {
+    playPlaylist() {
       // Logic to play the playlist
     },
-
 
     cancelEdit() {
       this.editingSong = {
@@ -164,10 +166,12 @@ export default {
 };
 </script>
 
+
 <style scoped>
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,300italic");
 /* Container styles */
 .container {
-  background-color: #f4f4f4;
+  background-color: #ece2ee;
   padding: 20px;
   border-radius: 10px;
   margin: 0 auto;
@@ -182,27 +186,29 @@ export default {
 }
 
 h2 {
-  color: #007aff;
+  color: #753d8b;
   opacity: 0.8;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: "Source Sans Pro";
 }
 .buttons {
   margin-left: 100px; /* Add this line */
+  font-family: "Source Sans Pro";
 }
 
 .buttons button {
   padding: 10px 20px;
-  background-color: #007aff;
+  background-color: #753d8b;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-family: "Source Sans Pro";
 }
 
 .description {
-  color: #007aff;
+  color: #753d8b;
   opacity: 0.8;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: "Source Sans Pro";
 }
 
 /* Table styles */
@@ -216,12 +222,13 @@ h2 {
 }
 
 table {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  color: #007aff;
-  background-color: #fff;
+  font-family: "Source Sans Pro";
+  color: #753d8b;
+  background-color: #f6ebfa;
   width: 100%;
   border-collapse: collapse;
 }
+
 
 th,
 td {
@@ -231,7 +238,7 @@ td {
 }
 
 th {
-  background-color: #007aff;
+  background-color: #753d8b;
   color: white;
   font-weight: bold;
   position: sticky;
@@ -242,11 +249,12 @@ th {
 button {
   padding: 5px 10px;
   margin-right: 5px;
-  background-color: #007aff;
+  background-color: #753d8b;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-family: "Source Sans Pro";
 }
 
 

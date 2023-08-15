@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="assets/css/main.css" />
       </head>
       <body>
-        <section id="header">
+        <!-- <section id="header">
           <h1>
             <img
               src="https://static.vecteezy.com/system/resources/previews/017/784/773/non_2x/sync-icon-in-flat-design-style-server-signs-illustration-png.png"
@@ -21,7 +21,7 @@
               <li><router-link to="/events">Events</router-link></li>
             </ul>
           </nav>
-        </section>
+        </section> -->
 
         <section id="main">
           <div class="container">
@@ -31,24 +31,28 @@
                 <p>Your Ultimate DJ Companion and Event Playlist Manager!</p>
               </header>
               <p>
-                <strong>Elevate your DJ experience to the next level with Sync, the
-                groundbreaking application designed exclusively for DJs and
-                event enthusiasts. Seamlessly manage global playlists, curate
-                electrifying music selections, and bring people together like
-                never before. Sync empowers DJs to create, collaborate, and
-                craft unforgettable moments with ease.</strong>
+                <strong
+                  >Elevate your DJ experience to the next level with Sync, the
+                  groundbreaking application designed exclusively for DJs and
+                  event enthusiasts. Seamlessly manage global playlists, curate
+                  electrifying music selections, and bring people together like
+                  never before. Sync empowers DJs to create, collaborate, and
+                  craft unforgettable moments with ease.</strong
+                >
               </p>
               <p>
-                <strong>But Sync doesn't stop there. Party hosts are invited to the
-                spotlight, enjoying a seamless interface to manage events and
-                invite their guests. Hosts can effortlessly extend their event's
-                reach, and guests can request songs, vote on playlist tracks,
-                and actively participate in curating the musical atmosphere.
-                Sync isn't just an app; it's a revolution in event management,
-                fostering collaboration, creativity, and connection. Say goodbye
-                to ordinary parties and welcome Sync into your world – where
-                music unites, memories are made, and events are elevated to
-                unprecedented heights.</strong>
+                <strong
+                  >But Sync doesn't stop there. Party hosts are invited to the
+                  spotlight, enjoying a seamless interface to manage events and
+                  invite their guests. Hosts can effortlessly extend their
+                  event's reach, and guests can request songs, vote on playlist
+                  tracks, and actively participate in curating the musical
+                  atmosphere. Sync isn't just an app; it's a revolution in event
+                  management, fostering collaboration, creativity, and
+                  connection. Say goodbye to ordinary parties and welcome Sync
+                  into your world – where music unites, memories are made, and
+                  events are elevated to unprecedented heights.</strong
+                >
               </p>
             </article>
           </div>
@@ -63,8 +67,8 @@
                     <h2>Upcoming events</h2>
                   </header>
                   <ul class="dates">
-                    <li v-for="event in events" :key="event.id">
-                      <span class="date">{{ formatDate(event.date) }}</span>
+                    <li v-for="event in events" :key="event.eventId">
+                      <span class="date">{{ event.date }}</span>
                       <h3>
                         <a href="#">{{ event.name }}</a>
                       </h3>
@@ -79,15 +83,15 @@
                     <h2>What's Sync all about?</h2>
                   </header>
                   <p>
-                    At <strong>Sync</strong>, we're on a mission to redefine the way DJs, party
-                    hosts, and music enthusiasts connect and collaborate. Our
-                    passion is fueled by the belief that music has the power to
-                    bring people together, transcend barriers, and create
-                    unforgettable memories. We've created a platform that goes
-                    beyond traditional event management, offering a seamless
-                    blend of technology and creativity that empowers DJs to
-                    curate unforgettable playlists while giving hosts and guests
-                    the tools to actively shape the musical experience.
+                    At <strong>Sync</strong>, we're on a mission to redefine the
+                    way DJs, party hosts, and music enthusiasts connect and
+                    collaborate. Our passion is fueled by the belief that music
+                    has the power to bring people together, transcend barriers,
+                    and create unforgettable memories. We've created a platform
+                    that goes beyond traditional event management, offering a
+                    seamless blend of technology and creativity that empowers
+                    DJs to curate unforgettable playlists while giving hosts and
+                    guests the tools to actively shape the musical experience.
                   </p>
                   <footer>
                     <img
@@ -166,23 +170,22 @@
 </template>
 
 <script>
-//import axios from 'axios';
+import eventAPI from "../services/EventService.js";
 
-//export default {
-// name: 'home',
-// data() {
-// return {
-//  events: [],
-// };
-// },
+export default {
+  name: "home",
 
-//  created() {
-//  axios.get('')
-//   .then(response => {
-//   this.events = response.data;
-//    })
-
-//},
+  data() {
+    return {
+      events: [],
+    };
+  },
+  created() {
+    eventAPI.list().then((response) => {
+      this.events = response.data;
+    });
+  },
+};
 </script>
 
 
@@ -224,7 +227,7 @@ ul {
 }
 
 body {
-  background: #252122;
+  background: #ece2ee;
 }
 
 body,
@@ -233,7 +236,7 @@ textarea,
 select {
   font-family: "Source Sans Pro";
   font-weight: 300;
-  color: #5d5d5d;
+  color: #753d8b;
   font-size: 14pt;
   line-height: 1.75em;
 }
@@ -252,7 +255,7 @@ h2 {
 }
 
 h3 {
-  font-size: 3.0em;
+  font-size: 3em;
 }
 
 .container {
@@ -314,7 +317,7 @@ h3 {
 }
 
 .box {
-  background: rgb(241, 229, 209);
+  background: #ece2ee;
   border-radius: 10px;
   border-bottom: solid 1px #ccc;
   padding: 2.75em 1.75em 2.75em 1.75em;
@@ -326,11 +329,9 @@ h3 {
 }
 
 .box.post h2 {
-  font-size: 3.0em;
+  font-size: 3em;
   letter-spacing: -0.015em;
-
 }
-
 
 .box.post header > p {
   margin-top: 1.25em;
@@ -400,7 +401,7 @@ ul.dates .date {
   position: absolute;
   left: 0;
   top: 1.3em;
-  background-color: #0de4f3;
+  background-color: #753d8b;
   height: 3.5em;
   text-align: center;
   color: #fff;
@@ -439,70 +440,6 @@ ul.dates li:first-child {
   padding-top: 0;
 }
 
-#header {
-  position: relative;
-  background: #ece2ee;
-  border-bottom: solid 1px #ccc;
-  padding: 1em 0 2em 0;
-  text-align: center;
-  display: flex;
-  justify-content: space-between;
-}
-
-#header h1 {
-  color: #252122;
-  font-weight: 900;
-  font-size: 2em;
-  letter-spacing: -0.035em;
-  line-height: 1;
-  margin-bottom: 0.5em;
-}
-
-#header img {
-  max-width: 100%;
-  height: auto;
-  width: 100px;
-  position: absolute;
-  left: 1em;
-}
-
-#nav {
-  margin: 2.5em 0 0 0;
-}
-
-#nav > ul {
-  margin: 0;
-}
-
-#nav > ul > li {
-  display: inline-block;
-  font-style: italic;
-  margin: 0 0.35em 0 0.35em;
-}
-
-#nav > ul > li > a {
-  border-radius: 5px;
-  color: #5d5d5d;
-  text-decoration: none;
-  padding: 0.6em 1.2em 0.6em 1.2em;
-  -moz-transition: background-color 0.25s ease-in-out;
-  -webkit-transition: background-color 0.25s ease-in-out;
-  -ms-transition: background-color 0.25s ease-in-out;
-  transition: background-color 0.25s ease-in-out;
-  outline: 0;
-}
-
-#nav > ul > li:hover > a,
-#nav > ul > li.active > a {
-  background: #f3f3f3;
-}
-
-#nav > ul > li.current > a {
-  background: #0de4f3;
-  color: #fff !important;
-  font-weight: 700;
-}
-
 #main {
   position: relative;
   background: #f7f7f7
@@ -517,7 +454,7 @@ ul.dates li:first-child {
 }
 
 #footer a {
-  color: #c5c4c4;
+  color: #753d8b;
 }
 
 #footer h2,
@@ -526,7 +463,7 @@ ul.dates li:first-child {
 #footer h5,
 #footer h6,
 #footer {
-  color: #fff;
+  color: #753d8b;
 }
 
 #footer ul.contact li,

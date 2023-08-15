@@ -50,8 +50,11 @@ INSERT INTO "song" (title, artist, genre, duration, song_url, song_art) VALUES (
 
 INSERT INTO "event" (name, dj_id, host_id, date, description, start_time, end_time, location) VALUES ('TechElevator Graduation', 2, 1, '12-18-2023', 'This marks the end of the 4 month boot camp! Congrats!', '12:00:00','14:00:00',
 '1776 Mentor Ave #361, Cincinnati, OH 45212');
+INSERT INTO "event" (name, dj_id, host_id, date, description, start_time, end_time, location) VALUES ('Labor Day Party at Joe`s house', 2, 1, '9-4-2023', 'Joe actually does not know about this', '18:00:00','20:00:00',
+'Joe`s House');
 
 INSERT INTO "playlist" (event_id, name) VALUES (1, 'TEchnoElevator');
+INSERT INTO "playlist" (event_id, name) VALUES (2, 'Labor Day, it`s a Holiday!');
 
 INSERT INTO "playlist_song" (playlist_id, song_id) VALUES (1, 5);
 INSERT INTO "playlist_song" (playlist_id, song_id) VALUES (1, 7);
@@ -61,5 +64,14 @@ INSERT INTO "playlist_song" (playlist_id, song_id) VALUES (1, 22);
 INSERT INTO "playlist_song" (playlist_id, song_id) VALUES (1, 23);
 INSERT INTO "playlist_song" (playlist_id, song_id) VALUES(1, 35);
 INSERT INTO "playlist_song" (playlist_id, song_id) VALUES (1, 39);
+
+INSERT INTO "playlist_song" (playlist_id, song_id) VALUES (2, 8);
+INSERT INTO "playlist_song" (playlist_id, song_id) VALUES (2, 18);
+INSERT INTO "playlist_song" (playlist_id, song_id) VALUES (2, 23);
+INSERT INTO "playlist_song" (playlist_id, song_id) VALUES (2, 25);
+INSERT INTO "playlist_song" (playlist_id, song_id) VALUES (2, 28);
+INSERT INTO "playlist_song" (playlist_id, song_id) VALUES (2, 20);
+INSERT INTO "playlist_song" (playlist_id, song_id) VALUES (2, 14);
+INSERT INTO "playlist_song" (playlist_id, song_id) VALUES (2, 35);
 
 COMMIT TRANSACTION;

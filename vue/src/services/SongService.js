@@ -5,7 +5,7 @@ export default {
         return axios.get('/songs');
     },
     get(id) {
-        return axios.get(`songs/${id}`);
+        return axios.get(`/songs/${id}`);
     },
     add(song) {
         return axios.post('/songs', song);

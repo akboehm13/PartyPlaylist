@@ -6,13 +6,12 @@
               <router-link to="/global_list" class="buttons">
                 <button>Global Playlist</button>
               </router-link>
+              <button @click="toggleEventForm()" class="add-event-button">Add Event</button>
             </div>
     </div>
 
-    <button @click="showAddForm = true" class="add-event-button">Add Event</button>
-
     <!-- Add the form for adding an event -->
-    <div v-if="showAddForm" class="add-event-form">
+    <div v-if="showEventForm" class="add-event-form">
   <h3>Add Event</h3>
   <form>
     <div class="form-group">
@@ -41,10 +40,9 @@
     </div>
 
     <button @click="addEvent()">Add</button>
-    <button @click="showAddForm = false">Cancel</button>
+    <button @click="toggleEventForm()">Cancel</button>
   </form>
 </div>
-
     <div class="table-container">
       <table>
         <thead>
@@ -55,55 +53,91 @@
             <th>Start Time</th>
             <th>End Time</th>
             <th>Location</th>
+            <th></th>
           </tr>
         </thead>
-        <tbody>
-          <tr v-for="song in filteredSongs" :key="song.id">
-            <td>
-              <img :src="song.coverArt" alt="Cover Art" height="50" />
-            </td>
-            <td>{{ song.title }}</td>
-            <td>{{ song.artist }}</td>
-            <td>{{ song.genre }}</td>
-            <td>{{ song.duration }}</td>
-            <td>
-              <button @click="editSong(song)">Edit</button>
-              <button @click="deleteSong(song.id)">Delete</button>
-            </td>
-          </tr>
-        </tbody>
+          <tr v-for="event in events" :key="event.id">
+          <td>{{ event.name }}</td>
+          <td>{{ event.date }}</td>
+          <td>{{ event.description }}</td>
+          <td>{{ event.startTime }}</td>
+          <td>{{ event.endTime }}</td>
+          <td>{{ event.location }}</td>
+          <td>
+            <button @click="editSong(song)">Edit</button>
+          </td>
+        </tr>
       </table>
     </div>
   </div>
 </template>
 
 <script>
-
+import eventAPI from '../services/EventService.js';
 export default {
-  name: 'EventsView',
+  name: 'MyEventsView',
   data() {
     return {
-      showAddForm: false,
-    newEvent: {
-      name: '',
-      date: '',
-      description: '',
-      startTime: '',
-      endTime: '',
-      location: ''
-    }
+      showEventForm: false,
+      newEvent: {
+        name: '',
+        date: '',
+        description: '',
+        startTime: '',
+        endTime: '',
+        location: ''
+      },
+      events: []
     };
-    
   },
+  created() {
+    eventAPI.list().then((response) => {
+      this.events = response.data;
+    });
+  },
+  methods: {
+    toggleEventForm() {
+      this.showEventForm = !this.showEventForm;
+      if (this.showEventForm === false) {
+        this.clearForm();
+      }
+    },
+    clearForm() {
+        this.newEvent.name = '';
+        this.newEvent.date = '';
+        this.newEvent.description = '';
+        this.newEvent.startTime = '';
+        this.newEvent.endTime = '';
+        this.newEvent.location = '';
+    },
+    addEvent() {
+      if (this.newEvent.name != '') {
+        this.events.push(this.newEvent);
+      }
+    },
+    cancelEdit() {
+      this.editingEvent = {};
+      this.editingEventIndex = -1;
+      this.hideForm();
+    },
+    editEvent(event) {
+      this.editingEvent = { ...event };
+      this.editingEventIndex = this.events.findIndex(
+        (e) => e.event_id === event.event_id
+      );
+      this.showForm();
+    },
+  }
   
   
 }
 </script>
 
+
 <style scoped>
 /* Container styles */
 .container {
-  background-color: #f4f4f4;
+  background-color: #ece2ee;
   padding: 20px;
   border-radius: 10px;
   margin: 0 auto;
@@ -118,28 +152,30 @@ export default {
 }
 
 h2 {
-  color: #007aff;
+  color: #753d8b;
   opacity: 0.8;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: "Source Sans Pro";
 }
 
 .buttons {
   margin-left: 100px; /* Add this line */
+  font-family: "Source Sans Pro";
 }
 
 .buttons button {
   padding: 10px 20px;
-  background-color: #007aff;
+  background-color: #753d8b;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-family: "Source Sans Pro";
 }
 
 .description {
-  color: #007aff;
+  color: #753d8b;
   opacity: 0.8;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: "Source Sans Pro";
 }
 
 /* Table styles */
@@ -153,9 +189,9 @@ h2 {
 }
 
 table {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  color: #007aff;
-  background-color: #fff;
+  font-family: "Source Sans Pro";
+  color: #753d8b;
+  background-color: #f6ebfa;
   width: 100%;
   border-collapse: collapse;
 }
@@ -168,7 +204,7 @@ td {
 }
 
 th {
-  background-color: #007aff;
+  background-color: #753d8b;
   color: white;
   font-weight: bold;
   position: sticky;
@@ -179,7 +215,7 @@ th {
 button {
   padding: 5px 10px;
   margin-right: 5px;
-  background-color: #007aff;
+  background-color: #753d8b;
   color: white;
   border: none;
   border-radius: 5px;
@@ -189,18 +225,18 @@ button {
 .add-event-button {
   margin-bottom: 10px;
   padding: 10px 20px;
-  background-color: #007aff;
+  background-color: #753d8b;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-family: "Source Sans Pro";
 }
 
 .add-event-form {
-  background-color: #ffffff;
+  background-color: #ece2ee;
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   /* Additional styling for the form */
   display: flex;
@@ -208,14 +244,14 @@ button {
 }
 
 .add-event-form h3 {
-  color: #007aff;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: #753d8b;
+  font-family: "Source Sans Pro";
   margin-bottom: 10px;
 }
 
 .add-event-form label {
-  color: #007aff;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: #753d8b;
+  font-family: "Source Sans Pro";
   margin-bottom: 5px;
 }
 
@@ -235,7 +271,7 @@ button {
 
 .add-event-form button {
   padding: 10px 20px;
-  background-color: #007aff;
+  background-color: #753d8b;
   color: white;
   border: none;
   border-radius: 5px;

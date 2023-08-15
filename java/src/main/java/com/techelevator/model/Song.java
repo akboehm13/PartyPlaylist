@@ -16,8 +16,9 @@ public class Song {
     @NotNull
     private String duration;
 
+    @JsonProperty("song_url")
     private String audioURL;
-
+    @JsonProperty("img_url")
     private String imageURL;
 
     public Song() { }
