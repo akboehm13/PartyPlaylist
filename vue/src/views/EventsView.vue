@@ -2,127 +2,166 @@
   <div id="background_image">
     <div class="container">
       <div class="header">
-          <h2>My Events</h2>
-              <div class="buttons">
-                <router-link to="/global_list" class="buttons">
-                  <button>Global Playlist</button>
-                </router-link>
-                <button @click="toggleEventForm()" class="add-event-button">Add Event</button>
-              </div>
+        <h2>My Events</h2>
+        <div class="buttons">
+          <router-link to="/global_list" class="buttons">
+            <button>Global Playlist</button>
+          </router-link>
+          <button @click="toggleEventForm()" class="add-event-button">
+            Add Event
+          </button>
+        </div>
       </div>
 
-    <!-- Add the form for adding an event -->
-    <div v-if="showEventForm" class="add-event-form">
-  <h3>Add Event</h3>
-  <form>
-    <div class="form-group">
-      <label for="eventName">Event Name:</label>
-      <input type="text" id="eventName" v-model="newEvent.name" required />
-    </div>
-    <div class="form-group">
-      <label for="eventDate">Event Date:</label>
-      <input type="date" id="eventDate" v-model="newEvent.date" required />
-    </div>
-    <div class="form-group">
-      <label for="eventDescription">Event Description:</label>
-      <textarea id="eventDescription" v-model="newEvent.description" rows="3" required></textarea>
-    </div>
-    <div class="form-group">
-      <label for="eventStartTime">Start Time:</label>
-      <input type="time" id="eventStartTime" v-model="newEvent.startTime" required />
-    </div>
-    <div class="form-group">
-      <label for="eventEndTime">End Time:</label>
-      <input type="time" id="eventEndTime" v-model="newEvent.endTime" required />
-    </div>
-    <div class="form-group">
-      <label for="eventLocation">Location:</label>
-      <input type="text" id="eventLocation" v-model="newEvent.location" required />
-    </div>
-    <h3>Add Playlist</h3>
-    <div class="form-group">
-      <label for="playlistName">Playlist Name:</label>
-      <input type="text" id="playlistName" v-model="playlist.name" required />
-    </div>
-    <div class="form-group genre-select" style="display: flex">
-      <label for="genreGroup">Genres:</label>
-      <div class="genre-select-button" v-for="genre in genreGroup" :key="genre">
-        <input type="checkbox" :id="genre" :value="genre" v-model="selectedGenres">
-        <label :for="genre">{{ genre }}</label>
-      </div>
-    </div>
+      <!-- Add the form for adding an event -->
+      <div v-if="showEventForm" class="add-event-form">
+        <h3>Add Event</h3>
+        <form>
+          <div class="form-group">
+            <label for="eventName">Event Name:</label>
+            <input
+              type="text"
+              id="eventName"
+              v-model="newEvent.name"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="eventDate">Event Date:</label>
+            <input
+              type="date"
+              id="eventDate"
+              v-model="newEvent.date"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="eventDescription">Event Description:</label>
+            <textarea
+              id="eventDescription"
+              v-model="newEvent.description"
+              rows="3"
+              required
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="eventStartTime">Start Time:</label>
+            <input
+              type="time"
+              id="eventStartTime"
+              v-model="newEvent.startTime"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="eventEndTime">End Time:</label>
+            <input
+              type="time"
+              id="eventEndTime"
+              v-model="newEvent.endTime"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="eventLocation">Location:</label>
+            <input
+              type="text"
+              id="eventLocation"
+              v-model="newEvent.location"
+              required
+            />
+          </div>
+          <h3>Add Playlist</h3>
+          <div class="form-group">
+            <label for="playlistName">Playlist Name:</label>
+            <input
+              type="text"
+              id="playlistName"
+              v-model="playlist.name"
+              required
+            />
+          </div>
+          <div class="form-group genre-select" style="display: flex">
+            <label for="genreGroup">Genres:</label>
+            <div
+              class="genre-select-button"
+              v-for="genre in genreGroup"
+              :key="genre"
+            >
+              <input
+                type="checkbox"
+                :id="genre"
+                :value="genre"
+                v-model="selectedGenres"
+              />
+              <label :for="genre">{{ genre }}</label>
+            </div>
+          </div>
 
-    <button id="generateButton" @click.prevent="generatePlaylist()">Generate Playlist</button>
-    
-    <button @click="addEvent()">Add</button>
-    
-    <button @click="toggleEventForm()">Cancel</button>
-  </form>
-</div>
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Start Time</th>
-            <th>End Time</th>
-            <th>Location</th>
-            <th></th>
-          </tr>
-        </thead>
-<<<<<<< HEAD
-          <tr v-for="event in events" :key="event.id">
-          <td>{{ event.name }}</td>
-          <td>{{ event.date }}</td>
-          <td>{{ event.description }}</td>
-          <td>{{ event.startTime }}</td>
-          <td>{{ event.endTime }}</td>
-          <td>{{ event.location }}</td>
-          <td>
-            <button @click="editSong(song)">Edit</button>
-          </td>
-        </tr>
-=======
-        <tr v-for="event in events" :key="event.id" class="clickable-row" @click="navigateToEvent(event.id)">
-              <td>{{ event.name }}</td>
-              <td>{{ event.date }}</td>
-              <td>{{ event.description }}</td>
-              <td>{{ event.startTime }}</td>
-              <td>{{ event.endTime }}</td>
-              <td>{{ event.location }}</td>
+          <button id="generateButton" @click.prevent="generatePlaylist()">
+            Generate Playlist
+          </button>
+
+          <button @click="addEvent()">Add</button>
+
+          <button @click="toggleEventForm()">Cancel</button>
+        </form>
+      </div>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>Location</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tr
+            v-for="event in events"
+            :key="event.id"
+            class="clickable-row"
+            @click="navigateToEvent(event.id)"
+          >
+            <td>{{ event.name }}</td>
+            <td>{{ event.date }}</td>
+            <td>{{ event.description }}</td>
+            <td>{{ event.startTime }}</td>
+            <td>{{ event.endTime }}</td>
+            <td>{{ event.location }}</td>
             <td>
               <button @click.stop="editEvent(event)">Edit</button>
             </td>
           </tr>
->>>>>>> origin/ABtest
-      </table>
+        </table>
+      </div>
     </div>
-  </div>
   </div>
 </template>
 
 <script>
-import eventAPI from '../services/EventService.js';
-import songAPI from '../services/SongService.js';
+import eventAPI from "../services/EventService.js";
+import songAPI from "../services/SongService.js";
 export default {
-  name: 'MyEventsView',
+  name: "MyEventsView",
   data() {
     return {
       showEventForm: false,
       newEvent: {
-        name: '',
-        date: '',
-        description: '',
-        startTime: '',
-        endTime: '',
-        location: ''
+        name: "",
+        date: "",
+        description: "",
+        startTime: "",
+        endTime: "",
+        location: "",
       },
       selectedGenres: [],
       playlist: {
-        name: '',
-        songs: []
+        name: "",
+        songs: [],
       },
       genreGroup: [
         "Rock",
@@ -135,7 +174,7 @@ export default {
         "Dance",
         "Instrumental",
       ],
-      events: []
+      events: [],
     };
   },
   created() {
@@ -156,23 +195,22 @@ export default {
       } else {
         console.log(songAPI.listByGenre(this.selectedGenres[0]));
       }
-
     },
     clearForm() {
-        this.newEvent.name = '';
-        this.newEvent.date = '';
-        this.newEvent.description = '';
-        this.newEvent.startTime = '';
-        this.newEvent.endTime = '';
-        this.newEvent.location = '';
+      this.newEvent.name = "";
+      this.newEvent.date = "";
+      this.newEvent.description = "";
+      this.newEvent.startTime = "";
+      this.newEvent.endTime = "";
+      this.newEvent.location = "";
     },
     addEvent() {
       if (this.playlist.songs.length < 1) {
-        alert('Please generate a playlist!')
+        alert("Please generate a playlist!");
       } else {
-        if (this.newEvent.name != '') {
+        if (this.newEvent.name != "") {
           this.events.push(this.newEvent);
-          console.log(this.events)
+          console.log(this.events);
         }
       }
     },
@@ -189,12 +227,10 @@ export default {
       this.showForm();
     },
     navigateToEvent(eventId) {
-  this.$router.push(`/event/${eventId}`);
-}
-  }
-  
-  
-}
+      this.$router.push(`/event/${eventId}`);
+    },
+  },
+};
 </script>
 
 
@@ -247,7 +283,8 @@ h2 {
   opacity: 0.8;
   font-family: "Source Sans Pro";
 }
-.genre-select, .genre-select-button {
+.genre-select,
+.genre-select-button {
   display: flex;
   justify-content: space-between;
   align-content: center;
@@ -366,7 +403,6 @@ button {
 }
 
 #generateButton {
-  display:block;
+  display: block;
 }
-
 </style>
