@@ -82,12 +82,12 @@ const router = new Router({
       }
     },
     {
-      path: "/event",
-      name: "event",
-      component: Event,
-      meta: {
-        requiresAuth: true
-      }
+      path: "/event/:eventId",
+  name: "event",
+  component: Event,
+  meta: {
+    requiresAuth: true
+  }
     }
   ]
 

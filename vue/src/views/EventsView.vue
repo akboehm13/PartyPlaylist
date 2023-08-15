@@ -56,15 +56,15 @@
             <th></th>
           </tr>
         </thead>
-        <tr v-for="event in events" :key="event.id">
-            <td>{{ event.name }}</td>
-            <td>{{ event.date }}</td>
-            <td>{{ event.description }}</td>
-            <td>{{ event.startTime }}</td>
-            <td>{{ event.endTime }}</td>
-            <td>{{ event.location }}</td>
+        <tr v-for="event in events" :key="event.id" class="clickable-row" @click="navigateToEvent(event.id)">
+              <td>{{ event.name }}</td>
+              <td>{{ event.date }}</td>
+              <td>{{ event.description }}</td>
+              <td>{{ event.startTime }}</td>
+              <td>{{ event.endTime }}</td>
+              <td>{{ event.location }}</td>
             <td>
-              <button @click="editEvent(event)">Edit</button>
+              <button @click.stop="editEvent(event)">Edit</button>
             </td>
           </tr>
       </table>
@@ -127,6 +127,9 @@ export default {
       );
       this.showForm();
     },
+    navigateToEvent(eventId) {
+  this.$router.push(`/event/${eventId}`);
+}
   }
   
   
@@ -209,6 +212,11 @@ th {
   font-weight: bold;
   position: sticky;
   top: 0;
+}
+
+.clickable-row {
+  cursor: pointer;
+  /* Add other styling as needed */
 }
 
 /* Button styles */
