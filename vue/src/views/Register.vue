@@ -1,5 +1,6 @@
 <template>
-  <div id="register" class="text-center">
+  <section id="main">
+   <div class="register-container">
     <form @submit.prevent="register">
       <h2>Create Account</h2>
       <div role="alert" v-if="registrationErrors">
@@ -40,6 +41,7 @@
       </p>
     </form>
   </div>
+  </section>
 </template>
 
 <script>
@@ -103,19 +105,33 @@ label {
 form {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   text-align: center;
-  color: #dc9d00;
-  background-color: rgb(100, 100, 100);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
-  margin-bottom: 20px;
+    color: #753d8b;
+    background-color: #ece2ee;
+  padding: 100px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    margin-bottom: 500px;
 }
 .login-link {
-  color: #dc9d00;
-  background-color: rgb(100, 100, 100);
+    color: #753d8b;
+    background-color: #ece2ee;
 }
 h2 {
   margin: 0 auto;
+}
+
+#main {
+  position: relative;
+  background: #f7f7f7
+    url("https://pbs.twimg.com/media/FOMC59BaMAEuCh_.jpg:large");
+  padding: 4em 0 4em 0;
+}
+
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; 
 }
 </style>
