@@ -52,7 +52,7 @@ body {
 }
 /* #router-view {
   background-image: url("./assets/background.jpg");
-} */
+} 
 /* .nav-list {
   list-style: none;
   display: flex;

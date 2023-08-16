@@ -421,6 +421,8 @@ ul.dates li:first-child {
   background: #F7F7F7
     url("https://pbs.twimg.com/media/FOMC59BaMAEuCh_.jpg:large");
   padding: 4em 0 4em 0;
+  border-radius: 10px; /* Adjust the value to control the roundness of corners */
+  overflow: hidden;
 }
 #footer {
   position: relative;

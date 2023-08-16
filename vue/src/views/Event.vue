@@ -169,7 +169,6 @@ export default {
 
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,300italic");
 /* Container styles */
 .container {
   background-color: #ece2ee;
@@ -177,7 +176,13 @@ export default {
   border-radius: 10px;
   margin: 0 auto;
 }
-
+#background_image {
+  background-image: URL("https://pbs.twimg.com/media/FOMC59BaMAEuCh_.jpg:large");
+  background-position: fixed;
+  background-repeat: no-repeat;
+  height: 72.5vh;
+  padding: 50px;
+}
 /* Input and button styles */
 .header {
   display: flex;
@@ -191,6 +196,7 @@ h2 {
   opacity: 0.8;
   font-family: "Source Sans Pro";
 }
+
 .buttons {
   margin-left: 100px; /* Add this line */
   font-family: "Source Sans Pro";
@@ -211,7 +217,13 @@ h2 {
   opacity: 0.8;
   font-family: "Source Sans Pro";
 }
-
+.genre-select,
+.genre-select-button {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+}
 /* Table styles */
 .table-container {
   max-height: calc(100vh - 230px);
@@ -230,7 +242,6 @@ table {
   border-collapse: collapse;
 }
 
-
 th,
 td {
   padding: 15px;
@@ -246,6 +257,11 @@ th {
   top: 0;
 }
 
+.clickable-row {
+  cursor: pointer;
+  /* Add other styling as needed */
+}
+
 /* Button styles */
 button {
   padding: 5px 10px;
@@ -255,8 +271,72 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.add-event-button {
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  background-color: #753d8b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
   font-family: "Source Sans Pro";
 }
 
+.add-event-form {
+  background-color: #ece2ee;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  /* Additional styling for the form */
+  display: flex;
+  flex-direction: column;
+}
 
+.add-event-form h3 {
+  color: #753d8b;
+  font-family: "Source Sans Pro";
+  margin-bottom: 10px;
+}
+
+.add-event-form label {
+  color: #753d8b;
+  font-family: "Source Sans Pro";
+  margin-bottom: 5px;
+}
+
+.add-event-form input,
+.add-event-form textarea {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  width: 99%; /* Make inputs stretch to full width */
+}
+
+/* Adjust margin between form groups */
+.add-event-form .form-group {
+  margin-bottom: 20px;
+}
+
+.add-event-form button {
+  padding: 10px 20px;
+  background-color: #753d8b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.add-event-form button:last-child {
+  background-color: #ddd;
+  color: #333;
+  margin-left: 10px;
+}
+
+#generateButton {
+  display: block;
+}
 </style>
