@@ -30,9 +30,9 @@ CREATE TABLE "event" (
     dj_id INT NOT NULL,
     host_id INT NOT NULL,
     date VARCHAR(12) NOT NULL,
-    description TEXT,
-    start_time TIME NOT NULL,
-    end_time TIME NOT NULL,
+    description TEXT UNIQUE,
+    start_time VARCHAR(10) NOT NULL,
+    end_time VARCHAR(10) NOT NULL,
     location VARCHAR(50) NOT NULL
 );
 

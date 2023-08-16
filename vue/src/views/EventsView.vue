@@ -49,7 +49,7 @@
             <input
               type="time"
               id="eventStartTime"
-              v-model="newEvent.startTime"
+              v-model="newEvent.start_time"
               required
             />
           </div>
@@ -58,7 +58,7 @@
             <input
               type="time"
               id="eventEndTime"
-              v-model="newEvent.endTime"
+              v-model="newEvent.end_time"
               required
             />
           </div>
@@ -97,12 +97,13 @@
               <label :for="genre">{{ genre }}</label>
             </div>
           </div>
-
-          <button id="generateButton" @click.prevent="generatePlaylist()">
-            Generate Playlist
-          </button>
-
-          <button @click="addEvent()">Add</button>
+          <div class="generateButton">
+            <button id="generateButton" @click.prevent="generatePlaylist()">
+              Generate Playlist
+            </button>
+            <img class="requiredLogo" v-show="showPlaylistRequired" src="../../public/Pictures/Required-Icon.png" alt="Please generate a playlist!">
+          </div>
+          <button @click.prevent="addEvent()">Add</button>
 
           <button @click="toggleEventForm()">Cancel</button>
         </form>
@@ -129,8 +130,8 @@
             <td>{{ event.name }}</td>
             <td>{{ event.date }}</td>
             <td>{{ event.description }}</td>
-            <td>{{ event.startTime }}</td>
-            <td>{{ event.endTime }}</td>
+            <td>{{ event.start_time }}</td>
+            <td>{{ event.end_time }}</td>
             <td>{{ event.location }}</td>
             <td>
               <button @click.stop="editEvent(event)">Edit</button>
@@ -150,12 +151,15 @@ export default {
   data() {
     return {
       showEventForm: false,
+      showPlaylistRequired: false,
       newEvent: {
         name: "",
         date: "",
         description: "",
-        startTime: "",
-        endTime: "",
+        dj_id: "1",
+        host_id: "2",
+        start_time: "",
+        end_time: "",
         location: "",
       },
       selectedGenres: [],
@@ -184,33 +188,65 @@ export default {
   },
   methods: {
     toggleEventForm() {
+      this.showPlaylistRequired = false;
       this.showEventForm = !this.showEventForm;
       if (this.showEventForm === false) {
         this.clearForm();
       }
     },
+    selectRandomSongs() {
+
+      this.selectedGenres.forEach(async genre => {
+
+        let currentSelected = await songAPI.listByGenre(genre);
+        let scale = Math.floor(Math.random() * currentSelected.data.length)+1;
+
+        for (let i = 0; i < scale; i++) {
+          let randomSong = currentSelected.data[Math.floor(Math.random() * currentSelected.data.length)]
+          if (!this.playlist.songs.includes(randomSong)) {
+            this.playlist.songs.push(randomSong)
+          }
+        }
+      });
+      console.log(this.playlist.songs);
+    }, 
     generatePlaylist() {
+      if (this.showPlaylistRequired)
+        this.showPlaylistRequired = false;
       if (this.selectedGenres.length < 1) {
-        console.log(songAPI.list());
+
+        this.selectedGenres = this.genreGroup;
+        this.selectRandomSongs()
+
+
       } else {
-        console.log(songAPI.listByGenre(this.selectedGenres[0]));
+
+        this.selectRandomSongs()
+
+
       }
     },
     clearForm() {
       this.newEvent.name = "";
       this.newEvent.date = "";
       this.newEvent.description = "";
-      this.newEvent.startTime = "";
-      this.newEvent.endTime = "";
+      this.newEvent.start_time = "";
+      this.newEvent.end_time = "";
       this.newEvent.location = "";
+      this.showPlaylistRequired = false;
     },
     addEvent() {
       if (this.playlist.songs.length < 1) {
-        alert("Please generate a playlist!");
+        this.showPlaylistRequired = true;
       } else {
         if (this.newEvent.name != "") {
+          
+          console.log(this.newEvent);
+
+          eventAPI.add(this.newEvent);
           this.events.push(this.newEvent);
-          console.log(this.events);
+
+          location.reload();
         }
       }
     },
@@ -224,7 +260,7 @@ export default {
       this.editingEventIndex = this.events.findIndex(
         (e) => e.event_id === event.event_id
       );
-      this.showForm();
+      this.toggleEventForm();
     },
     navigateToEvent(eventId) {
       this.$router.push(`/events/${eventId}`);
@@ -277,11 +313,24 @@ h2 {
   cursor: pointer;
   font-family: "Source Sans Pro";
 }
-
+.generateButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#generateButton {
+  background-color: #753d8b;
+  height: 50px;
+  width: 150px;
+}
 .description {
   color: #753d8b;
   opacity: 0.8;
   font-family: "Source Sans Pro";
+}
+.requiredLogo {
+  height: 60px;
+  width: 30px;
 }
 .genre-select,
 .genre-select-button {
