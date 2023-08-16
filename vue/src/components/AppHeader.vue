@@ -86,7 +86,7 @@ span {
 
 #sync-img {
   max-width: 100%;
-  height: auto;
+  height: 50px;
   width: 300px;
 }
 
