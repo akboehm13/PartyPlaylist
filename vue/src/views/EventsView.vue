@@ -49,7 +49,7 @@
             <input
               type="time"
               id="eventStartTime"
-              v-model="newEvent.startTime"
+              v-model="newEvent.start_time"
               required
             />
           </div>
@@ -58,7 +58,7 @@
             <input
               type="time"
               id="eventEndTime"
-              v-model="newEvent.endTime"
+              v-model="newEvent.end_time"
               required
             />
           </div>
@@ -130,8 +130,8 @@
             <td>{{ event.name }}</td>
             <td>{{ event.date }}</td>
             <td>{{ event.description }}</td>
-            <td>{{ event.startTime }}</td>
-            <td>{{ event.endTime }}</td>
+            <td>{{ event.start_time }}</td>
+            <td>{{ event.end_time }}</td>
             <td>{{ event.location }}</td>
             <td>
               <button @click.stop="editEvent(event)">Edit</button>
@@ -156,8 +156,10 @@ export default {
         name: "",
         date: "",
         description: "",
-        startTime: "",
-        endTime: "",
+        dj_id: "1",
+        host_id: "2",
+        start_time: "",
+        end_time: "",
         location: "",
       },
       selectedGenres: [],
@@ -228,8 +230,8 @@ export default {
       this.newEvent.name = "";
       this.newEvent.date = "";
       this.newEvent.description = "";
-      this.newEvent.startTime = "";
-      this.newEvent.endTime = "";
+      this.newEvent.start_time = "";
+      this.newEvent.end_time = "";
       this.newEvent.location = "";
       this.showPlaylistRequired = false;
     },
@@ -238,8 +240,13 @@ export default {
         this.showPlaylistRequired = true;
       } else {
         if (this.newEvent.name != "") {
+          
+          console.log(this.newEvent);
+
+          eventAPI.add(this.newEvent);
           this.events.push(this.newEvent);
-          this.clearForm();
+
+          location.reload();
         }
       }
     },

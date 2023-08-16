@@ -1,25 +1,32 @@
 package com.techelevator.model;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.validation.constraints.NotEmpty;
 
 public class Event {
 
     private int eventId;
+    @NotEmpty
     private String name;
+    @JsonProperty("dj_id")
     private int djId;
+    @JsonProperty("host_id")
     private int hostId;
+    @NotEmpty
     private String date;
+    @NotEmpty
     private String description;
-    private LocalTime startTime;
-    private LocalTime endTime;
-
+    @JsonProperty("start_time")
+    private String startTime;
+    @JsonProperty("end_time")
+    private String endTime;
+    @NotEmpty
     private String location;
 
     public Event() { }
 
-    public Event(int eventId, String name, int djId, int hostId, String date, String description, LocalTime startTime, LocalTime endTime, String location) {
+    public Event(int eventId, String name, int djId, int hostId, String date, String description, String startTime, String endTime, String location) {
         this.eventId = eventId;
         this.name = name;
         this.djId = djId;
@@ -63,11 +70,11 @@ public class Event {
         return description;
     }
 
-    public LocalTime getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public LocalTime getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
@@ -95,11 +102,11 @@ public class Event {
         this.description = description;
     }
 
-    public void setStartTime(LocalTime startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public void setEndTime(LocalTime endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 }

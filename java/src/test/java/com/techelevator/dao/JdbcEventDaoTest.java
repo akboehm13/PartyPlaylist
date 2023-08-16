@@ -11,10 +11,10 @@ import java.util.List;
 
 public class JdbcEventDaoTest extends BaseDaoTests {
 
-    protected final static Event premadeEvent1 = new Event(1,"Event Test One",1,2,"1-1-2024","New Years Day", LocalTime.MIN,LocalTime.MIDNIGHT,
+    protected final static Event premadeEvent1 = new Event(1,"Event Test One",1,2,"1-1-2024","New Years Day","8:00","9:00",
             "810 Matson Place Unit 1205, Cincinnati, OH 45204");
     protected final static Event premadeEvent2 = new Event(2,"Event Test Two",1,3,"5-12-2025","May the 12th",
-            LocalTime.of(8,0),LocalTime.of(12,0),"Testing Location");
+            "8:00","9:00","Testing Location");
 
     private JdbcEventDao sut;
 
