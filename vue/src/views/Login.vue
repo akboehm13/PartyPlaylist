@@ -1,5 +1,6 @@
 <template>
-  <div id="login">
+<section id="main">
+   <div class="login-container">
     <form @submit.prevent="login">
       <h2 >Please Sign In</h2>
       <div role="alert" v-if="invalidCredentials">
@@ -21,6 +22,7 @@
       <router-link class="login-link" :to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
     </form>
   </div>
+  </section>
 </template>
 
 <script>
@@ -73,15 +75,29 @@ form {
     text-align: center;
     color: #753d8b;
     background-color: #ece2ee;
-    padding: 20px;
+    padding: 100px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
-    margin-bottom: 20px;
+    max-width: 1000px;
+    margin-bottom: 500px;
   
 }
 .login-link {
    color: #753d8b;
   
+}
+
+#main {
+  position: relative;
+  background: #f7f7f7
+    url("https://pbs.twimg.com/media/FOMC59BaMAEuCh_.jpg:large");
+  padding: 4em 0 4em 0;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; 
 }
 </style>

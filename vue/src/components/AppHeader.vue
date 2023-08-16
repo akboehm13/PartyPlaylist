@@ -62,7 +62,7 @@ export default {};
 #sync-img {
   max-width: 100%;
   height: auto;
-  width: 1000px;
+  width: 300px;
 }
 
 

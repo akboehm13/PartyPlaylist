@@ -25,7 +25,11 @@
           <div class="container">
             <article class="box post">
               <header>
-                <h3><strong>SYNC</strong></h3>
+                <h3> <img id="sync-img"
+          src="@/Sync.png"
+          alt="Logo"
+          class="resize-logo"
+        /></h3>
                 <p>Your Ultimate DJ Companion and Event Playlist Manager!</p>
               </header>
               <p>
@@ -254,6 +258,10 @@ h3 {
   font-size: 3em;
 }
 
+.resize-logo {
+  width: 200px; 
+  height: auto; 
+}
 .container {
   margin: 0 auto;
   max-width: 100%;
@@ -444,11 +452,13 @@ ul.dates .date:after {
 .date-container {
   display: flex;
   align-items: center;
+  font-weight: bold;
+  font-size: 1.5em;
 }
 
 ul.dates .date strong {
   display: block;
-  font-size: 1.75em;
+  font-size: 4em;
   padding-top: 0.15em;
 }
 
