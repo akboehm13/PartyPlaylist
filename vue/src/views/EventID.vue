@@ -80,6 +80,8 @@ export default {
       .get(this.$route.params.id)
       .then((response) => {
         this.event = response.data;
+        console.log(this.event);
+        console.log(this.eventId);
       })
       .then(() => {
         playlistAPI.getByEventId(this.event.eventId).then((response) => {
