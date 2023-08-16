@@ -474,5 +474,4 @@ ul.dates li:first-child {
 section p {
   margin-bottom: 30px;
 }
-
 </style>
