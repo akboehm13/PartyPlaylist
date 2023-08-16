@@ -122,9 +122,9 @@
           </thead>
           <tr
             v-for="event in events"
-            :key="event.id"
+            :key="event.eventId"
             class="clickable-row"
-            @click="navigateToEvent(event.id)"
+            @click="navigateToEvent(event.eventId)"
           >
             <td>{{ event.name }}</td>
             <td>{{ event.date }}</td>
@@ -227,7 +227,7 @@ export default {
       this.showForm();
     },
     navigateToEvent(eventId) {
-      this.$router.push(`/event/${eventId}`);
+      this.$router.push(`/events/${eventId}`);
     },
   },
 };

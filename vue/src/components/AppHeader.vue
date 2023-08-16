@@ -40,10 +40,6 @@ export default {};
 
 <style scoped>
 #header {
-<<<<<<< HEAD
-=======
-  
->>>>>>> origin/joe
   background: #ece2ee;
   border-bottom: solid 1px #ccc;
   text-align: center;

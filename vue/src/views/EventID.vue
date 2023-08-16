@@ -24,6 +24,39 @@
       <h2>Event Description:</h2>
       <h3>{{ event.description }}</h3>
     </div>
+
+    <div id="table-playlist">
+      <table>
+        <caption>
+          Playlist
+        </caption>
+        <thead>
+          <tr>
+            <th>Cover Art</th>
+            <th>Name</th>
+            <th>Artist</th>
+            <th>Genre</th>
+            <th>Duration</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="song in songs" :key="song.songId">
+            <td>
+              <img :src="song.coverArt" alt="Cover Art" height="50" />
+            </td>
+            <td>{{ song.title }}</td>
+            <td>{{ song.artist }}</td>
+            <td>{{ song.genre }}</td>
+            <td>{{ song.duration }}</td>
+            <td>
+              <button @click="likeSong(song)">Edit</button>
+              <button @click="dislikeSong(song)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -52,8 +85,8 @@ export default {
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas:
     "title title title"
-    "img description logi";
-  /* "playlist playlistm playlist"; */
+    "img description logi"
+    "playlist playlist playlist";
   /* align-items: center; */
   justify-items: center;
   background-color: rgb(61, 20, 126);
@@ -84,5 +117,9 @@ export default {
 #event-logistics {
   grid-area: logi;
   border: thick double #e630a9;
+}
+
+#table-playlist {
+  grid-area: playlist;
 }
 </style>
