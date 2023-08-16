@@ -1,5 +1,6 @@
 package com.techelevator.controller;
 
+import com.techelevator.dao.JdbcSongDao;
 import com.techelevator.dao.SongDao;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Song;
@@ -17,9 +18,9 @@ import java.util.List;
 @PreAuthorize("hasRole('ADMIN')")
 public class SongController {
 
-    private SongDao songDao;
+    private JdbcSongDao songDao;
 
-    public SongController(SongDao songDao){
+    public SongController(JdbcSongDao songDao){
         this.songDao = songDao;
     }
 

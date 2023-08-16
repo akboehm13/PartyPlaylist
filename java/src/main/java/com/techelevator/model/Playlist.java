@@ -1,12 +1,16 @@
 package com.techelevator.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Playlist {
     //create an instance variable for each column in the table
     //make constructor, getter, and setter
     //create the dao and all possible methods
     //for the API we don't need authentication
     //when searching for playlist songs you'll need to get the event id (parameter) to find playlist id to get all the songs.
+    @JsonProperty("playlist_id")
         private int playlistId;
+        @JsonProperty("event_id")
         private int eventId;
         private String name;
 
@@ -45,11 +49,4 @@ public class Playlist {
             this.name = name;
         }
 
-        //these are methods called in the JDBC but maybe getId needs to be event ID or playlist ID
-        public int getId() {
-            return 0;
-        }
-
-        public void setId(int playlistId) {
-        }
 }

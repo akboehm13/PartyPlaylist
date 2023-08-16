@@ -1,4 +1,5 @@
 package com.techelevator.controller;
+import com.techelevator.dao.JdbcPlaylistDao;
 import com.techelevator.dao.PlaylistDao;
 import com.techelevator.model.Playlist;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,13 +20,13 @@ import javax.validation.Valid;
 @PreAuthorize("hasRole('ADMIN')")
 public class PlaylistController {
 
-        private PlaylistDao playlistDao;
+        private JdbcPlaylistDao playlistDao;
 
-        public PlaylistController(PlaylistDao playlistDao) {
+        public PlaylistController(JdbcPlaylistDao playlistDao) {
             this.playlistDao = playlistDao;
         }
 
-        @GetMapping()
+        @GetMapping(path = "")
         public List<Playlist> list(@RequestParam(defaultValue = "0") int eventId) {
             if (eventId != 0) {
                 return playlistDao.getPlaylistsByEventId(eventId);
@@ -45,9 +46,9 @@ public class PlaylistController {
 
         @ResponseStatus(HttpStatus.CREATED)
         @PostMapping("")
-        public Playlist createPlaylist(@Valid @RequestBody Playlist playlist) {
+        public void createPlaylist(@Valid @RequestBody Playlist playlist) {
             try {
-                return playlistDao.createPlaylist(playlist);
+                playlistDao.createPlaylist(playlist);
             } catch (Exception e) {
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Playlist creation failed");
             }
