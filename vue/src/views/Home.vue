@@ -1,61 +1,78 @@
 <template>
   <div>
-    <title>Sync</title>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <body>
-      <section id="main">
-        <div class="container">
-          <article class="box post">
-            <header>
-              <h3><strong>SYNC</strong></h3>
-              <p>Your Ultimate DJ Companion and Event Playlist Manager!</p>
-            </header>
-            <p>
-              <strong
-                >Elevate your DJ experience to the next level with Sync, the
-                groundbreaking application designed exclusively for DJs and
-                event enthusiasts. Seamlessly manage global playlists, curate
-                electrifying music selections, and bring people together like
-                never before. Sync empowers DJs to create, collaborate, and
-                craft unforgettable moments with ease.</strong
-              >
-            </p>
-            <p>
-              <strong
-                >But Sync doesn't stop there. Party hosts are invited to the
-                spotlight, enjoying a seamless interface to manage events and
-                invite their guests. Hosts can effortlessly extend their event's
-                reach, and guests can request songs, vote on playlist tracks,
-                and actively participate in curating the musical atmosphere.
-                Sync isn't just an app; it's a revolution in event management,
-                fostering collaboration, creativity, and connection. Say goodbye
-                to ordinary parties and welcome Sync into your world – where
-                music unites, memories are made, and events are elevated to
-                unprecedented heights.</strong
-              >
-            </p>
-          </article>
-        </div>
-      </section>
+        <title>Sync</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <body>
+        <!-- <section id="header">
+          <h1>
+            <img
+              src="https://static.vecteezy.com/system/resources/previews/017/784/773/non_2x/sync-icon-in-flat-design-style-server-signs-illustration-png.png"
+              alt="Logo"
+            />
+          </h1>
+          <nav id="nav">
+            <ul>
+              <li><router-link to="/login">Log In</router-link></li>
+              <li><router-link to="/">Home</router-link></li>
+              <li><router-link to="/events">Events</router-link></li>
+            </ul>
+          </nav>
+        </section> -->
 
-      <section id="footer">
-        <div class="container">
-          <div class="row">
-            <div class="col-8">
-              <section>
-                <header>
-                  <h2>Upcoming events</h2>
-                </header>
-                <ul class="dates">
-                  <li v-for="event in events" :key="event.event_id">
-                    <span class="date">{{ event.date }}</span>
-                    <span class="date">parseDate({{ event.date }})</span>
-                    <div class="date-content">
+        <section id="main">
+          <div class="container">
+            <article class="box post">
+              <header>
+                <h3> <img id="sync-img"
+          src="@/Sync.png"
+          alt="Logo"
+          class="resize-logo"
+        /></h3>
+                <p>Your Ultimate DJ Companion and Event Playlist Manager!</p>
+              </header>
+              <p>
+                <strong
+                  >Elevate your DJ experience to the next level with Sync, the
+                  groundbreaking application designed exclusively for DJs and
+                  event enthusiasts. Seamlessly manage global playlists, curate
+                  electrifying music selections, and bring people together like
+                  never before. Sync empowers DJs to create, collaborate, and
+                  craft unforgettable moments with ease.</strong
+                >
+              </p>
+              <p>
+                <strong
+                  >But Sync doesn't stop there. Party hosts are invited to the
+                  spotlight, enjoying a seamless interface to manage events and
+                  invite their guests. Hosts can effortlessly extend their
+                  event's reach, and guests can request songs, vote on playlist
+                  tracks, and actively participate in curating the musical
+                  atmosphere. Sync isn't just an app; it's a revolution in event
+                  management, fostering collaboration, creativity, and
+                  connection. Say goodbye to ordinary parties and welcome Sync
+                  into your world – where music unites, memories are made, and
+                  events are elevated to unprecedented heights.</strong
+                >
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="footer">
+          <div class="container">
+            <div class="row">
+              <div class="col-8">
+                <section>
+                  <header>
+                    <h2>Upcoming events</h2>
+                  </header>
+                  <ul class="dates">
+                    <li v-for="event in events" :key="event.eventId">
+                      <span class="date">{{ parseDate(event.date) }}</span>
+                                          
+                      <div class="date-content">
                       <h3>
                         <router-link
                           :to="{
@@ -123,19 +140,49 @@
                     <img
                       src="https://static.vecteezy.com/system/resources/previews/017/784/773/non_2x/sync-icon-in-flat-design-style-server-signs-illustration-png.png"
                     />
-                    <h3>Address</h3>
-                    <p>
-                      Sync Inc<br />
-                      1776 Mentor Ave #361<br />
-                      Norwood, Ohio 45212
-                    </p>
-                  </li>
-                  <li>
-                    <h3>Mail</h3>
-                    <p><a href="#">support@sync.com</a></p>
-                  </li>
-                </ul>
-              </section>
+                  </footer>
+                </section>
+              </div>
+              <div class="col-4">
+                <section>
+                  <header>
+                    <h2>Let's get social!</h2>
+                  </header>
+                  <ul class="divided">
+  <li>
+    <a href="#" class="fa fa-snapchat"></a>
+    <a href="#" class="fa fa-twitter"></a>
+    <a href="#" class="fa fa-linkedin"></a>
+    <a href="#" class="fa fa-instagram"></a>
+  </li>
+</ul>
+                </section>
+              </div>
+            
+              <div class="party-section">
+                <section>
+                  <header>
+                    <h2>Where we like to party</h2>
+                  </header>
+                  <ul class="contact">
+                    <li>
+                      <img
+                        src="@/Sync Logo.png"
+                      />
+                      <h3>Address</h3>
+                      <p>
+                        Sync Inc<br />
+                        1776 Mentor Ave #361<br />
+                        Norwood, Ohio 45212
+                      </p>
+                    </li>
+                    <li>
+                      <h3>Mail</h3>
+                      <p><a href="#">support@sync.com</a></p>
+                    </li>
+                  </ul>
+                </section>
+              </div>
             </div>
           </div>
         </div>
@@ -160,6 +207,21 @@ export default {
       this.events = response.data;
     });
   },
+
+  methods: {
+    parseDate(date) {
+      const months = [
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+      ];
+
+      const parsedDate = new Date(date);
+      const month = months[parsedDate.getMonth()];
+      const day = parsedDate.getDate();
+
+      return `${month}${day}`;
+    }
+  }
 };
 </script>
 
@@ -233,6 +295,10 @@ h3 {
   font-size: 3em;
 }
 
+.resize-logo {
+  width: 200px; 
+  height: auto; 
+}
 .container {
   margin: 0 auto;
   max-width: 100%;
@@ -406,7 +472,7 @@ ul.dates .date-content {
   color: #fff;
   line-height: 2em;
   padding: 0.5em 0.75em;
-  border-radius: 5px;
+  border-radius: 1px;
 }
 
 ul.dates .date:after {
@@ -422,11 +488,13 @@ ul.dates .date:after {
 .date-container {
   display: flex;
   align-items: center;
+  font-weight: bold;
+  font-size: 1.5em;
 }
 
 ul.dates .date strong {
   display: block;
-  font-size: 1.75em;
+  font-size: 4em;
   padding-top: 0.15em;
 }
 
