@@ -66,8 +66,8 @@
                   </header>
                   <ul class="dates">
                     <li v-for="event in events" :key="event.eventId">
-                      <span class="date">{{ event.date }}</span>
-                                           <span class="date">parseDate({{event.date}})</span>
+                      <span class="date">{{ parseDate(event.date) }}</span>
+                                          
                       <div class="date-content">
                       <h3>
                         <a href="#">{{ event.name }}</a>
@@ -127,7 +127,7 @@
                   <ul class="contact">
                     <li>
                       <img
-                        src="https://static.vecteezy.com/system/resources/previews/017/784/773/non_2x/sync-icon-in-flat-design-style-server-signs-illustration-png.png"
+                        src="@/Sync Logo.png"
                       />
                       <h3>Address</h3>
                       <p>
@@ -166,6 +166,21 @@ export default {
       this.events = response.data;
     });
   },
+
+  methods: {
+    parseDate(date) {
+      const months = [
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+      ];
+
+      const parsedDate = new Date(date);
+      const month = months[parsedDate.getMonth()];
+      const day = parsedDate.getDate();
+
+      return `${month}${day}`;
+    }
+  }
 };
 </script>
 
@@ -413,7 +428,7 @@ ul.dates .date-content {
   color: #fff;
   line-height: 2em;
   padding: 0.5em 0.75em;
-  border-radius: 5px;
+  border-radius: 1px;
 }
 
 ul.dates .date:after {

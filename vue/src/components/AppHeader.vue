@@ -1,11 +1,19 @@
 <template>
   <section id="header">
-    <h1>
-      <img
-        src="https://static.vecteezy.com/system/resources/previews/017/784/773/non_2x/sync-icon-in-flat-design-style-server-signs-illustration-png.png"
-        alt="Logo"
-      />
-    </h1>
+   <!-- <h1> -->
+       <div class="header-logo">
+        <img
+          src="@/Sync Logo.png"
+          alt="Logo"
+        />
+      </div>
+      <div class="centered-img">
+        <img id="sync-img"
+          src="@/Sync.png"
+          alt="Logo"
+        />
+      </div>
+    <!-- </h1> -->
     <nav id="nav">
       <ul>
         <li>
@@ -26,7 +34,7 @@ export default {};
 <style scoped>
 #header {
   
-  background: #ece2ee;
+  background: #ece2ee; 
   border-bottom: solid 1px #ccc;
   text-align: center;
   display: flex;
@@ -46,10 +54,18 @@ export default {};
 #header img {
   max-width: 100%;
   height: auto;
-  width: 100px;
+  width: 80px;
   position: relative;
   left: 1em;
 }
+
+#sync-img {
+  max-width: 100%;
+  height: auto;
+  width: 1000px;
+}
+
+
 
 #nav {
   /* margin: 2.5em 0 0 0; */
