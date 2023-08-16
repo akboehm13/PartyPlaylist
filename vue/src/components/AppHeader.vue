@@ -46,6 +46,10 @@ export default {};
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  border-color: #fff;
+  font-family: "Source Sans Pro";
 }
 
 span {
@@ -89,7 +93,7 @@ span {
 
 #nav > ul > li > a {
   border-radius: 5px;
-  color: purple;
+  color: #753d8b;
   text-decoration: none;
   font-size: 115%;
   padding: 0.6em 1.2em 0.6em 1.2em;
@@ -102,11 +106,11 @@ span {
 
 #nav > ul > li:hover > a,
 #nav > ul > li.active > a {
-  background: #0de4f3;
+  background: #dd9ddd;
 }
 
 #nav > ul > li.current > a {
-  background: #0de4f3;
+  background: #dd9ddd;
   color: #fff !important;
   font-weight: 700;
 }

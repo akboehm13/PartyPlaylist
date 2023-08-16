@@ -202,7 +202,7 @@ ul {
 }
 
 body {
-  background: black;
+  background: rgb(52, 41, 56);
 }
 
 body,
@@ -448,6 +448,8 @@ ul.dates li:first-child {
   background: #f7f7f7
     url("https://pbs.twimg.com/media/FOMC59BaMAEuCh_.jpg:large");
   padding: 4em 0 4em 0;
+  border-radius: 10px; /* Adjust the value to control the roundness of corners */
+  overflow: hidden;
 }
 
 #footer {
