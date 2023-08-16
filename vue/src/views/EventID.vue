@@ -63,6 +63,7 @@
 <script>
 import eventAPI from "../services/EventService.js";
 import playlistAPI from "../services/PlaylistService.js";
+import playlistsongAPI from "../services/PlaylistSongService.js";
 
 export default {
   name: "event",
@@ -71,15 +72,30 @@ export default {
     return {
       event: {},
       playlist: {},
+      songs: [],
     };
   },
   created() {
-    eventAPI.get(this.$route.params.id).then((response) => {
-      this.event = response.data;
-    });
-    playlistAPI.getByEventId(this.$route.params.id).then((response) => {
-      this.playlist = response.data;
-    });
+    eventAPI
+      .get(this.$route.params.id)
+      .then((response) => {
+        this.event = response.data;
+      })
+      .then(() => {
+        playlistAPI.getByEventId(this.event.eventId).then((response) => {
+          this.playlist = response.data;
+          console.log(this.playlist);
+          console.log(this.playlist.name);
+          console.log(this.playlist.playlist_id);
+        });
+      })
+      .then(() => {
+        playlistsongAPI
+          .listSongsByPlaylistId(this.playlist.playlist_id)
+          .then((response) => {
+            this.songs = response.data;
+          });
+      });
   },
 };
 </script>
