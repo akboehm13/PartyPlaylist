@@ -75,9 +75,7 @@ const router = new Router({
     },
     {
       //this.$router.push( { name: 'event', params: { id : 'event_id' } } )
-
       path: "/events/:id",
-      // path: "/event", //For Testing
       name: "eventView",
       component: EventID,
       meta: {

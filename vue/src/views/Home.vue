@@ -1,58 +1,61 @@
 <template>
   <div>
-    <html>
-      <head>
-        <title>Sync</title>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="assets/css/main.css" />
-      </head>
-      <body>
-        <section id="main">
-          <div class="container">
-            <article class="box post">
-              <header>
-                <h3><strong>SYNC</strong></h3>
-                <p>Your Ultimate DJ Companion and Event Playlist Manager!</p>
-              </header>
-              <p>
-                <strong
-                  >Elevate your DJ experience to the next level with Sync, the
-                  groundbreaking application designed exclusively for DJs and
-                  event enthusiasts. Seamlessly manage global playlists, curate
-                  electrifying music selections, and bring people together like
-                  never before. Sync empowers DJs to create, collaborate, and
-                  craft unforgettable moments with ease.</strong
-                >
-              </p>
-              <p>
-                <strong
-                  >But Sync doesn't stop there. Party hosts are invited to the
-                  spotlight, enjoying a seamless interface to manage events and
-                  invite their guests. Hosts can effortlessly extend their
-                  event's reach, and guests can request songs, vote on playlist
-                  tracks, and actively participate in curating the musical
-                  atmosphere. Sync isn't just an app; it's a revolution in event
-                  management, fostering collaboration, creativity, and
-                  connection. Say goodbye to ordinary parties and welcome Sync
-                  into your world – where music unites, memories are made, and
-                  events are elevated to unprecedented heights.</strong
-                >
-              </p>
-            </article>
-          </div>
-        </section>
+    <title>Sync</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <body>
+      <section id="main">
+        <div class="container">
+          <article class="box post">
+            <header>
+              <h3><strong>SYNC</strong></h3>
+              <p>Your Ultimate DJ Companion and Event Playlist Manager!</p>
+            </header>
+            <p>
+              <strong
+                >Elevate your DJ experience to the next level with Sync, the
+                groundbreaking application designed exclusively for DJs and
+                event enthusiasts. Seamlessly manage global playlists, curate
+                electrifying music selections, and bring people together like
+                never before. Sync empowers DJs to create, collaborate, and
+                craft unforgettable moments with ease.</strong
+              >
+            </p>
+            <p>
+              <strong
+                >But Sync doesn't stop there. Party hosts are invited to the
+                spotlight, enjoying a seamless interface to manage events and
+                invite their guests. Hosts can effortlessly extend their event's
+                reach, and guests can request songs, vote on playlist tracks,
+                and actively participate in curating the musical atmosphere.
+                Sync isn't just an app; it's a revolution in event management,
+                fostering collaboration, creativity, and connection. Say goodbye
+                to ordinary parties and welcome Sync into your world – where
+                music unites, memories are made, and events are elevated to
+                unprecedented heights.</strong
+              >
+            </p>
+          </article>
+        </div>
+      </section>
 
-        <section id="footer">
-          <div class="container">
-            <div class="row">
-              <div class="col-8">
-                <section>
-                  <header>
-                    <h2>Upcoming events</h2>
-                  </header>
-                  <ul class="dates">
-                    <li v-for="event in events" :key="event.event_id">
-                      <span class="date">{{ event.date }}</span>
+      <section id="footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-8">
+              <section>
+                <header>
+                  <h2>Upcoming events</h2>
+                </header>
+                <ul class="dates">
+                  <li v-for="event in events" :key="event.event_id">
+                    <span class="date">{{ event.date }}</span>
+                    <span class="date">parseDate({{ event.date }})</span>
+                    <div class="date-content">
                       <h3>
                         <router-link
                           :to="{
@@ -64,99 +67,80 @@
                         >
                       </h3>
                       <p>{{ event.description }}</p>
-                    </li>
-                  </ul>
-                </section>
-              </div>
-              <div class="col-4">
-                <section>
-                  <header>
-                    <h2>What's Sync all about?</h2>
-                  </header>
-                  <p>
-                    At <strong>Sync</strong>, we're on a mission to redefine the
-                    way DJs, party hosts, and music enthusiasts connect and
-                    collaborate. Our passion is fueled by the belief that music
-                    has the power to bring people together, transcend barriers,
-                    and create unforgettable memories. We've created a platform
-                    that goes beyond traditional event management, offering a
-                    seamless blend of technology and creativity that empowers
-                    DJs to curate unforgettable playlists while giving hosts and
-                    guests the tools to actively shape the musical experience.
-                  </p>
-                  <footer>
+                    </div>
+                  </li>
+                </ul>
+              </section>
+            </div>
+            <div class="col-4">
+              <section>
+                <header>
+                  <h2>What's Sync all about?</h2>
+                </header>
+                <p>
+                  At <strong>Sync</strong>, we're on a mission to redefine the
+                  way DJs, party hosts, and music enthusiasts connect and
+                  collaborate. Our passion is fueled by the belief that music
+                  has the power to bring people together, transcend barriers,
+                  and create unforgettable memories. We've created a platform
+                  that goes beyond traditional event management, offering a
+                  seamless blend of technology and creativity that empowers DJs
+                  to curate unforgettable playlists while giving hosts and
+                  guests the tools to actively shape the musical experience.
+                </p>
+                <footer>
+                  <img
+                    src="https://media.istockphoto.com/id/1211193774/vector/friend-group-at-retro-dance-party-cartoon-people-dancing-and-having-fun.jpg?s=170667a&w=0&k=20&c=gIExOztj0eJF2VqNld03G_TBbRI3hyALvCJWmM_Lv1k="
+                    alt="Sync Image"
+                    class="rounded-image"
+                  />
+                </footer>
+              </section>
+            </div>
+            <div class="col-4">
+              <section>
+                <header>
+                  <h2>Let's get social!</h2>
+                </header>
+                <ul class="divided">
+                  <li>
+                    <a href="#" class="fa fa-snapchat"></a>
+                    <a href="#" class="fa fa-twitter"></a>
+                    <a href="#" class="fa fa-linkedin"></a>
+                    <a href="#" class="fa fa-instagram"></a>
+                  </li>
+                </ul>
+              </section>
+            </div>
+
+            <div class="party-section">
+              <section>
+                <header>
+                  <h2>Where we like to party</h2>
+                </header>
+                <ul class="contact">
+                  <li>
                     <img
-                      src="https://media.istockphoto.com/id/1211193774/vector/friend-group-at-retro-dance-party-cartoon-people-dancing-and-having-fun.jpg?s=170667a&w=0&k=20&c=gIExOztj0eJF2VqNld03G_TBbRI3hyALvCJWmM_Lv1k="
-                      alt="Sync Image"
-                      class="rounded-image"
+                      src="https://static.vecteezy.com/system/resources/previews/017/784/773/non_2x/sync-icon-in-flat-design-style-server-signs-illustration-png.png"
                     />
-                  </footer>
-                </section>
-              </div>
-              <div class="col-4">
-                <section>
-                  <header>
-                    <h2>Links/Socials</h2>
-                  </header>
-                  <ul class="divided">
-                    <li>
-                      <a href="https://open.spotify.com/"
-                        >A link to something relevant</a
-                      >
-                    </li>
-                    <li><a href="#">A link to something facinating </a></li>
-                    <li><a href="#">A link to something inappropriate</a></li>
-                  </ul>
-                </section>
-              </div>
-              <div class="col-4">
-                <section>
-                  <header>
-                    <h2>Links/Socials</h2>
-                  </header>
-                  <ul class="divided">
-                    <li>
-                      <a href="#">This is a link that might do something</a>
-                    </li>
-                    <li><a href="#">This is a link that might not</a></li>
-                    <li>
-                      <a href="#"
-                        >This is a link that might do something and then might
-                        not</a
-                      >
-                    </li>
-                  </ul>
-                </section>
-              </div>
-              <div class="col-4">
-                <section>
-                  <header>
-                    <h2>Where we like to party</h2>
-                  </header>
-                  <ul class="contact">
-                    <li>
-                      <img
-                        src="https://static.vecteezy.com/system/resources/previews/017/784/773/non_2x/sync-icon-in-flat-design-style-server-signs-illustration-png.png"
-                      />
-                      <h3>Address</h3>
-                      <p>
-                        Sync Inc<br />
-                        1776 Mentor Ave #361<br />
-                        Norwood, Ohio 45212
-                      </p>
-                    </li>
-                    <li>
-                      <h3>Mail</h3>
-                      <p><a href="#">support@sync.com</a></p>
-                    </li>
-                  </ul>
-                </section>
-              </div>
+                    <h3>Address</h3>
+                    <p>
+                      Sync Inc<br />
+                      1776 Mentor Ave #361<br />
+                      Norwood, Ohio 45212
+                    </p>
+                  </li>
+                  <li>
+                    <h3>Mail</h3>
+                    <p><a href="#">support@sync.com</a></p>
+                  </li>
+                </ul>
+              </section>
             </div>
           </div>
-        </section>
-      </body>
-    </html>
+        </div>
+      </section>
+    </body>
   </div>
 </template>
 
@@ -218,7 +202,7 @@ ul {
 }
 
 body {
-  background: #ece2ee;
+  background: black;
 }
 
 body,
@@ -298,6 +282,16 @@ h3 {
   margin-left: 33.33333%;
 }
 
+.col-4 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.col-4 section {
+  margin-bottom: 30px;
+}
+
 .row {
   margin-top: -50px;
   margin-left: -50px;
@@ -349,7 +343,7 @@ ul.contact {
 ul.contact li {
   position: relative;
   border-top: solid 1px #ddd;
-  padding: 1.3em 0 1.3em 7em;
+  padding: 1em 0 1.3em 7em;
 }
 
 ul.contact li h3 {
@@ -376,6 +370,9 @@ ul.contact li:first-child h3 {
   top: 0;
 }
 
+.party-section {
+  margin-left: 157px;
+}
 ul.dates {
   list-style: none;
   padding-left: 0;
@@ -384,7 +381,7 @@ ul.dates {
 ul.dates li {
   position: relative;
   border-top: solid 1px #ddd;
-  padding: 1.3em 0 1.3em 6.75em;
+  padding: 0.9em 0 1.1em 6.75em;
 }
 
 ul.dates .date {
@@ -393,13 +390,23 @@ ul.dates .date {
   left: 0;
   top: 1.3em;
   background-color: #753d8b;
-  height: 3.5em;
+  height: 3em;
+  width: 5em;
   text-align: center;
   color: #fff;
+  font-style: bold;
   line-height: 1em;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  padding: 0.5em 0.75em 0 1em;
+}
+
+ul.dates .date-content {
+  background-color: #753d8b;
+  text-align: center;
+  color: #fff;
+  line-height: 2em;
+  padding: 0.5em 0.75em;
+  border-radius: 5px;
 }
 
 ul.dates .date:after {
@@ -410,6 +417,11 @@ ul.dates .date:after {
   border-left: solid 1.25em #f3f3f3;
   border-top: solid 1.8em transparent;
   border-bottom: solid 1.8em transparent;
+}
+
+.date-container {
+  display: flex;
+  align-items: center;
 }
 
 ul.dates .date strong {
@@ -444,7 +456,7 @@ ul.dates li:first-child {
 }
 
 #footer a {
-  color: #753d8b;
+  color: white;
 }
 
 #footer h2,
@@ -453,7 +465,7 @@ ul.dates li:first-child {
 #footer h5,
 #footer h6,
 #footer {
-  color: #753d8b;
+  color: white;
 }
 
 #footer ul.contact li,
@@ -475,4 +487,30 @@ section p {
   margin-bottom: 30px;
 }
 
+.fa {
+  padding: 10px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 20px;
+}
+.fa-twitter {
+  background: #55acee;
+  color: white;
+}
+.fa-snapchat {
+  background: yellow;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #0a66c2;
+  color: white;
+}
+
+.fa-instagram {
+  background: red;
+  color: white;
+}
 </style>

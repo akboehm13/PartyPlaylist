@@ -31,7 +31,7 @@
   <div id="app">
     <app-header />
     <!-- <home /> -->
-    <router-view />
+    <router-view id="router-view" />
   </div>
   <!-- </div> -->
 </template>
@@ -47,6 +47,9 @@ export default {
 </script>
 
 <style>
+/* #router-view {
+  background-image: url("./assets/background.jpg");
+} */
 /* .nav-list {
   list-style: none;
   display: flex;
