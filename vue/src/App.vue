@@ -47,6 +47,9 @@ export default {
 </script>
 
 <style>
+body {
+  background-color: #202020;
+}
 /* #router-view {
   background-image: url("./assets/background.jpg");
 } */

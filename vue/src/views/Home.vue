@@ -451,6 +451,7 @@ ul.dates li:first-child {
 }
 
 #footer {
+  background-color: #202020;
   position: relative;
   padding: 4em 0;
 }
