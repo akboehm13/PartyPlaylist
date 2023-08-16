@@ -4,6 +4,9 @@ export default {
     list() {
         return axios.get('/playlists');
     },
+    getByEventId(eventId) {
+        return axios.get(`/playlists?eventId=${eventId}`)
+    },
     get(id) {
         return axios.get(`/playlists/${id}`);
     },

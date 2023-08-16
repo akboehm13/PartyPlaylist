@@ -62,6 +62,7 @@
 
 <script>
 import eventAPI from "../services/EventService.js";
+import playlistAPI from "../services/PlaylistService.js";
 
 export default {
   name: "event",
@@ -69,11 +70,15 @@ export default {
   data() {
     return {
       event: {},
+      playlist: {},
     };
   },
   created() {
     eventAPI.get(this.$route.params.id).then((response) => {
       this.event = response.data;
+    });
+    playlistAPI.getByEventId(this.$route.params.id).then((response) => {
+      this.playlist = response.data;
     });
   },
 };
