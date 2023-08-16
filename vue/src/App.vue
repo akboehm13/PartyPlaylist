@@ -47,12 +47,17 @@ export default {
 </script>
 
 <style>
-body {
-  background-color: #202020;
+html,
+body,
+#app {
+  margin: 5px;
+  padding: 0;
+  background-color: rgb(52, 41, 56);
+  height: 100%;
 }
 /* #router-view {
   background-image: url("./assets/background.jpg");
-} */
+} 
 /* .nav-list {
   list-style: none;
   display: flex;

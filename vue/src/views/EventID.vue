@@ -2,6 +2,9 @@
   <div id="event">
     <div id="event-name">
       <h2>{{ event.name }}</h2>
+      <div id="event-description">
+      <h3>{{ event.description }}</h3>
+    </div>
     </div>
 
     <div id="event-img">
@@ -11,24 +14,42 @@
       />
     </div>
 
-    <div id="event-logistics">
-      <p>{{ event.date }}</p>
-      <p>{{ event.location }}</p>
-      <p>{{ event.startTime }}</p>
-      <p>{{ event.endTime }}</p>
-      <p>{{ event.hostId }}</p>
-      <p>{{ event.djId }}</p>
-    </div>
+    <div class="event-logistics">
+  <h2>Event Logistics</h2>
+  <div class="logistics-item">
+    <h3>Date:</h3>
+    <p>{{ event.date }}</p>
+  </div>
+  <div class="logistics-item">
+    <h3>Address:</h3>
+    <p>{{ event.location }}</p>
+  </div>
+  <div class="logistics-item">
+    <h3>Start Time:</h3>
+    <p>{{ event.startTime }}</p>
+  </div>
+  <div class="logistics-item">
+    <h3>End Time:</h3>
+    <p>{{ event.endTime }}</p>
+  </div>
+  <div class="logistics-item">
+    <h3>Host ID:</h3>
+    <p>{{ event.hostId }}</p>
+  </div>
+  <div class="logistics-item">
+    <h3>DJ ID:</h3>
+    <p>{{ event.djId }}</p>
+  </div>
+</div>
 
-    <div id="event-description">
-      <h2>Event Description:</h2>
-      <h3>{{ event.description }}</h3>
-    </div>
+    
+
+    
 
     <div id="table-playlist">
       <table>
         <caption>
-          Playlist
+          <h3>Playlist</h3>
         </caption>
         <thead>
           <tr>
@@ -103,46 +124,105 @@ export default {
 </script>
 
 <style scoped>
-#event {
+
+
+#router-view {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas:
-    "title title title"
-    "img description logi"
+    "img title logi"
     "playlist playlist playlist";
-  /* align-items: center; */
   justify-items: center;
-  background-color: rgb(61, 20, 126);
+  background-color: #ece2ee;
   padding-bottom: 2em;
+  font-family: "Source Sans Pro", sans-serif;
+  color: #753d8b;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 #event-name {
   grid-area: title;
   justify-self: center;
   font-size: 35px;
+  text-align: center;
 }
 
 #event-img {
   grid-area: img;
+  align-self: center;
   justify-self: center;
-  /* height: 100rel; */
+  
 }
 
 #event-description {
   grid-area: description;
-  border: thick double #e630a9;
+  font-size: 18px;
+  text-align: center;
+  
 }
 
 #event-description > h2 {
   text-align: center;
 }
 
-#event-logistics {
-  grid-area: logi;
-  border: thick double #e630a9;
+.event-logistics {
+  
+  padding: 20px;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.event-logistics h2 {
+  text-align: center;
+}
+
+.logistics-item {
+  margin-bottom: 15px;
+}
+
+.logistics-item h3 {
+  margin: 0;
+}
+
+.logistics-item p {
+  margin: 0;
+  margin-left: 20px;
 }
 
 #table-playlist {
   grid-area: playlist;
+}
+
+.table-container {
+  max-height: calc(100vh - 230px);
+  overflow-y: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin: 0 auto;
+  position: relative;
+}
+
+table {
+  font-family: "Source Sans Pro";
+  color: #753d8b;
+  background-color: #f6ebfa;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #753d8b;
+  color: white;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
 }
 </style>
