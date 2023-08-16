@@ -1,11 +1,9 @@
 <template>
   <div>
-    <html>
-      <head>
         <title>Sync</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="assets/css/main.css" />
-      </head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <body>
         <section id="main">
           <div class="container">
@@ -53,6 +51,8 @@
                   <ul class="dates">
                     <li v-for="event in events" :key="event.event_id">
                       <span class="date">{{ event.date }}</span>
+                                           <span class="date">parseDate({{event.date}})</span>
+                      <div class="date-content">
                       <h3>
                         <router-link
                           :to="{
@@ -64,6 +64,7 @@
                         >
                       </h3>
                       <p>{{ event.description }}</p>
+                      </div>
                     </li>
                   </ul>
                 </section>
@@ -96,39 +97,20 @@
               <div class="col-4">
                 <section>
                   <header>
-                    <h2>Links/Socials</h2>
+                    <h2>Let's get social!</h2>
                   </header>
                   <ul class="divided">
-                    <li>
-                      <a href="https://open.spotify.com/"
-                        >A link to something relevant</a
-                      >
-                    </li>
-                    <li><a href="#">A link to something facinating </a></li>
-                    <li><a href="#">A link to something inappropriate</a></li>
-                  </ul>
+  <li>
+    <a href="#" class="fa fa-snapchat"></a>
+    <a href="#" class="fa fa-twitter"></a>
+    <a href="#" class="fa fa-linkedin"></a>
+    <a href="#" class="fa fa-instagram"></a>
+  </li>
+</ul>
                 </section>
               </div>
-              <div class="col-4">
-                <section>
-                  <header>
-                    <h2>Links/Socials</h2>
-                  </header>
-                  <ul class="divided">
-                    <li>
-                      <a href="#">This is a link that might do something</a>
-                    </li>
-                    <li><a href="#">This is a link that might not</a></li>
-                    <li>
-                      <a href="#"
-                        >This is a link that might do something and then might
-                        not</a
-                      >
-                    </li>
-                  </ul>
-                </section>
-              </div>
-              <div class="col-4">
+            
+              <div class="party-section">
                 <section>
                   <header>
                     <h2>Where we like to party</h2>
@@ -156,7 +138,6 @@
           </div>
         </section>
       </body>
-    </html>
   </div>
 </template>
 
@@ -218,7 +199,7 @@ ul {
 }
 
 body {
-  background: #ece2ee;
+  background:black;
 }
 
 body,
@@ -298,6 +279,16 @@ h3 {
   margin-left: 33.33333%;
 }
 
+.col-4 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.col-4 section {
+  margin-bottom: 30px;
+}
+
 .row {
   margin-top: -50px;
   margin-left: -50px;
@@ -349,7 +340,7 @@ ul.contact {
 ul.contact li {
   position: relative;
   border-top: solid 1px #ddd;
-  padding: 1.3em 0 1.3em 7em;
+  padding: 1.0em 0 1.3em 7em;
 }
 
 ul.contact li h3 {
@@ -376,6 +367,9 @@ ul.contact li:first-child h3 {
   top: 0;
 }
 
+.party-section {
+  margin-left: 157px; 
+}
 ul.dates {
   list-style: none;
   padding-left: 0;
@@ -384,7 +378,7 @@ ul.dates {
 ul.dates li {
   position: relative;
   border-top: solid 1px #ddd;
-  padding: 1.3em 0 1.3em 6.75em;
+  padding: .9em 0 1.1em 6.75em;
 }
 
 ul.dates .date {
@@ -393,13 +387,24 @@ ul.dates .date {
   left: 0;
   top: 1.3em;
   background-color: #753d8b;
-  height: 3.5em;
+  height: 3em;
+  width: 5em;
   text-align: center;
   color: #fff;
+  font-style:bold;
   line-height: 1em;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  padding: 0.5em 0.75em 0 1em;
+ 
+}
+
+ul.dates .date-content {
+  background-color: #753d8b;
+  text-align: center;
+  color: #fff;
+  line-height: 2em;
+  padding: 0.5em 0.75em;
+  border-radius: 5px;
 }
 
 ul.dates .date:after {
@@ -410,6 +415,11 @@ ul.dates .date:after {
   border-left: solid 1.25em #f3f3f3;
   border-top: solid 1.8em transparent;
   border-bottom: solid 1.8em transparent;
+}
+
+.date-container {
+  display: flex;
+  align-items: center;
 }
 
 ul.dates .date strong {
@@ -444,7 +454,7 @@ ul.dates li:first-child {
 }
 
 #footer a {
-  color: #753d8b;
+  color: white;
 }
 
 #footer h2,
@@ -453,7 +463,7 @@ ul.dates li:first-child {
 #footer h5,
 #footer h6,
 #footer {
-  color: #753d8b;
+  color:white;
 }
 
 #footer ul.contact li,
@@ -474,4 +484,35 @@ ul.dates li:first-child {
 section p {
   margin-bottom: 30px;
 }
+<<<<<<< HEAD
+=======
+
+.fa {
+  padding: 10px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 20px;
+}
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+.fa-snapchat {
+  background:yellow;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #0A66C2;
+  color: white;
+}
+
+.fa-instagram {
+  background: red;
+  color: white;
+}
+
+>>>>>>> origin/joe
 </style>

@@ -6,7 +6,6 @@
         alt="Logo"
       />
     </h1>
-    <span>SYNC</span>
     <nav id="nav">
       <ul>
         <li>
@@ -41,6 +40,10 @@ export default {};
 
 <style scoped>
 #header {
+<<<<<<< HEAD
+=======
+  
+>>>>>>> origin/joe
   background: #ece2ee;
   border-bottom: solid 1px #ccc;
   text-align: center;
@@ -83,14 +86,14 @@ span {
 
 #nav > ul > li {
   display: inline-block;
-  font-style: italic;
   font-weight: bold;
   margin: 0 0.35em 0 0.35em;
+  font-size: 1.3em;
 }
 
 #nav > ul > li > a {
   border-radius: 5px;
-  color: #000000;
+  color: purple;
   text-decoration: none;
   font-size: 115%;
   padding: 0.6em 1.2em 0.6em 1.2em;
