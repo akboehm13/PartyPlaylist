@@ -153,14 +153,15 @@ export default {
   data() {
     return {
       editingEvent: false,
+      editedID: 0,
       showEventForm: false,
       showPlaylistRequired: false,
       newEvent: {
         name: "",
         date: "",
         description: "",
-        dj_id: "1",
-        host_id: "2",
+        dj_id: 1,
+        host_id: 2,
         start_time: "",
         end_time: "",
         location: "",
@@ -266,9 +267,12 @@ export default {
     },
     editEvent() {
 
-      eventAPI.update(this.newEvent.id, this.newEvent);
+      console.log(this.newEvent.eventId);
+
+      eventAPI.update(this.newEvent.eventId, this.newEvent);
       this.clearForm();
-      this.showEventForm = false;
+      
+      location.reload();
 
     },
     cancelEdit() {
@@ -279,6 +283,7 @@ export default {
     },
     editEventForm(event) {
       this.editingEvent = true;
+      console.log(event);
       this.newEvent = { ...event };
       this.editingEventIndex = this.events.findIndex(
         (e) => e.event_id === event.event_id
