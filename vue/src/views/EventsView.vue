@@ -71,6 +71,7 @@
               required
             />
           </div>
+          <div v-show="!checkEdit()">
           <h3>Add Playlist</h3>
           <div class="form-group">
             <label for="playlistName">Playlist Name:</label>
@@ -103,8 +104,9 @@
             </button>
             <img class="requiredLogo" v-show="showPlaylistRequired" src="../../public/Pictures/Required-Icon.png" alt="Please generate a playlist!">
           </div>
-          <button @click.prevent="addEvent()">Add</button>
-
+          </div>
+          <button v-if="!editingEvent" @click.prevent="addEvent()">Add</button>
+          <button v-if="editingEvent" @click.prevent="editEvent()">Edit</button>
           <button @click="toggleEventForm()">Cancel</button>
         </form>
       </div>
@@ -134,7 +136,7 @@
             <td>{{ event.end_time }}</td>
             <td>{{ event.location }}</td>
             <td>
-              <button @click.stop="editEvent(event)">Edit</button>
+              <button @click.stop="editEventForm(event)">Edit</button>
             </td>
           </tr>
         </table>
@@ -150,6 +152,7 @@ export default {
   name: "MyEventsView",
   data() {
     return {
+      editingEvent: false,
       showEventForm: false,
       showPlaylistRequired: false,
       newEvent: {
@@ -188,6 +191,7 @@ export default {
   },
   methods: {
     toggleEventForm() {
+      this.editingEvent = false;
       this.showPlaylistRequired = false;
       this.showEventForm = !this.showEventForm;
       if (this.showEventForm === false) {
@@ -226,6 +230,10 @@ export default {
 
       }
     },
+    checkEdit() {
+      console.log(this.editingEvent);
+      return this.editingEvent;
+    },
     clearForm() {
       this.newEvent.name = "";
       this.newEvent.date = "";
@@ -239,28 +247,43 @@ export default {
       if (this.playlist.songs.length < 1) {
         this.showPlaylistRequired = true;
       } else {
-        if (this.newEvent.name != "") {
+        if (!this.editingEvent) {
+          if (this.newEvent.name != "") {
           
-          console.log(this.newEvent);
+            console.log(this.newEvent);
 
-          eventAPI.add(this.newEvent);
-          this.events.push(this.newEvent);
+            eventAPI.add(this.newEvent);
+            this.events.push(this.newEvent);
 
-          location.reload();
+            location.reload();
+          }
+        } else {
+
+          console.log('editing: '+this.newEvent)
+
         }
       }
     },
+    editEvent() {
+
+      eventAPI.update(this.newEvent.id, this.newEvent);
+      this.clearForm();
+      this.showEventForm = false;
+
+    },
     cancelEdit() {
+      this.editingEvent = false;
       this.editingEvent = {};
       this.editingEventIndex = -1;
       this.hideForm();
     },
-    editEvent(event) {
-      this.editingEvent = { ...event };
+    editEventForm(event) {
+      this.editingEvent = true;
+      this.newEvent = { ...event };
       this.editingEventIndex = this.events.findIndex(
         (e) => e.event_id === event.event_id
       );
-      this.toggleEventForm();
+      this.showEventForm = true;
     },
     navigateToEvent(eventId) {
       this.$router.push(`/events/${eventId}`);
