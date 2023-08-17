@@ -79,45 +79,47 @@
               required
             />
           </div>
-          <h3>Add Playlist</h3>
-          <div class="form-group">
-            <label for="playlistName">Playlist Name:</label>
-            <input
-              type="text"
-              id="playlistName"
-              v-model="playlist.name"
-              required
-            />
-          </div>
-          <div class="form-group genre-select" style="display: flex">
-            <label for="genreGroup">Genres:</label>
-            <div
-              class="genre-select-button"
-              v-for="genre in genreGroup"
-              :key="genre"
-            >
+          <div v-show="!checkEdit()">
+            <h3>Add Playlist</h3>
+            <div class="form-group">
+              <label for="playlistName">Playlist Name:</label>
               <input
-                type="checkbox"
-                :id="genre"
-                :value="genre"
-                v-model="selectedGenres"
+                type="text"
+                id="playlistName"
+                v-model="playlist.name"
+                required
               />
-              <label :for="genre">{{ genre }}</label>
+            </div>
+            <div class="form-group genre-select" style="display: flex">
+              <label for="genreGroup">Genres:</label>
+              <div
+                class="genre-select-button"
+                v-for="genre in genreGroup"
+                :key="genre"
+              >
+                <input
+                  type="checkbox"
+                  :id="genre"
+                  :value="genre"
+                  v-model="selectedGenres"
+                />
+                <label :for="genre">{{ genre }}</label>
+              </div>
+            </div>
+            <div class="generateButton">
+              <button id="generateButton" @click.prevent="generatePlaylist()">
+                Generate Playlist
+              </button>
+              <img
+                class="requiredLogo"
+                v-show="showPlaylistRequired"
+                src="../../public/Pictures/Required-Icon.png"
+                alt="Please generate a playlist!"
+              />
             </div>
           </div>
-          <div class="generateButton">
-            <button id="generateButton" @click.prevent="generatePlaylist()">
-              Generate Playlist
-            </button>
-            <img
-              class="requiredLogo"
-              v-show="showPlaylistRequired"
-              src="../../public/Pictures/Required-Icon.png"
-              alt="Please generate a playlist!"
-            />
-          </div>
-          <button @click.prevent="addEvent()">Add</button>
-
+          <button v-if="!editingEvent" @click.prevent="addEvent()">Add</button>
+          <button v-if="editingEvent" @click.prevent="editEvent()">Edit</button>
           <button @click="toggleEventForm()">Cancel</button>
         </form>
       </div>
@@ -147,7 +149,7 @@
             <td>{{ event.end_time }}</td>
             <td>{{ event.location }}</td>
             <td>
-              <button @click.stop="editEvent(event)">Edit</button>
+              <button @click.stop="editEventForm(event)">Edit</button>
             </td>
           </tr>
         </table>
@@ -159,18 +161,22 @@
 <script>
 import eventAPI from "../services/EventService.js";
 import songAPI from "../services/SongService.js";
+import playlistAPI from "../services/PlaylistService.js";
+import playlistSongAPI from "../services/PlaylistSongService.js";
 export default {
   name: "MyEventsView",
   data() {
     return {
+      editingEvent: false,
+      editedID: 0,
       showEventForm: false,
       showPlaylistRequired: false,
       newEvent: {
         name: "",
         date: "",
         description: "",
-        dj_id: "1",
-        host_id: "2",
+        dj_id: 1,
+        host_id: 2,
         start_time: "",
         end_time: "",
         location: "",
@@ -178,8 +184,9 @@ export default {
       selectedGenres: [],
       playlist: {
         name: "",
-        songs: [],
+        event_id: "",
       },
+      songs: [],
       genreGroup: [
         "Rock",
         "Pop",
@@ -205,6 +212,7 @@ export default {
   },
   methods: {
     toggleEventForm() {
+      this.editingEvent = false;
       this.showPlaylistRequired = false;
       this.showEventForm = !this.showEventForm;
       if (this.showEventForm === false) {
@@ -212,6 +220,8 @@ export default {
       }
     },
     selectRandomSongs() {
+      this.songs = [];
+
       this.selectedGenres.forEach(async (genre) => {
         let currentSelected = await songAPI.listByGenre(genre);
         let scale = Math.floor(Math.random() * currentSelected.data.length) + 1;
@@ -221,12 +231,12 @@ export default {
             currentSelected.data[
               Math.floor(Math.random() * currentSelected.data.length)
             ];
-          if (!this.playlist.songs.includes(randomSong)) {
-            this.playlist.songs.push(randomSong);
+          if (!this.songs.includes(randomSong)) {
+            this.songs.push(randomSong);
           }
         }
       });
-      console.log(this.playlist.songs);
+      console.log(this.songs);
     },
     generatePlaylist() {
       if (this.showPlaylistRequired) this.showPlaylistRequired = false;
@@ -237,6 +247,10 @@ export default {
         this.selectRandomSongs();
       }
     },
+    checkEdit() {
+      console.log(this.editingEvent);
+      return this.editingEvent;
+    },
     clearForm() {
       this.newEvent.name = "";
       this.newEvent.date = "";
@@ -246,31 +260,63 @@ export default {
       this.newEvent.location = "";
       this.showPlaylistRequired = false;
     },
-    addEvent() {
-      if (this.playlist.songs.length < 1) {
+    async addEvent() {
+      if (this.songs.length < 1) {
         this.showPlaylistRequired = true;
       } else {
-        if (this.newEvent.name != "") {
-          console.log(this.newEvent);
+        if (!this.editingEvent) {
+          if (this.newEvent.name != "") {
+            console.log(this.newEvent);
 
-          eventAPI.add(this.newEvent);
-          this.events.push(this.newEvent);
+            let createdEvent = await eventAPI.add(this.newEvent);
+            this.events.push(this.newEvent);
 
-          location.reload();
+            console.log(createdEvent.data);
+
+            this.playlist.event_id = createdEvent.data.eventId;
+
+            this.addPlaylist();
+
+            location.reload();
+          }
         }
       }
     },
+    async addPlaylist() {
+      let index = await playlistAPI.add(this.playlist);
+      console.log(index.data);
+
+      this.songs.forEach((song) => {
+        let playlistSong = {
+          playlist_id: index.data.playlist_id,
+          song_id: song.song_id,
+        };
+
+        playlistSongAPI.add(playlistSong);
+      });
+    },
+    editEvent() {
+      console.log(this.newEvent.eventId);
+
+      eventAPI.update(this.newEvent.eventId, this.newEvent);
+      this.clearForm();
+
+      location.reload();
+    },
     cancelEdit() {
+      this.editingEvent = false;
       this.editingEvent = {};
       this.editingEventIndex = -1;
       this.hideForm();
     },
-    editEvent(event) {
-      this.editingEvent = { ...event };
+    editEventForm(event) {
+      this.editingEvent = true;
+      console.log(event);
+      this.newEvent = { ...event };
       this.editingEventIndex = this.events.findIndex(
         (e) => e.event_id === event.event_id
       );
-      this.toggleEventForm();
+      this.showEventForm = true;
     },
     navigateToEvent(eventId) {
       this.$router.push(`/events/${eventId}`);

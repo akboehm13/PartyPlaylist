@@ -44,15 +44,22 @@ public class PlaylistController {
         }
     @PreAuthorize("hasRole('ADMIN')")
         @ResponseStatus(HttpStatus.CREATED)
+        @PreAuthorize("hasRole('ADMIN')")
         @PostMapping("")
-        public void createPlaylist(@Valid @RequestBody Playlist playlist) {
+        public Playlist createPlaylist(@Valid @RequestBody Playlist playlist) {
+            Playlist newPlaylist;
             try {
-                playlistDao.createPlaylist(playlist);
+                newPlaylist = playlistDao.createPlaylist(playlist);
             } catch (Exception e) {
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Playlist creation failed");
             }
+            return newPlaylist;
         }
+<<<<<<< HEAD
     @PreAuthorize("hasRole('ADMIN')")
+=======
+        @PreAuthorize("hasRole('ADMIN')")
+>>>>>>> origin/EB
         @DeleteMapping("/{id}")
         public void deletePlaylist(@PathVariable int id) {
             if (playlistDao.getPlaylistById(id) == null) {
