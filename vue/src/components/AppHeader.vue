@@ -2,7 +2,7 @@
   <section id="header">
    <!-- <h1> -->
        <div class="header-logo">
-        <img
+        <img id="main-logo"
           src="@/Sync Logo.png"
           alt="Logo"
         />
@@ -76,7 +76,7 @@ span {
   margin-bottom: 0.5em;
 }
 
-#header img {
+#main-logo {
   max-width: 100%;
   height: auto;
   width: 80px;
@@ -87,7 +87,8 @@ span {
 #sync-img {
   max-width: 100%;
   height: 50px;
-  width: 300px;
+  width: 240px;
+  margin-left: 220px;
 }
 
 

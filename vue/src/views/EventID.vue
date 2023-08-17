@@ -60,7 +60,7 @@
         <tbody>
           <tr v-for="song in songs" :key="song.songId">
             <td>
-              <img :src="song.coverArt" alt="Cover Art" height="50" />
+              <img :src="song.img_url" alt="Cover Art" />
             </td>
             <td>{{ song.title }}</td>
             <td>{{ song.artist }}</td>
