@@ -71,8 +71,8 @@ export default {
             //   JSON.parse(localStorage.getItem("user")).authorities[0].name
             // );
             // console.log(
-            //   JSON.parse(localStorage.getItem("user")).authorities[0].name ===
-            //     "ROLE_USER"
+            // JSON.parse(localStorage.getItem("user")).authorities[0].name ===
+            //   "ROLE_USER"
             // );
 
             this.$router.push("/events");

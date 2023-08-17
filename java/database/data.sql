@@ -7,8 +7,8 @@ INSERT INTO "user" (username,password_hash,role,email) VALUES ('admin','$2a$08$U
 
 -- INSERT FOR SONG TABLE (FAKE SONGS) LIST OF GENRES TO USE (POP, HIP-HOP, ROCK, JAZZ, DANCE, HEAVY METAL, ALTERNATIVE, INSTRUMENTAL, INDIE)
 
-INSERT INTO "song" (title, artist, genre, duration, song_url, song_art) VALUES ('Dance All Night', 'Sunny Beats', 'Pop', '3:45', 'www.youtube.com/watch?v=QdezFxHfatw', '');
-INSERT INTO "song" (title, artist, genre, duration, song_url, song_art) VALUES ('Groove Machine', 'MC Rhymes', 'Hip-Hop', '4:20', 'www.youtube.com/watch?v=QdezFxHfatw', '');
+INSERT INTO "song" (title, artist, genre, duration, song_url, song_art) VALUES ('Dance All Night', 'Sunny Beats', 'Pop', '3:45', 'www.youtube.com/watch?v=QdezFxHfatw', '@/Lawn_Boy_cover');
+INSERT INTO "song" (title, artist, genre, duration, song_url, song_art) VALUES ('Groove Machine', 'MC Rhymes', 'Hip-Hop', '4:20', 'www.youtube.com/watch?v=QdezFxHfatw', 'https://www.rawpixel.com/board/1223432/edvard-munch-cc0-original-expressionist-paintings-public-domain');
 INSERT INTO "song" (title, artist, genre, duration, song_url, song_art) VALUES ('Midnight Blues', 'Smooth Jazz Ensemble', 'Jazz', '5:10', 'www.youtube.com/watch?v=QdezFxHfatw', '');
 INSERT INTO "song" (title, artist, genre, duration, song_url, song_art) VALUES ('Rock Revolution', 'Power Chords', 'Rock', '3:30', 'www.youtube.com/watch?v=QdezFxHfatw', '');
 INSERT INTO "song" (title, artist, genre, duration, song_url, song_art) VALUES ('Echoes of Tomorrow', 'Alternate Realities', 'Alternative', '4:45', 'www.youtube.com/watch?v=QdezFxHfatw', '');

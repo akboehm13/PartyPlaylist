@@ -21,7 +21,7 @@ CREATE TABLE "song" (
     genre VARCHAR(25) NOT NULL,
     duration VARCHAR(5) NOT NULL,
     song_url VARCHAR(50) NOT NULL,
-    song_art VARCHAR(50)
+    song_art VARCHAR(200)
 );
 
 CREATE TABLE "event" (

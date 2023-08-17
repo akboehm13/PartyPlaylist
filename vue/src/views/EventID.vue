@@ -26,29 +26,29 @@
       </div>
       <div class="logistics-item">
         <h3>Start Time:</h3>
-        <p>{{ event.startTime }}</p>
+        <p>{{ event.start_time }}</p>
       </div>
       <div class="logistics-item">
         <h3>End Time:</h3>
-        <p>{{ event.endTime }}</p>
+        <p>{{ event.end_time }}</p>
       </div>
-      <div class="logistics-item">
+      <!-- <div class="logistics-item">
         <h3>Host ID:</h3>
         <p>{{ event.hostId }}</p>
       </div>
       <div class="logistics-item">
         <h3>DJ ID:</h3>
         <p>{{ event.djId }}</p>
-      </div>
+      </div> -->
     </div>
     <div id="table-playlist">
       <table>
         <caption>
-          <h3>Playlist</h3>
+          <h3>{{ playlist.name }}</h3>
         </caption>
         <thead>
           <tr>
-            <th>Cover Art</th>
+            <!-- <th>Cover Art</th> -->
             <th>Name</th>
             <th>Artist</th>
             <th>Genre</th>
@@ -58,17 +58,17 @@
         </thead>
         <tbody>
           <tr v-for="song in songs" :key="song.songId">
-            <td>
-              <img :src="song.coverArt" alt="Cover Art" height="50" />
-            </td>
+            <!-- <td>
+              <img :src="song.img_url" alt="Cover Art" />
+            </td> -->
             <td>{{ song.title }}</td>
             <td>{{ song.artist }}</td>
             <td>{{ song.genre }}</td>
             <td>{{ song.duration }}</td>
-            <td>
+            <!-- <td>
               <button @click="likeSong(song)">Edit</button>
               <button @click="dislikeSong(song)">Delete</button>
-            </td>
+            </td> -->
           </tr>
         </tbody>
       </table>
@@ -123,6 +123,14 @@ export default {
     //   this.songs = response.data;
     // });
   },
+  // computed: {
+  //   timeConverter(time){
+  //       var timeArray = time.split(':');
+  //       var miliHour = parseInt(timeArray[0]);
+  //       var hour = miliHour%12;
+  //       var timeOfDay = miliHour/12 >=
+  //   }
+  // }
 };
 </script>
 
@@ -134,10 +142,10 @@ export default {
     "img title logi"
     "playlist playlist playlist";
   justify-items: center;
-  background-color: #ECE2EE;
+  background-color: #ece2ee;
   padding-bottom: 2em;
   font-family: "Source Sans Pro", sans-serif;
-  color: #FFFFFF;
+  color: #ffffff;
   border-radius: 10px;
   overflow: hidden;
 }
@@ -165,12 +173,12 @@ export default {
   width: 300px;
   margin: 0 auto;
   border-radius: 10px;
-  background-color: #ECE2EE;
-  color: #753D8B;
+  background-color: #ece2ee;
+  color: #753d8b;
   margin-top: 20px;
 }
 .event-logistics h3 {
-  color: #753D8B;
+  color: #753d8b;
 }
 .event-logistics h2 {
   text-align: center;
@@ -197,12 +205,12 @@ export default {
   position: relative;
 }
 h3 {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 table {
   font-family: "Source Sans Pro";
-  color: #753D8B;
-  background-color: #F6EBFA;
+  color: #753d8b;
+  background-color: #f6ebfa;
   width: 100%;
   border-collapse: collapse;
 }
@@ -213,7 +221,7 @@ td {
   border-bottom: 1px solid #ddd;
 }
 th {
-  background-color: #753D8B;
+  background-color: #753d8b;
   color: white;
   font-weight: bold;
   position: sticky;
