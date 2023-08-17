@@ -77,7 +77,12 @@
                     <span class="date">{{ parseDate(event.date) }}</span>
                     <div class="date-content">
                       <h3>
+                        <!-- /* route to page -->
                         <a href="#">{{ event.name }}</a>
+                        <!-- <router-link
+                          :to="{ name: 'event', params: { id: 'event_id' } }"
+                          >{{ event.name }}</router-link
+                        > -->
                       </h3>
                       <p>{{ event.description }}</p>
                     </div>
