@@ -42,7 +42,7 @@ public class PlaylistController {
                 return playlist;
             }
         }
-
+    @PreAuthorize("hasRole('ADMIN')")
         @ResponseStatus(HttpStatus.CREATED)
         @PreAuthorize("hasRole('ADMIN')")
         @PostMapping("")
@@ -55,7 +55,11 @@ public class PlaylistController {
             }
             return newPlaylist;
         }
+<<<<<<< HEAD
+    @PreAuthorize("hasRole('ADMIN')")
+=======
         @PreAuthorize("hasRole('ADMIN')")
+>>>>>>> origin/EB
         @DeleteMapping("/{id}")
         public void deletePlaylist(@PathVariable int id) {
             if (playlistDao.getPlaylistById(id) == null) {
