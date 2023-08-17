@@ -175,8 +175,8 @@ export default {
         name: "",
         date: "",
         description: "",
-        dj_id: 1,
-        host_id: 2,
+        dj_id: 2,
+        host_id: 1,
         start_time: "",
         end_time: "",
         location: "",
@@ -349,16 +349,12 @@ export default {
 /* Container styles */
 .container {
   background-color: #ece2ee;
+  background: #f7f7f7
+    url("https://pbs.twimg.com/media/FOMC59BaMAEuCh_.jpg:large");
+    height: 74vh;
   padding: 20px;
   border-radius: 10px;
   margin: 0 auto;
-}
-#background_image {
-  background-image: URL("https://pbs.twimg.com/media/FOMC59BaMAEuCh_.jpg:large");
-  background-position: fixed;
-  background-repeat: no-repeat;
-  height: 72.5vh;
-  padding: 50px;
 }
 /* Input and button styles */
 .header {
@@ -369,8 +365,7 @@ export default {
 }
 
 h2 {
-  color: #753d8b;
-  opacity: 0.8;
+  color: #ffffff;
   font-family: "Source Sans Pro";
 }
 

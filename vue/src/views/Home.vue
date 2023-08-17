@@ -378,6 +378,7 @@ ul.contact li:first-child h3 {
 ul.dates {
   list-style: none;
   padding-left: 0;
+  
 }
 ul.dates li {
   position: relative;
@@ -385,7 +386,9 @@ ul.dates li {
   padding: 0.9em 0 1.1em 6.75em;
 }
 ul.dates .date {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   left: 0;
   top: 1.3em;
@@ -394,7 +397,7 @@ ul.dates .date {
   width: 5em;
   text-align: center;
   color: #fff;
-  font-style: bold;
+  font-weight: bold;
   line-height: 1em;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -406,6 +409,7 @@ ul.dates .date-content {
   line-height: 2em;
   padding: 0.5em 0.75em;
   border-radius: 1px;
+  
 }
 ul.dates .date:after {
   content: "";
@@ -421,6 +425,7 @@ ul.dates .date:after {
   align-items: center;
   font-weight: bold;
   font-size: 1.5em;
+  
 }
 ul.dates .date strong {
   display: block;
@@ -429,6 +434,8 @@ ul.dates .date strong {
 }
 ul.dates h3 {
   font-size: 1.1em;
+  align-self: center;
+  justify-self: center;
 }
 ul.dates p {
   margin: 0;
@@ -441,6 +448,7 @@ ul.dates li:first-child {
   position: relative;
   background: #f7f7f7
     url("https://pbs.twimg.com/media/FOMC59BaMAEuCh_.jpg:large");
+    height: 62.2vh;
   padding: 4em 0 4em 0;
   border-radius: 10px; /* Adjust the value to control the roundness of corners */
   overflow: hidden;

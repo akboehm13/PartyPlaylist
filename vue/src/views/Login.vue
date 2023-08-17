@@ -1,4 +1,5 @@
 <template>
+  <div id="background-image">
   <section id="main">
     <div class="login-container">
       <form @submit.prevent="login">
@@ -37,6 +38,7 @@
       </form>
     </div>
   </section>
+  </div>
 </template>
 
 <script>
@@ -94,6 +96,13 @@ export default {
 }
 label {
   margin-right: 0.5rem;
+}
+#background-image {
+  background-color: #ece2ee;
+  background: #f7f7f7
+  url("https://pbs.twimg.com/media/FOMC59BaMAEuCh_.jpg:large");
+  height: 50vh;
+  padding: 20px;
 }
 form {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;

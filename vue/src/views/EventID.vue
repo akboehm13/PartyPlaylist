@@ -41,7 +41,6 @@
         <p>{{ event.djId }}</p>
       </div>
     </div>
-
     <div id="table-playlist">
       <table>
         <caption>
@@ -135,64 +134,60 @@ export default {
     "img title logi"
     "playlist playlist playlist";
   justify-items: center;
-  background-color: #ece2ee;
+  background-color: #ECE2EE;
   padding-bottom: 2em;
   font-family: "Source Sans Pro", sans-serif;
-  color: #753d8b;
+  color: #FFFFFF;
   border-radius: 10px;
   overflow: hidden;
 }
-
 #event-name {
   grid-area: title;
   justify-self: center;
   font-size: 35px;
   text-align: center;
 }
-
 #event-img {
   grid-area: img;
   align-self: center;
   justify-self: center;
 }
-
 #event-description {
   grid-area: description;
   font-size: 18px;
   text-align: center;
 }
-
 #event-description > h2 {
   text-align: center;
 }
-
 .event-logistics {
   padding: 20px;
   width: 300px;
   margin: 0 auto;
+  border-radius: 10px;
+  background-color: #ECE2EE;
+  color: #753D8B;
+  margin-top: 20px;
 }
-
+.event-logistics h3 {
+  color: #753D8B;
+}
 .event-logistics h2 {
   text-align: center;
 }
-
 .logistics-item {
   margin-bottom: 15px;
 }
-
 .logistics-item h3 {
   margin: 0;
 }
-
 .logistics-item p {
   margin: 0;
   margin-left: 20px;
 }
-
 #table-playlist {
   grid-area: playlist;
 }
-
 .table-container {
   max-height: calc(100vh - 230px);
   overflow-y: auto;
@@ -201,24 +196,24 @@ export default {
   margin: 0 auto;
   position: relative;
 }
-
+h3 {
+  color: #FFFFFF;
+}
 table {
   font-family: "Source Sans Pro";
-  color: #753d8b;
-  background-color: #f6ebfa;
+  color: #753D8B;
+  background-color: #F6EBFA;
   width: 100%;
   border-collapse: collapse;
 }
-
 th,
 td {
   padding: 15px;
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
-
 th {
-  background-color: #753d8b;
+  background-color: #753D8B;
   color: white;
   font-weight: bold;
   position: sticky;

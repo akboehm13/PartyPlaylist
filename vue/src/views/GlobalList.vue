@@ -177,6 +177,9 @@ export default {
 /* Container styles */
 .container {
   background-color: #ece2ee;
+  background: #f7f7f7
+    url("https://pbs.twimg.com/media/FOMC59BaMAEuCh_.jpg:large");
+    height: 74vh;
   padding: 20px;
   border-radius: 10px;
   margin: 0 auto;
@@ -199,8 +202,7 @@ export default {
 }
 
 .input h2 {
-  color: #753d8b;
-  opacity: 0.8;
+  color: #ffffff;
   font-family: "Source Sans Pro";
 }
 
