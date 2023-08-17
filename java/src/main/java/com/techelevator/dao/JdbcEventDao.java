@@ -100,17 +100,19 @@ public class JdbcEventDao implements EventDao {
     }
 
     @Override
-    public void createEvent(Event event) {
-        String sql = "INSERT INTO \"event\" (name, dj_id, host_id, date, description, start_time, end_time, location) VALUES(?,?,?,?,?,?,?,?);";
-
+    public Event createEvent(Event event) {
+        String sql = "INSERT INTO \"event\" (name, dj_id, host_id, date, description, start_time, end_time, location) VALUES(?,?,?,?,?,?,?,?) RETURNING event_id;";
+        Event newEvent;
         try {
-            jdbcTemplate.update(sql,event.getName(),event.getDjId(),event.getHostId(),event.getDate(),
+            int newID = jdbcTemplate.queryForObject(sql,Integer.class,event.getName(),event.getDjId(),event.getHostId(),event.getDate(),
                     event.getDescription(), event.getStartTime(), event.getEndTime(), event.getLocation());
+            newEvent = getEventById(newID);
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to database", e);
         } catch (DataIntegrityViolationException e) {
             throw new DaoException("Data integrity violation", e);
         }
+        return newEvent;
     }
 
     @Override

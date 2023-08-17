@@ -8,7 +8,7 @@ public class Playlist {
     //create the dao and all possible methods
     //for the API we don't need authentication
     //when searching for playlist songs you'll need to get the event id (parameter) to find playlist id to get all the songs.
-    @JsonProperty("playlist_id")
+        @JsonProperty("playlist_id")
         private int playlistId;
         @JsonProperty("event_id")
         private int eventId;

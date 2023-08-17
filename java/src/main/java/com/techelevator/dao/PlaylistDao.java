@@ -13,5 +13,5 @@ public interface PlaylistDao {
 
     Playlist updatePlaylist(Playlist playlist);
 
-    void createPlaylist(Playlist playlist);
+    Playlist createPlaylist(Playlist playlist);
 }

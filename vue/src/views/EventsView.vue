@@ -148,6 +148,8 @@
 <script>
 import eventAPI from "../services/EventService.js";
 import songAPI from "../services/SongService.js";
+import playlistAPI from "../services/PlaylistService.js";
+import playlistSongAPI from "../services/PlaylistSongService.js";
 export default {
   name: "MyEventsView",
   data() {
@@ -169,8 +171,9 @@ export default {
       selectedGenres: [],
       playlist: {
         name: "",
-        songs: [],
+        event_id:"",
       },
+      songs : [],
       genreGroup: [
         "Rock",
         "Pop",
@@ -201,6 +204,8 @@ export default {
     },
     selectRandomSongs() {
 
+      this.songs = [];
+
       this.selectedGenres.forEach(async genre => {
 
         let currentSelected = await songAPI.listByGenre(genre);
@@ -208,12 +213,12 @@ export default {
 
         for (let i = 0; i < scale; i++) {
           let randomSong = currentSelected.data[Math.floor(Math.random() * currentSelected.data.length)]
-          if (!this.playlist.songs.includes(randomSong)) {
-            this.playlist.songs.push(randomSong)
+          if (!this.songs.includes(randomSong)) {
+            this.songs.push(randomSong)
           }
         }
       });
-      console.log(this.playlist.songs);
+      console.log(this.songs);
     }, 
     generatePlaylist() {
       if (this.showPlaylistRequired)
@@ -244,8 +249,8 @@ export default {
       this.newEvent.location = "";
       this.showPlaylistRequired = false;
     },
-    addEvent() {
-      if (this.playlist.songs.length < 1) {
+    async addEvent() {
+      if (this.songs.length < 1) {
         this.showPlaylistRequired = true;
       } else {
         if (!this.editingEvent) {
@@ -253,17 +258,36 @@ export default {
           
             console.log(this.newEvent);
 
-            eventAPI.add(this.newEvent);
+            let createdEvent = await eventAPI.add(this.newEvent);
             this.events.push(this.newEvent);
+
+            console.log(createdEvent.data);
+
+            this.playlist.event_id = createdEvent.data.eventId;
+
+            this.addPlaylist();
 
             location.reload();
           }
-        } else {
-
-          console.log('editing: '+this.newEvent)
-
         }
       }
+    },
+    async addPlaylist() {
+
+      let index = await playlistAPI.add(this.playlist);
+      console.log(index.data);
+
+      this.songs.forEach(song => {
+
+        let playlistSong = {
+          playlist_id: index.data.playlist_id,
+          song_id: song.song_id
+        }
+
+        playlistSongAPI.add(playlistSong);
+
+      });
+
     },
     editEvent() {
 
