@@ -17,7 +17,6 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/playlists")
 @CrossOrigin
-@PreAuthorize("hasRole('ADMIN')")
 public class PlaylistController {
 
         private JdbcPlaylistDao playlistDao;
@@ -43,7 +42,7 @@ public class PlaylistController {
                 return playlist;
             }
         }
-
+    @PreAuthorize("hasRole('ADMIN')")
         @ResponseStatus(HttpStatus.CREATED)
         @PostMapping("")
         public void createPlaylist(@Valid @RequestBody Playlist playlist) {
@@ -53,7 +52,7 @@ public class PlaylistController {
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Playlist creation failed");
             }
         }
-
+    @PreAuthorize("hasRole('ADMIN')")
         @DeleteMapping("/{id}")
         public void deletePlaylist(@PathVariable int id) {
             if (playlistDao.getPlaylistById(id) == null) {
@@ -61,7 +60,7 @@ public class PlaylistController {
             }
         }
 
-
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
         public Playlist updatePlaylist(@Valid @RequestBody Playlist playlist, @PathVariable int id) {
             playlist.setPlaylistId(id);
