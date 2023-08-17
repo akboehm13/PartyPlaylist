@@ -26,30 +26,30 @@
       </div>
       <div class="logistics-item">
         <h3>Start Time:</h3>
-        <p>{{ event.startTime }}</p>
+        <p>{{ event.start_time }}</p>
       </div>
       <div class="logistics-item">
         <h3>End Time:</h3>
-        <p>{{ event.endTime }}</p>
+        <p>{{ event.end_time }}</p>
       </div>
-      <div class="logistics-item">
+      <!-- <div class="logistics-item">
         <h3>Host ID:</h3>
         <p>{{ event.hostId }}</p>
       </div>
       <div class="logistics-item">
         <h3>DJ ID:</h3>
         <p>{{ event.djId }}</p>
-      </div>
+      </div> -->
     </div>
 
     <div id="table-playlist">
       <table>
         <caption>
-          <h3>Playlist</h3>
+          <h3>{{ playlist.name }}</h3>
         </caption>
         <thead>
           <tr>
-            <th>Cover Art</th>
+            <!-- <th>Cover Art</th> -->
             <th>Name</th>
             <th>Artist</th>
             <th>Genre</th>
@@ -59,17 +59,17 @@
         </thead>
         <tbody>
           <tr v-for="song in songs" :key="song.songId">
-            <td>
+            <!-- <td>
               <img :src="song.coverArt" alt="Cover Art" height="50" />
-            </td>
+            </td> -->
             <td>{{ song.title }}</td>
             <td>{{ song.artist }}</td>
             <td>{{ song.genre }}</td>
             <td>{{ song.duration }}</td>
-            <td>
+            <!-- <td>
               <button @click="likeSong(song)">Edit</button>
               <button @click="dislikeSong(song)">Delete</button>
-            </td>
+            </td> -->
           </tr>
         </tbody>
       </table>
@@ -124,6 +124,14 @@ export default {
     //   this.songs = response.data;
     // });
   },
+  // computed: {
+  //   timeConverter(time){
+  //       var timeArray = time.split(':');
+  //       var miliHour = parseInt(timeArray[0]);
+  //       var hour = miliHour%12;
+  //       var timeOfDay = miliHour/12 >=
+  //   }
+  // }
 };
 </script>
 
