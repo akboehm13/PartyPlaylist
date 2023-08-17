@@ -59,7 +59,7 @@ public class EventController {
             System.out.println(event.getEndTime());
             eventDao.createEvent(event);
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED,"Could not create new event");
+//            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED,"Could not create new event");
         }
     }
     @PreAuthorize("hasRole('ADMIN')")

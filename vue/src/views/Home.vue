@@ -1,11 +1,14 @@
 <template>
   <div>
-        <title>Sync</title>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="assets/css/main.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      <body>
-        <!-- <section id="header">
+    <title>Sync</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <body>
+      <!-- <section id="header">
           <h1>
             <img
               src="https://static.vecteezy.com/system/resources/previews/017/784/773/non_2x/sync-icon-in-flat-design-style-server-signs-illustration-png.png"
@@ -20,133 +23,134 @@
             </ul>
           </nav>
         </section> -->
-        <section id="main">
-          <div class="container">
-            <article class="box post">
-              <header>
-                <h3> <img id="sync-img"
-          src="@/Sync.png"
-          alt="Logo"
-          class="resize-logo"
-        /></h3>
-                <p>Your Ultimate DJ Companion and Event Playlist Manager!</p>
-              </header>
-              <p>
-                <strong
-                  >Elevate your DJ experience to the next level with Sync, the
-                  groundbreaking application designed exclusively for DJs and
-                  event enthusiasts. Seamlessly manage global playlists, curate
-                  electrifying music selections, and bring people together like
-                  never before. Sync empowers DJs to create, collaborate, and
-                  craft unforgettable moments with ease.</strong
-                >
-              </p>
-              <p>
-                <strong
-                  >But Sync doesn't stop there. Party hosts are invited to the
-                  spotlight, enjoying a seamless interface to manage events and
-                  invite their guests. Hosts can effortlessly extend their
-                  event's reach, and guests can request songs, vote on playlist
-                  tracks, and actively participate in curating the musical
-                  atmosphere. Sync isn't just an app; it's a revolution in event
-                  management, fostering collaboration, creativity, and
-                  connection. Say goodbye to ordinary parties and welcome Sync
-                  into your world – where music unites, memories are made, and
-                  events are elevated to unprecedented heights.</strong
-                >
-              </p>
-            </article>
-          </div>
-        </section>
-        <section id="footer">
-          <div class="container">
-            <div class="row">
-              <div class="col-8">
-                <section>
-                  <header>
-                    <h2>Upcoming events</h2>
-                  </header>
-                  <ul class="dates">
-                    <li v-for="event in events" :key="event.eventId">
-                      <span class="date">{{ parseDate(event.date) }}</span>
-                      <div class="date-content">
+      <section id="main">
+        <div class="container">
+          <article class="box post">
+            <header>
+              <h3>
+                <img
+                  id="sync-img"
+                  src="@/Sync.png"
+                  alt="Logo"
+                  class="resize-logo"
+                />
+              </h3>
+              <p>Your Ultimate DJ Companion and Event Playlist Manager!</p>
+            </header>
+            <p>
+              <strong
+                >Elevate your DJ experience to the next level with Sync, the
+                groundbreaking application designed exclusively for DJs and
+                event enthusiasts. Seamlessly manage global playlists, curate
+                electrifying music selections, and bring people together like
+                never before. Sync empowers DJs to create, collaborate, and
+                craft unforgettable moments with ease.</strong
+              >
+            </p>
+            <p>
+              <strong
+                >But Sync doesn't stop there. Party hosts are invited to the
+                spotlight, enjoying a seamless interface to manage events and
+                invite their guests. Hosts can effortlessly extend their event's
+                reach, and guests can request songs, vote on playlist tracks,
+                and actively participate in curating the musical atmosphere.
+                Sync isn't just an app; it's a revolution in event management,
+                fostering collaboration, creativity, and connection. Say goodbye
+                to ordinary parties and welcome Sync into your world – where
+                music unites, memories are made, and events are elevated to
+                unprecedented heights.</strong
+              >
+            </p>
+          </article>
+        </div>
+      </section>
+      <section id="footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-8">
+              <section>
+                <header>
+                  <h2>Upcoming events</h2>
+                </header>
+                <ul class="dates">
+                  <li v-for="event in events" :key="event.eventId">
+                    <span class="date">{{ parseDate(event.date) }}</span>
+                    <div class="date-content">
                       <h3>
                         <a href="#">{{ event.name }}</a>
                       </h3>
                       <p>{{ event.description }}</p>
-                      </div>
-                    </li>
-                  </ul>
-                </section>
-              </div>
-              <div class="col-4">
-                <section>
-                  <header>
-                    <h2>What's Sync all about?</h2>
-                  </header>
-                  <p>
-                    At <strong>Sync</strong>, we're on a mission to redefine the
-                    way DJs, party hosts, and music enthusiasts connect and
-                    collaborate. Our passion is fueled by the belief that music
-                    has the power to bring people together, transcend barriers,
-                    and create unforgettable memories. We've created a platform
-                    that goes beyond traditional event management, offering a
-                    seamless blend of technology and creativity that empowers
-                    DJs to curate unforgettable playlists while giving hosts and
-                    guests the tools to actively shape the musical experience.
-                  </p>
-                  <footer>
-                    <img
-                      src="https://media.istockphoto.com/id/1211193774/vector/friend-group-at-retro-dance-party-cartoon-people-dancing-and-having-fun.jpg?s=170667a&w=0&k=20&c=gIExOztj0eJF2VqNld03G_TBbRI3hyALvCJWmM_Lv1k="
-                      alt="Sync Image"
-                      class="rounded-image"
-                    />
-                  </footer>
-                </section>
-              </div>
-              <div class="col-4">
-                <section>
-                  <header>
-                    <h2>Let's get social!</h2>
-                  </header>
-                  <ul class="divided">
-  <li>
-    <a href="#" class="fa fa-snapchat"></a>
-    <a href="#" class="fa fa-twitter"></a>
-    <a href="#" class="fa fa-linkedin"></a>
-    <a href="#" class="fa fa-instagram"></a>
-  </li>
-</ul>
-                </section>
-              </div>
-              <div class="party-section">
-                <section>
-                  <header>
-                    <h2>Where we like to party</h2>
-                  </header>
-                  <ul class="contact">
-                    <li>
-                      <img
-                        src="@/Sync Logo.png"
-                      />
-                      <h3>Address</h3>
-                      <p>
-                        Sync Inc<br />
-                        1776 Mentor Ave #361<br />
-                        Norwood, Ohio 45212
-                      </p>
-                    </li>
-                    <li>
-                      <h3>Mail</h3>
-                      <p><a href="#">support@sync.com</a></p>
-                    </li>
-                  </ul>
-                </section>
-              </div>
+                    </div>
+                  </li>
+                </ul>
+              </section>
+            </div>
+            <div class="col-4">
+              <section>
+                <header>
+                  <h2>What's Sync all about?</h2>
+                </header>
+                <p>
+                  At <strong>Sync</strong>, we're on a mission to redefine the
+                  way DJs, party hosts, and music enthusiasts connect and
+                  collaborate. Our passion is fueled by the belief that music
+                  has the power to bring people together, transcend barriers,
+                  and create unforgettable memories. We've created a platform
+                  that goes beyond traditional event management, offering a
+                  seamless blend of technology and creativity that empowers DJs
+                  to curate unforgettable playlists while giving hosts and
+                  guests the tools to actively shape the musical experience.
+                </p>
+                <footer>
+                  <img
+                    src="https://media.istockphoto.com/id/1211193774/vector/friend-group-at-retro-dance-party-cartoon-people-dancing-and-having-fun.jpg?s=170667a&w=0&k=20&c=gIExOztj0eJF2VqNld03G_TBbRI3hyALvCJWmM_Lv1k="
+                    alt="Sync Image"
+                    class="rounded-image"
+                  />
+                </footer>
+              </section>
+            </div>
+            <div class="col-4">
+              <section>
+                <header>
+                  <h2>Let's get social!</h2>
+                </header>
+                <ul class="divided">
+                  <li>
+                    <a href="#" class="fa fa-snapchat"></a>
+                    <a href="#" class="fa fa-twitter"></a>
+                    <a href="#" class="fa fa-linkedin"></a>
+                    <a href="#" class="fa fa-instagram"></a>
+                  </li>
+                </ul>
+              </section>
+            </div>
+            <div class="party-section">
+              <section>
+                <header>
+                  <h2>Where we like to party</h2>
+                </header>
+                <ul class="contact">
+                  <li>
+                    <img src="@/Sync Logo.png" />
+                    <h3>Address</h3>
+                    <p>
+                      Sync Inc<br />
+                      1776 Mentor Ave #361<br />
+                      Norwood, Ohio 45212
+                    </p>
+                  </li>
+                  <li>
+                    <h3>Mail</h3>
+                    <p><a href="#">support@sync.com</a></p>
+                  </li>
+                </ul>
+              </section>
             </div>
           </div>
-        </section>
-      </body>
+        </div>
+      </section>
+    </body>
   </div>
 </template>
 <script>
@@ -166,15 +170,25 @@ export default {
   methods: {
     parseDate(date) {
       const months = [
-        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
       ];
       const parsedDate = new Date(date);
       const month = months[parsedDate.getMonth()];
       const day = parsedDate.getDate();
       return `${month}${day}`;
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>
@@ -211,7 +225,7 @@ ul {
   list-style: none;
 }
 body {
-  background:black;
+  background: rgb(52, 41, 56);
 }
 body,
 input,
@@ -219,7 +233,7 @@ textarea,
 select {
   font-family: "Source Sans Pro";
   font-weight: 300;
-  color: #753D8B;
+  color: #753d8b;
   font-size: 14pt;
   line-height: 1.75em;
 }
@@ -295,7 +309,7 @@ h3 {
   padding: 50px 0 0 50px;
 }
 .box {
-  background: #ECE2EE;
+  background: #ece2ee;
   border-radius: 10px;
   border-bottom: solid 1px #ccc;
   padding: 2.75em 1.75em 2.75em 1.75em;
@@ -329,7 +343,7 @@ ul.contact {
 ul.contact li {
   position: relative;
   border-top: solid 1px #ddd;
-  padding: 1.0em 0 1.3em 7em;
+  padding: 1em 0 1.3em 7em;
 }
 ul.contact li h3 {
   position: absolute;
@@ -361,25 +375,25 @@ ul.dates {
 ul.dates li {
   position: relative;
   border-top: solid 1px #ddd;
-  padding: .9em 0 1.1em 6.75em;
+  padding: 0.9em 0 1.1em 6.75em;
 }
 ul.dates .date {
   display: block;
   position: absolute;
   left: 0;
   top: 1.3em;
-  background-color: #753D8B;
+  background-color: #753d8b;
   height: 3em;
   width: 5em;
   text-align: center;
   color: #fff;
-  font-style:bold;
+  font-style: bold;
   line-height: 1em;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
 ul.dates .date-content {
-  background-color: #753D8B;
+  background-color: #753d8b;
   text-align: center;
   color: #fff;
   line-height: 2em;
@@ -391,7 +405,7 @@ ul.dates .date:after {
   position: absolute;
   bottom: 0;
   right: -1.2em;
-  border-left: solid 1.25em #F3F3F3;
+  border-left: solid 1.25em #f3f3f3;
   border-top: solid 1.8em transparent;
   border-bottom: solid 1.8em transparent;
 }
@@ -418,7 +432,7 @@ ul.dates li:first-child {
 }
 #main {
   position: relative;
-  background: #F7F7F7
+  background: #f7f7f7
     url("https://pbs.twimg.com/media/FOMC59BaMAEuCh_.jpg:large");
   padding: 4em 0 4em 0;
   border-radius: 10px; /* Adjust the value to control the roundness of corners */
@@ -438,7 +452,7 @@ ul.dates li:first-child {
 #footer h5,
 #footer h6,
 #footer {
-  color:white;
+  color: white;
 }
 #footer ul.contact li,
 #footer ul.dates li,
@@ -464,15 +478,15 @@ section p {
   border-radius: 20px;
 }
 .fa-twitter {
-  background: #55ACEE;
+  background: #55acee;
   color: white;
 }
 .fa-snapchat {
-  background:yellow;
+  background: yellow;
   color: white;
 }
 .fa-linkedin {
-  background: #0A66C2;
+  background: #0a66c2;
   color: white;
 }
 .fa-instagram {

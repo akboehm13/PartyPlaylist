@@ -3,8 +3,8 @@
     <div id="event-name">
       <h2>{{ event.name }}</h2>
       <div id="event-description">
-      <h3>{{ event.description }}</h3>
-    </div>
+        <h3>{{ event.description }}</h3>
+      </div>
     </div>
 
     <div id="event-img">
@@ -15,36 +15,32 @@
     </div>
 
     <div class="event-logistics">
-  <h2>Event Logistics</h2>
-  <div class="logistics-item">
-    <h3>Date:</h3>
-    <p>{{ event.date }}</p>
-  </div>
-  <div class="logistics-item">
-    <h3>Address:</h3>
-    <p>{{ event.location }}</p>
-  </div>
-  <div class="logistics-item">
-    <h3>Start Time:</h3>
-    <p>{{ event.startTime }}</p>
-  </div>
-  <div class="logistics-item">
-    <h3>End Time:</h3>
-    <p>{{ event.endTime }}</p>
-  </div>
-  <div class="logistics-item">
-    <h3>Host ID:</h3>
-    <p>{{ event.hostId }}</p>
-  </div>
-  <div class="logistics-item">
-    <h3>DJ ID:</h3>
-    <p>{{ event.djId }}</p>
-  </div>
-</div>
-
-    
-
-    
+      <h2>Event Logistics</h2>
+      <div class="logistics-item">
+        <h3>Date:</h3>
+        <p>{{ event.date }}</p>
+      </div>
+      <div class="logistics-item">
+        <h3>Address:</h3>
+        <p>{{ event.location }}</p>
+      </div>
+      <div class="logistics-item">
+        <h3>Start Time:</h3>
+        <p>{{ event.startTime }}</p>
+      </div>
+      <div class="logistics-item">
+        <h3>End Time:</h3>
+        <p>{{ event.endTime }}</p>
+      </div>
+      <div class="logistics-item">
+        <h3>Host ID:</h3>
+        <p>{{ event.hostId }}</p>
+      </div>
+      <div class="logistics-item">
+        <h3>DJ ID:</h3>
+        <p>{{ event.djId }}</p>
+      </div>
+    </div>
 
     <div id="table-playlist">
       <table>
@@ -83,6 +79,8 @@
 
 <script>
 import eventAPI from "../services/EventService.js";
+import playlistAPI from "../services/PlaylistService.js";
+import playlistsongAPI from "../services/PlaylistSongService.js";
 
 export default {
   name: "event",
@@ -90,19 +88,46 @@ export default {
   data() {
     return {
       event: {},
+      playlist: {},
+      songs: [],
     };
   },
   created() {
-    eventAPI.get(this.$route.params.id).then((response) => {
-      this.event = response.data;
-    });
+    eventAPI
+      .get(this.$route.params.id)
+      .then((response) => {
+        this.event = response.data;
+        // console.log(this.event);
+        // console.log(this.event.eventId);
+        return this.event;
+      })
+      .then((event) => playlistAPI.getByEventId(event.eventId))
+      .then((response) => {
+        this.playlist = response.data[0];
+        console.log("getting playlist");
+        return this.playlist;
+      })
+      .then((playlist) => {
+        console.log("fetching songs");
+        playlistsongAPI
+          .listSongsByPlaylistId(playlist.playlist_id)
+
+          .then((response) => {
+            console.log("getting songs");
+            console.log(response);
+            this.songs = response.data;
+          });
+      });
+    // .then((response) => {
+    //   console.log("getting songs");
+    //   console.log(response);
+    //   this.songs = response.data;
+    // });
   },
 };
 </script>
 
 <style scoped>
-
-
 #router-view {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -129,14 +154,12 @@ export default {
   grid-area: img;
   align-self: center;
   justify-self: center;
-  
 }
 
 #event-description {
   grid-area: description;
   font-size: 18px;
   text-align: center;
-  
 }
 
 #event-description > h2 {
@@ -144,7 +167,6 @@ export default {
 }
 
 .event-logistics {
-  
   padding: 20px;
   width: 300px;
   margin: 0 auto;
