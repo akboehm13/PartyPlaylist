@@ -42,7 +42,6 @@ public class PlaylistController {
                 return playlist;
             }
         }
-
         @ResponseStatus(HttpStatus.CREATED)
         @PreAuthorize("hasRole('ADMIN')")
         @PostMapping("")

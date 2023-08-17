@@ -4,11 +4,19 @@
       <div class="header">
         <h2>My Events</h2>
         <div class="buttons">
-          <router-link to="/global_list" class="buttons">
+          <router-link
+            to="/global_list"
+            class="buttons"
+            v-if="userAuthority === 'ROLE_ADMIN'"
+          >
             <button>Global Playlist</button>
           </router-link>
-          <button @click="toggleEventForm()" class="add-event-button">
-            Add Event
+          <button
+            @click="toggleEventForm()"
+            class="add-event-button"
+            v-if="userAuthority === 'ROLE_ADMIN'"
+          >
+            Create Event
           </button>
         </div>
       </div>
@@ -102,7 +110,12 @@
             <button id="generateButton" @click.prevent="generatePlaylist()">
               Generate Playlist
             </button>
-            <img class="requiredLogo" v-show="showPlaylistRequired" src="../../public/Pictures/Required-Icon.png" alt="Please generate a playlist!">
+            <img
+              class="requiredLogo"
+              v-show="showPlaylistRequired"
+              src="../../public/Pictures/Required-Icon.png"
+              alt="Please generate a playlist!"
+            />
           </div>
           </div>
           <button v-if="!editingEvent" @click.prevent="addEvent()">Add</button>
@@ -124,7 +137,7 @@
             </tr>
           </thead>
           <tr
-            v-for="event in events"
+            v-for="event in filteredEvents"
             :key="event.eventId"
             class="clickable-row"
             @click="navigateToEvent(event.eventId)"
@@ -186,6 +199,10 @@ export default {
         "Instrumental",
       ],
       events: [],
+      // userEvents: [],
+      userId: JSON.parse(localStorage.getItem("user")).id,
+      userAuthority: JSON.parse(localStorage.getItem("user")).authorities[0]
+        .name,
     };
   },
   created() {
@@ -209,7 +226,7 @@ export default {
       this.selectedGenres.forEach(async genre => {
 
         let currentSelected = await songAPI.listByGenre(genre);
-        let scale = Math.floor(Math.random() * currentSelected.data.length)+1;
+        let scale = Math.floor(Math.random() * currentSelected.data.length) + 1;
 
         for (let i = 0; i < scale; i++) {
           let randomSong = currentSelected.data[Math.floor(Math.random() * currentSelected.data.length)]
@@ -221,19 +238,12 @@ export default {
       console.log(this.songs);
     }, 
     generatePlaylist() {
-      if (this.showPlaylistRequired)
-        this.showPlaylistRequired = false;
+      if (this.showPlaylistRequired) this.showPlaylistRequired = false;
       if (this.selectedGenres.length < 1) {
-
         this.selectedGenres = this.genreGroup;
-        this.selectRandomSongs()
-
-
+        this.selectRandomSongs();
       } else {
-
-        this.selectRandomSongs()
-
-
+        this.selectRandomSongs();
       }
     },
     checkEdit() {
@@ -316,6 +326,19 @@ export default {
     },
     navigateToEvent(eventId) {
       this.$router.push(`/events/${eventId}`);
+    },
+  },
+  computed: {
+    filteredEvents() {
+      if (this.userAuthority === "ROLE_USER") {
+        return this.events.filter((event) => {
+          return event.host_id == this.userId;
+        });
+      } else if (this.userAuthority === "ROLE_ADMIN") {
+        return this.events.filter((event) => {
+          return event.dj_id == this.userId;
+        });
+      } else return [];
     },
   },
 };
