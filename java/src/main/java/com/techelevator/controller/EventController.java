@@ -54,13 +54,15 @@ public class EventController {
     @ResponseStatus(HttpStatus.CREATED)
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping(path = "")
-    public void addEvent(@RequestBody Event event) {
+    public Event addEvent(@RequestBody Event event) {
+        Event newEvent;
         try {
             System.out.println(event.getEndTime());
-            eventDao.createEvent(event);
+            newEvent = eventDao.createEvent(event);
         } catch (Exception e) {
-//            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED,"Could not create new event");
+            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED,"Could not create new event");
         }
+        return newEvent;
     }
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping(path = "/{id}")

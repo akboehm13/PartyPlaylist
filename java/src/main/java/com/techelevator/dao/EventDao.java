@@ -16,7 +16,7 @@ public interface EventDao {
 
     List<Event> getAllEventsByDJID(int id);
 
-    void createEvent(Event event);
+    Event createEvent(Event event);
 
     Event updateEventById(Event event);
 

@@ -93,17 +93,19 @@ public class JdbcPlaylistDao implements PlaylistDao {
         }
 
 
-        public void createPlaylist(Playlist playlist) {
-
-            String sql = "INSERT INTO playlist (event_id, name) VALUES(?,?);";
+        public Playlist createPlaylist(Playlist playlist) {
+            Playlist newPlaylist;
+            String sql = "INSERT INTO playlist (event_id, name) VALUES(?,?) RETURNING playlist_id;";
 
             try {
-                jdbcTemplate.update(sql,playlist.getEventId(),playlist.getName());
+                int id = jdbcTemplate.queryForObject(sql,Integer.class,playlist.getEventId(),playlist.getName());
+                newPlaylist = getPlaylistById(id);
             } catch (CannotGetJdbcConnectionException e) {
                 throw new DaoException("Unable to connect to database", e);
             } catch (DataIntegrityViolationException e) {
                 throw new DaoException("Data integrity violation", e);
             }
+            return newPlaylist;
         }
 
         private Playlist mapRowToPlaylist(SqlRowSet rowSet){
